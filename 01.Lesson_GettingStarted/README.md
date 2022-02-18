@@ -26,13 +26,13 @@
 
 </br>
 
-- [ ] Clone the [Tutorials](https://github.com/Certora/Tutorials) repository to your computer. </br>
-You can use the following link as a guide: [Cloning repository on git hub](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository)
+- [ ] Fork the [Tutorials](https://github.com/Certora/Tutorials) repository to your github account. </br>
+You can use the following link as a guide: [Forking Repository On Github](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository). </br>
+Clone your repository to your local machine so you'll have everything you need on your pc.
 
 </br>
 
-- [ ] Create your own repository for solutions with your name on it. This is where you will upload your solutions to the exercises for review and feedback. </br>
-You can use the following link as a guide: </br> 1. [Creating a Repo in Github](https://docs.github.com/en/get-started/quickstart/create-a-repo), </br>
+- [ ] Make sure to sync the forked repository daily in case any changes and fixes were made to the original repository. Use this link as a guide: [Syncing A Forked Repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo#configuring-git-to-sync-your-fork-with-the-original-repository).
 
 </br>
 
