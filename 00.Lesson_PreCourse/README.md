@@ -5,8 +5,6 @@ Watch the following lectures by Certora's CEO Prof. Mooly Sagiv and Dr. Chandrak
 
 - [ ] "Auditing and Formal Verification - Better together" - [Link](https://youtu.be/VGSsPIsbb6U).
 
-- [ ] "Understanding the Workflow of the Certora Prover" - [Link](https://youtu.be/c5ViO3Dpfqs).
-
 ## Quiz
 
 - [ ] Take the [Entrance Quiz]() to test your skills in propositional logic and properties of systems.
