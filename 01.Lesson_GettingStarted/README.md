@@ -31,8 +31,8 @@ You can use the following link as a guide: [Cloning repository on git hub](https
 
 </br>
 
-- [ ] Create a branch with your name on the repository. This is where you will upload your solutions to the exercises for review and feedback. </br>
-You can use these following links as a guide: </br> 1. [Creating a new branch via GUI](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository#creating-a-branch), </br> 2. [Creating a remote branch by pushing locally created branch](https://stackoverflow.com/questions/1519006/how-do-you-create-a-remote-git-branch)
+- [ ] Create your own repository for solutions with your name on it. This is where you will upload your solutions to the exercises for review and feedback. </br>
+You can use the following link as a guide: </br> 1. [Creating a Repo in Github](https://docs.github.com/en/get-started/quickstart/create-a-repo), </br>
 
 </br>
 
