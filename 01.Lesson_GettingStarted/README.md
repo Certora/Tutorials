@@ -26,7 +26,7 @@
 
 </br>
 
-- [ ] Clone the Certora-OnBoarding repository to your computer. </br>
+- [ ] Clone the [Tutorials](https://github.com/Certora/Tutorials) repository to your computer. </br>
 You can use the following link as a guide: [Cloning repository on git hub](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository)
 
 </br>
