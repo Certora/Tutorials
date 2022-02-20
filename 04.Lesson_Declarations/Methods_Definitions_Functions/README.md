@@ -35,7 +35,6 @@ This directory contains the three systems from the Lesson 1 Exercise. The interf
 
 </br>
 
-TODO - MAYBE ALSO ADD envfree to a function that is not envfree and see what is reported (notice envfreecheck) . Prover helps check you declaration and verify that envfree functions indeed don't access the env in the function body (not including calls) 
 ---
 
 ## CVL Functions
