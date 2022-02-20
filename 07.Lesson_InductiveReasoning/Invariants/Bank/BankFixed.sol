@@ -29,9 +29,8 @@ contract Bank {
 	function transfer(address to, uint256 amount) public {
 		require(to!= address(0));
 		require(funds[msg.sender] > amount);
-		uint256 fundsTo = funds[to];
 		funds[msg.sender] = funds[msg.sender].safeSub(amount);
-		funds[to] = fundsTo.safeAdd(amount);
+		funds[to] = funds[to].safeAdd(amount);
 		
 	}
 	
