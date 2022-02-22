@@ -1,6 +1,6 @@
 ## Popsicle Finance Bug
 Popsicle finance is an investment platform that acts and liquidity provider at several liquidity pools and manage to optimize gained fees for the benefit of the investor. At August 2021, a vulnerability of the Popsicle Finance smart contract SoberttoFragola was exploited, and led to a 25M$ loss of users funds.
-In short, the bug is that the popsicle finance team forgot to override their default ERC20 transfer function. Look at the attached pdf description of the bug for more details. 
+In short, the bug is that the popsicle finance team forgot to override their default ERC20 transfer function. Look at the [attached pdf](Popsicle_Finance_Bug.pdf) description of the bug for more details. 
 
 
 ## How to perform the attack
