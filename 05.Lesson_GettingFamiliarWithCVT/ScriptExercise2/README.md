@@ -51,6 +51,4 @@ If time differences don't seem that significant, keep in mind that these are rel
 
 > :bulb: Remember, you can use `certoraRun --help` command to read more about the flags and the run command syntax.
 
-TODO - lets give them a few useful scripts files that they can use
-
 Also - could this be a good point to see Chandra's talk?  
