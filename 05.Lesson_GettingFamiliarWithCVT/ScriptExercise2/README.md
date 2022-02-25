@@ -50,3 +50,5 @@ You can read more about it in the documentation [--method](https://certora.atlas
 If time differences don't seem that significant, keep in mind that these are relatively simple examples. In the future, you will encounter runs that may take longer to run.
 
 > :bulb: Remember, you can use `certoraRun --help` command to read more about the flags and the run command syntax.
+
+Upload the scripts for review.
