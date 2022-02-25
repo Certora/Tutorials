@@ -1,6 +1,6 @@
 # format: <relative/path/to/solidity/file>:<contrac_name> --verify <contract_name>:<relative/path/to/spec/file>
 
-certoraRun ../BankLesson1/Bank.sol:Bank --verify Bank:../BankLesson1/IntegrityOfDeposit.spec \
+certoraRun BankLesson1/Bank.sol:Bank --verify Bank:BankLesson1/IntegrityOfDeposit.spec \
   --solc solc7.6 \
   --rule integrityOfDeposit \
   --msg "$1"
