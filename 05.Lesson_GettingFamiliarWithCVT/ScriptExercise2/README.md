@@ -41,7 +41,7 @@ You can read more about it in the documentation [--method](https://certora.atlas
  
  - [ ] Create a script that verifies the entire `meetings.spec` file with the appropriate Solidity compiler and a message of your choice taken as an input. Use the `--send_only` to see how the execution behaves.
 
-- [ ] Create a script that verifies a parametric rule of your choice in the `meetings.spec` file with the appropriate Solidity compiler and a message of your choice. Use the `--method` flag to run the verification against the` startMeeting()` method.
+- [ ] Create a script that verifies a parametric rule of your choice in the `meetings.spec` file with the appropriate Solidity compiler and a message of your choice. Use the `--method` flag to run the verification against the `startMeeting()` method.
 
 - [ ] Run a verification of ***the same parametric rule*** in `meetings.spec` with the appropriate Solidity compiler and a message of your choice. Do not use the `--method` flag.
 
