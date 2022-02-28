@@ -37,6 +37,7 @@ rule integrityOfIncreaseAllowance(address spender, uint256 amount) {
 
 	assert amount > 0 => (allowanceAfter > allowanceBefore), "allowance did not increase";
     // Can you think of a way to strengthen this assert to account to all possible amounts?
+    // amount >= 0 ?
 }
 
 
@@ -60,12 +61,19 @@ rule balanceChangesFromCertainFunctions(method f, address user){
 // Checks that the totalSupply of the token is at least equal to a single user's balance
 // This rule breaks also on a fixed version of ERC20 -
 // why? understand the infeasible state that the rule start with 
+// the state starts with the total sum of all user balances being greater than totalSupply. This is why this rule fails, no users alone has a balance which is greater than supply but 2 ussers together do, so burning/transfering tokens can break the rule
 rule totalSupplyNotLessThanSingleUserBalance(method f, address user) {
 	env e;
 	calldataarg args;
 	uint256 totalSupplyBefore = totalSupply(e);
     uint256 userBalanceBefore = balanceOf(e, user);
+    // require sumOfAllUsers <= totalSupplyBefore; how to do something like this?
+    // kind of hacky but if calling these functions, then the accounts combined supply should be less than total supply before calling the function. This will tell us if the function call is broken or just our rule.
+    require (f.selector == transfer(address, uint256).selector ||
+         f.selector == transferFrom(address, address, uint256).selector ||
+         f.selector == burn(address, uint256).selector) => (balanceOf(e, args) + userBalanceBefore) < totalSupplyBefore && (balanceOf(e, e.msg.sender) + userBalanceBefore) < totalSupplyBefore;
     f(e, args);
+    
     uint256 totalSupplyAfter = totalSupply(e);
     uint256 userBalanceAfter = balanceOf(e, user);
 	assert totalSupplyBefore >= userBalanceBefore => 

@@ -210,10 +210,11 @@ contract ERC20 is IERC20, IERC20Metadata {
         virtual
         returns (bool)
     {
+        // increase allowance subtracted (instead of adding) the amount of allowance that was supposed to be added
         _approve(
             msg.sender,
             spender,
-            _allowances[msg.sender][spender] - addedValue
+            _allowances[msg.sender][spender] + addedValue
         );
         return true;
     }
@@ -322,9 +323,8 @@ contract ERC20 is IERC20, IERC20Metadata {
      */
     function burn(address account, uint256 amount) onlyOwner() public virtual override {
         require(account != address(0), "ERC20: burn from the zero address");
-
         _beforeTokenTransfer(account, address(0), amount);
-
+        
         uint256 accountBalance = _balances[account];
         require(accountBalance >= amount, "ERC20: burn amount exceeds balance");
         unchecked {
