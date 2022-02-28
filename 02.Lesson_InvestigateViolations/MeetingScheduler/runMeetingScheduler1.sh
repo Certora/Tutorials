@@ -1,4 +1,5 @@
+solc-select use 0.8.7
 certoraRun MeetingSchedulerBug1.sol:MeetingScheduler --verify MeetingScheduler:meetings.spec \
---solc solc8.7 \
+--solc solc \
 --send_only \
 --msg "$1"

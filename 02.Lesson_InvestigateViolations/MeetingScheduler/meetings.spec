@@ -53,9 +53,9 @@ rule checkStartedToStateTransition(method f, uint256 meetingId) {
 	calldataarg args;
 	uint8 stateBefore = getStateById(e, meetingId);
 	f(e, args);
-	
-	assert (stateBefore == 2 => (getStateById(e, meetingId) == 2 || getStateById(e, meetingId) == 4)), "the status of the meeting changed from STARTED to an invalid state";
-	assert ((stateBefore == 2 && getStateById(e, meetingId) == 4) => f.selector == endMeeting(uint256).selector), "the status of the meeting changed from STARTED to ENDED through a function other then endMeeting()";
+	// ENDED enum == 3 not 4, changed 4 to 3 here
+	assert (stateBefore == 2 => (getStateById(e, meetingId) == 2 || getStateById(e, meetingId) == 3)), "the status of the meeting changed from STARTED to an invalid state";
+	assert ((stateBefore == 2 && getStateById(e, meetingId) == 3) => f.selector == endMeeting(uint256).selector), "the status of the meeting changed from STARTED to ENDED through a function other then endMeeting()";
 }
 
 
@@ -76,9 +76,11 @@ rule checkPendingToCancelledOrStarted(method f, uint256 meetingId) {
 
 // Checks that the number of participants in a meeting cannot be decreased
 rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
+	// sets up meeting that is uninitialized but has nonzero number of participants. This shouldnt be allowed
 	env e;
 	calldataarg args;
 	uint256 numOfParticipantsBefore = getNumOfParticipents(e, meetingId);
+	require numOfParticipantsBefore > 0 => (getStateById(e, meetingId) != 0);
 	f(e, args);
     uint256 numOfParticipantsAfter = getNumOfParticipents(e, meetingId);
 

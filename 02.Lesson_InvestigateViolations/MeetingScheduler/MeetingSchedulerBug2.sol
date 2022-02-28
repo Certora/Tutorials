@@ -91,7 +91,8 @@ contract MeetingScheduler is IMeetingScheduler {
         meetings[meetingId].status = MeetingStatus.STARTED;
     }
 
-    function cancelMeeting(uint256 meetingId) external override {
+    // endMeeting and cancelMeeting names were switched
+    function endMeeting(uint256 meetingId) external override {
         ScheduledMeeting memory scheduledMeeting = meetings[meetingId];
         require(msg.sender == scheduledMeeting.organizer,
                 "only the organizer of a meeting can cancel it"
@@ -103,7 +104,7 @@ contract MeetingScheduler is IMeetingScheduler {
         meetings[meetingId].status = MeetingStatus.ENDED;
     }
 
-        function endMeeting(uint256 meetingId) external override {
+        function cancelMeeting(uint256 meetingId) external override {
         ScheduledMeeting memory scheduledMeeting = meetings[meetingId];
         require(
             scheduledMeeting.status == MeetingStatus.PENDING,
