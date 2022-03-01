@@ -6,6 +6,15 @@ methods{
     approve(address, uint256) returns (bool);
     transferFrom(address, address, uint256) returns (bool);
 }
+
+// not really useful, couldnt find anything that should be turned into a function 
+function getAllowance(address owner, address spender) returns uint256 {
+	return allowance(owner, spender);
+}
+
+definition MAX_UINT256() returns uint256 = 0xffffffffffffffffffffffffffffffff;
+
+
 /* f.selecor
 
  * On the right side of the implication above we see a f.selector.
@@ -64,7 +73,7 @@ rule balanceChangesFromCertainFunctions(method f, address user){
          f.selector == transferFrom(address, address, uint256).selector),
          "user's balance changed as a result function other than transfer(), transderFrom(), mint(), burn()";
 }
-// did this in its own exercise
+// did this in its own exercise (exercise 2)
 /* possible exercise to understand why it fails */ 
 // // Checks that the totalSupply of the token is at least equal to a single user's balance
 // rule totalSupplyNotLessThanSingleUserBalance(method f, address user) {

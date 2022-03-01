@@ -84,7 +84,7 @@ contract Borda is IBorda {
                 _blocked.push(msg.sender); 
                 _voters[msg.sender].black_listed = true;
            }
-           assert(false);
+           assert(false); // ?
         }
 
         _voters[msg.sender].voted = true;

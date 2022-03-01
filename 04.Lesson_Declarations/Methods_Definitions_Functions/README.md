@@ -29,9 +29,9 @@ Another reason to declare functions, even if they aren't `envfree`, is to make t
 
 This directory contains the three systems from the Lesson 1 Exercise. The interface implementations are the fixed versions (all the rules pass on them out of the box).
 
-- [ ] Write a methods block for each spec and declare as `envfree` every possible function.
+- [x] Write a methods block for each spec and declare as `envfree` every possible function.
 
-- [ ] Run the verification to make sure that your declarations work. You should get a verification report where all rules are passing.
+- [x] Run the verification to make sure that your declarations work. You should get a verification report where all rules are passing.
 
 </br>
 
@@ -43,13 +43,13 @@ This directory contains the three systems from the Lesson 1 Exercise. The interf
 
 Like any other programming language, CVL provides a way to encapsulate code in functions for convenient code reuse.
 
-- [ ] Read the documentation on [CVL functions](https://certora.atlassian.net/wiki/spaces/CPD/pages/238846033/CVL+Functions). 
+- [x] Read the documentation on [CVL functions](https://certora.atlassian.net/wiki/spaces/CPD/pages/238846033/CVL+Functions).
 
-- [ ] Have a look at the CVL functions in the altered, yet familiar spec from Lesson 1 - `TotalGreaterThenUser`: [BankFixed.sol](LessonExamples/BankFixed.sol) and [Functions_TotalGreaterThenUser.spec](LessonExamples/Functions_TotalGreaterThenUser.spec)
+- [x] Have a look at the CVL functions in the altered, yet familiar spec from Lesson 1 - `TotalGreaterThenUser`: [BankFixed.sol](LessonExamples/BankFixed.sol) and [Functions_TotalGreaterThenUser.spec](LessonExamples/Functions_TotalGreaterThenUser.spec)
 
 These are plain, simple, and perhaps even silly examples of CVL functions that one may not implement in a real specification. Keep in mind that these examples are simply there to get you going on features of the CVL and their syntax. You will write more useful functions soon enough.
 
-- [ ] Write CVL functions in [Borda Election](Borda) that takes a voter as argument and retrieves just one element from the struct, i.e. age, registered, voted, etc.
+- [x] Write CVL functions in [Borda Election](Borda) that takes a voter as argument and retrieves just one element from the struct, i.e. age, registered, voted, etc.
 
 > :bulb: 
 > <details>
@@ -57,9 +57,9 @@ These are plain, simple, and perhaps even silly examples of CVL functions that o
 > Look at the use of `getFullVoterDetails` in `onceBlackListedNotOut`. you can export this assignment to a CVL function that will retrieve a single element that you need.
 ></details>
 
-- [ ] Have a look at the other systems to see if you can find another place where CVL functions can come in handy.
+- [x] Have a look at the other systems to see if you can find another place where CVL functions can come in handy.
 
-- [ ] Run the verification to make sure that your declaration works. You should get a verification report where all rules pass.
+- [x] Run the verification to make sure that your declaration works. You should get a verification report where all rules pass.
 
 ---
 
@@ -84,17 +84,19 @@ definition C() returns uint256 = 299792458;
 definition meetingUninitialized(uint256 meetingId) returns bool = getStartTimeById(meetingId) == 0 && getEndTimeById(meetingId) == 0 && ...;
 ```
 
-- [ ] Read the documentation on [definitions](https://certora.atlassian.net/wiki/spaces/CPD/pages/41156868/Definitions) up to "Reference Ghost Functions" (not including).
+- [x] Read the documentation on [definitions](https://certora.atlassian.net/wiki/spaces/CPD/pages/41156868/Definitions) up to "Reference Ghost Functions" (not including).
 
-- [ ] Write the definitions of all the states in the [MeetingScheduler](MeetingScheduler) system.
+- [x] Write the definitions of all the states in the [MeetingScheduler](MeetingScheduler) system.
 
-- [ ] Try writing a few definitions for a voter in [Borda](Borda) contract:
+- [x] Try writing a few definitions for a voter in [Borda](Borda) contract:
+
 1. `unRegisteredVoter` - for a voter that isn't registered at all.
 2. `registeredYetVotedVoter` - for a registered voter that hasn't voted yet.
 3. `legitRegisteredVotedVoter` - for a registered voter that has voted but isn't blocked.
 4. `blockedVoter` - for a registered voter that has voted, and is blocked.
-- [ ] Use the CVL function for that task.
 
-- [ ] Have another look at the other systems and think if you can create useful definitions for them.
+- [x] Use the CVL function for that task.
 
-- [ ] Run the verification to make sure that your declarations work. You should get a verification report where all rules pass.
+- [x] Have another look at the other systems and think if you can create useful definitions for them.
+
+- [x] Run the verification to make sure that your declarations work. You should get a verification report where all rules pass.

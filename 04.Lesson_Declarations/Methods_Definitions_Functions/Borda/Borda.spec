@@ -8,6 +8,47 @@ methods{
     registerContender(uint8) returns(bool);
     vote(address, address, address) returns(bool);
 }
+
+definition unRegisteredVoter(address voter) returns bool = !getVoterReg(voter);
+
+definition registeredYetVotedVoter(address voter) 
+    returns bool = getVoterReg(voter) && !getVoterVoted(voter) && getVoterAttempts(voter) == 0;
+
+definition legitRegisteredVotedVoter(address voter) 
+    returns bool = getVoterReg(voter) && getVoterVoted(voter) && getVoterAttempts(voter) < 3 && !getVoterBlocked(voter);
+
+definition blockedVoter(address voter)
+    returns bool = getVoterReg(voter) && getVoterVoted(voter) && getVoterAttempts(voter) >= 3; // && getVoterBlocked(voter); never blocked
+
+function getVoterAge(address voter) returns uint256 {
+    uint256 age; bool registered; bool voted; uint256 vote_attempts; bool blocked;
+    age, registered, voted, vote_attempts, blocked = getFullVoterDetails(voter);
+    return age;
+}
+
+function getVoterReg(address voter) returns bool {
+    uint256 age; bool registered; bool voted; uint256 vote_attempts; bool blocked;
+    age, registered, voted, vote_attempts, blocked = getFullVoterDetails(voter);
+    return registered;
+}
+
+function getVoterVoted(address voter) returns bool {
+    uint256 age; bool registered; bool voted; uint256 vote_attempts; bool blocked;
+    age, registered, voted, vote_attempts, blocked = getFullVoterDetails(voter);
+    return voted;
+}
+
+function getVoterAttempts(address voter) returns uint256 {
+    uint256 age; bool registered; bool voted; uint256 vote_attempts; bool blocked;
+    age, registered, voted, vote_attempts, blocked = getFullVoterDetails(voter);
+    return vote_attempts;
+}
+
+function getVoterBlocked(address voter) returns bool {
+    uint256 age; bool registered; bool voted; uint256 vote_attempts; bool blocked;
+    age, registered, voted, vote_attempts, blocked = getFullVoterDetails(voter);
+    return blocked;
+}
 // Checks that a voter's "registered" mark is changed correctly - 
 // If it's false after a function call, it was false before
 // If it's true after a function call, it either started as true or changed from false to true via registerVoter()

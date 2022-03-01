@@ -11,6 +11,35 @@ methods{
     joinMeeting(uint256) envfree;
 }
 
+definition meetingUninitialized(uint256 meetingId) 
+    returns bool = getStartTimeById(meetingId) == 0 
+    && getEndTimeById(meetingId) == 0 
+    && getNumOfParticipents(meetingId) == 0;
+
+definition meetingPending(uint256 meetingId) 
+    returns bool = getStartTimeById(meetingId) != 0 
+    && getEndTimeById(meetingId) != 0 
+    && getNumOfParticipents(meetingId) == 0;
+
+definition meetingStarted(uint256 meetingId) 
+    returns bool = getStartTimeById(meetingId) != 0 
+    && getEndTimeById(meetingId) != 0 
+    && getNumOfParticipents(meetingId) >= 0;
+
+definition meetingEnded(uint256 meetingId)
+    returns bool = getStartTimeById(meetingId) != 0 
+    && getEndTimeById(meetingId) != 0 
+    && getNumOfParticipents(meetingId) >= 0;
+
+definition meetingCancelled(uint256 meetingId)
+    returns bool = getStartTimeById(meetingId) != 0 
+    && getEndTimeById(meetingId) != 0 
+    && getNumOfParticipents(meetingId) == 0;
+
+function getStartTimeByIdFunction(uint256 meetingId) returns uint256 {
+    return getStartTimeById(meetingId);
+}
+
 /*  Representing enums
 
     enums are supported by the Certora Verification Language (CVL), 
