@@ -19,13 +19,13 @@ However, the calling context (sender, value, timestamp, block number, etc.) is n
 There is no need for any Ethereum-frame context to retrieve the funds of a specified HEX address from the system.
 For these cases, one can create a `methods` block and explicitly declare the functions they will use in the spec. The declaration is similar to a function declaration in a Solidity interface. At the end of the declaration, one can specify the function as `envfree`, meaning it does not depend on the context, so no `env` variable should be expected in the function call. If `envfree` isn't specified at the end, the function will require an `env` argument (equivalent to not declaring it).
 
-- [ ] Have a look at the methods block in the altered, yet familiar spec from Lesson 1 - IntegrityOfDeposit: [BankFixed.sol](LessonExamples/BankFixed.sol) and [Methods_IntegrityOfDeposit.spec](LessonExamples/Methods_IntegrityOfDeposit.spec)
+- [x] Have a look at the methods block in the altered, yet familiar spec from Lesson 1 - IntegrityOfDeposit: [BankFixed.sol](LessonExamples/BankFixed.sol) and [Methods_IntegrityOfDeposit.spec](LessonExamples/Methods_IntegrityOfDeposit.spec)
 
 In general, creating an arbitrary `env` variable and passing it to the function call does not affect verification results. Still, we recommend declaring functions as `envfree` whenever possible to write cleaner and less confusing code.
 
 Another reason to declare functions, even if they aren't `envfree`, is to make the specification more self-contained and readable. 
 
-- [ ] Read the documentation on [method declarations](https://certora.atlassian.net/wiki/spaces/CPD/pages/181960777/Method+Declarations) up to "Summary Declarations" (not including). Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
+- [x] Read the documentation on [method declarations](https://certora.atlassian.net/wiki/spaces/CPD/pages/181960777/Method+Declarations) up to "Summary Declarations" (not including). Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
 
 This directory contains the three systems from the Lesson 1 Exercise. The interface implementations are the fixed versions (all the rules pass on them out of the box).
 
