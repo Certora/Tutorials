@@ -22,7 +22,7 @@ contract TicketDepot {
 	mapping(uint16 => Event) public eventsMap;
 	mapping(bytes32 => Offering) offerings;
 
-    // creates a "seller"
+    // creates a "seller" ?? anyone can take all fees?
 	function ticketDepot(uint64 _transactionFee) public {  
 		transactionFee = _transactionFee;  
 		owner = tx.origin;
@@ -38,14 +38,14 @@ contract TicketDepot {
         eventID = numEvents;
 	} 
 
-    // reverts if the number of tickets available goes below 0
+    // reverts if the number of tickets available goes below 0??
 	modifier ticketsAvailable(uint16 _eventID){  
 		_; 
 		if (eventsMap[_eventID].ticketsRemaining == 65535) revert();  
 	} 
 
     // buying a ticket as long as the buyer has enough money to pay for the ticket + fee
-	function buyNewTicket(uint16 _eventID, address _attendee) ticketsAvailable(_eventID) public payable returns (uint16 ticketID){  
+	function buyNewTicket(uint16 _eventID, address _attendee) ticketsAvailable(_eventID) public payable returns (uint16 ticketID){   // owner cant but new ticket, buyer must pay enough
 		if (msg.sender == eventsMap[_eventID].owner ||
             msg.value < eventsMap[_eventID].ticketPrice + transactionFee)
         {  

@@ -99,7 +99,7 @@ contract AuctionImpl is TokenInterface {
 				&& (auctions[id].bid_expiry < now || 
 					auctions[id].end_time < now));
 		// check that supply is not close to reach a limit, there should be enough to close another similar auction
-		require(auctions[id].prize.safeAdd(auctions[id].prize) + getTotalSupply() >= getTotalSupply());
+		require(auctions[id].prize.safeAdd(auctions[id].prize) + getTotalSupply() >= getTotalSupply()); // overflow, so limit reached
 
 		mint(auctions[id].winner, auctions[id].prize);
 		delete auctions[id];

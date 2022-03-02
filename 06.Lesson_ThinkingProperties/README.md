@@ -30,7 +30,7 @@ Even the most skillful security engineer will contribute nothing to a system's s
 The process of coming up with properties and rules ideas is not done once you start the verification.
 You will find out that it is an iterative process. While writing rules, you will better understand the system through violations of your properties and discover more rules and invariants that you can and need to define in the specification.
 
-- [ ] Go through the presentation [Categorizing Properties](Categorizing_Properties.pdf) to learn about different classes of properties that can be found in real-life systems.
+- [x] Go through the presentation [Categorizing Properties](Categorizing_Properties.pdf) to learn about different classes of properties that can be found in real-life systems.
 
 </br>
 
