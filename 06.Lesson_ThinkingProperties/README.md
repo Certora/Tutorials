@@ -34,15 +34,15 @@ You will find out that it is an iterative process. While writing rules, you will
 
 </br>
 
-- [ ] Follow the instructions in [AuctionDemonstration](AuctionDemonstration) to have a guided exercise with a demonstration of thinking about properties.
+- [x] Follow the instructions in [AuctionDemonstration](AuctionDemonstration) to have a guided exercise with a demonstration of thinking about properties.
 
 </br>
 
-- [ ] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
+- [x] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
 
 </br>
 
-- [ ] Create a `.spec` file for [MeetingScheduler](ThinkingPropertiesExercise/MeetingScheduler) and [TicketDepot](ThinkingPropertiesExercise/TicketDepot), and try to prove 5 properties in each of them based on your properties.
+- [x] Create a `.spec` file for [MeetingScheduler](ThinkingPropertiesExercise/MeetingScheduler) and [TicketDepot](ThinkingPropertiesExercise/TicketDepot), and try to prove 5 properties in each of them based on your properties.
 
 Upload your solutions to the directories to get review by the Certora team.
 
@@ -65,7 +65,7 @@ Don't underestimate the importance of this phase. Formal verification is worthle
 
 </br>
 
-- [ ] Continue to next lesson: [Inductive Reasoning](../07.Lesson_InductiveReasoning) to learn about inductive reasoning and the use of invariants.
+- [x] Continue to next lesson: [Inductive Reasoning](../07.Lesson_InductiveReasoning) to learn about inductive reasoning and the use of invariants.
 
 </br>
 

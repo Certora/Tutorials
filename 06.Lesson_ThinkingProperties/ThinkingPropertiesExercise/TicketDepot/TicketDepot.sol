@@ -16,7 +16,7 @@ contract TicketDepot {
 		uint256 deadline;
 	} 
 
-	uint16 numEvents;
+	uint16 public numEvents;
 	address public owner;  
 	uint64 public transactionFee;  
 	mapping(uint16 => Event) public eventsMap;
@@ -65,7 +65,7 @@ contract TicketDepot {
 	function offerTicket(uint16 _eventID, uint16 _ticketID, uint64 _price, address _buyer, uint16 _offerWindow) public payable {  
 		if (msg.sender != eventsMap[_eventID].attendees[_ticketID] ||
              msg.value < transactionFee) revert();  
-        
+
 		bytes32 offerID = keccak256(abi.encode(_eventID,_ticketID));  
 		if (offerings[offerID].deadline != 0) revert();  
         // paying the depot the transaction fee - the seller pays the fee instead of the buyer

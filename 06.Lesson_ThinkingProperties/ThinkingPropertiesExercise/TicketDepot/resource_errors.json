@@ -1,0 +1,81 @@
+{
+    "topics": [
+        {
+            "name": "type_check",
+            "messages": [
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:13:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:15:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:22:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:24:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:31:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:33:5): could not type expression \"?eventsMap(?eventId)\", message: Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:13:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:13:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:15:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:15:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:22:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:22:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:24:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:24:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:31:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:31:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:33:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type))\", message: could not find a function with canonical name eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)). For the name eventsMap, the symbol table contains these entries: (look for 'canonicalName' entries): N/A",
+                    "location": []
+                },
+                {
+                    "message": "Syntax error in spec file (TicketDepot.spec:33:5): could not type expression \"eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)).ticketsRemaining\", message: eventsMap(CVLErrorType(expThatCouldNotBeTyped=?eventsMap(?eventId), message=Ambiguous apply expression ?eventsMap(?eventId) inferred to be a FunctionIdExp, but one an 'argument' ?eventId was a variable when it should be a type)) could not be typed",
+                    "location": []
+                }
+            ]
+        }
+    ]
+}
