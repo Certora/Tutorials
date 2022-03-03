@@ -11,30 +11,41 @@ methods{
     joinMeeting(uint256) envfree;
 }
 
-definition meetingUninitialized(uint256 meetingId) 
+definition meetingUninitialized(e, uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) == 0 
     && getEndTimeById(meetingId) == 0 
-    && getNumOfParticipents(meetingId) == 0;
+    && getNumOfParticipents(meetingId) == 0
+    && getOrganizer(meetingId) == 0
+    && getStateById(meetingId) == 0;
+
 
 definition meetingPending(uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) != 0 
-    && getNumOfParticipents(meetingId) == 0;
+    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
+    && getNumOfParticipents(meetingId) == 0
+    && getOrganizer(meetingId) != 0
+    && getStateById(meetingId) == 1;
 
 definition meetingStarted(uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) != 0 
-    && getNumOfParticipents(meetingId) >= 0;
+    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
+    && getNumOfParticipents(meetingId) >= 0
+    && getOrganizer(meetingId) != 0
+    && getStateById(meetingId) == 2;
 
 definition meetingEnded(uint256 meetingId)
-    returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) != 0 
-    && getNumOfParticipents(meetingId) >= 0;
+    returns bool = getStartTimeById(meetingId) > 0 
+    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
+    && getNumOfParticipents(meetingId) >= 0
+    && getOrganizer(meetingId) != 0
+    && getStateById(meetingId) == 3;
 
 definition meetingCancelled(uint256 meetingId)
     returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) != 0 
-    && getNumOfParticipents(meetingId) == 0;
+    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
+    && getNumOfParticipents(meetingId) == 0
+    && getOrganizer(meetingId) != 0
+    && getStateById(meetingId) == 4;
 
 function getStartTimeByIdFunction(uint256 meetingId) returns uint256 {
     return getStartTimeById(meetingId);

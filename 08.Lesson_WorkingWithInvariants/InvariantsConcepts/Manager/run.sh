@@ -1,1 +1,2 @@
-certoraRun ManagerBug3.sol:Manager --verify Manager:ManagerFullSolution.spec --solc solc8.6 --staging nast/index --msg "$1"
+solc-select use 0.8.6
+certoraRun Manager.sol:Manager --verify Manager:ManagerFullSolution.spec --solc solc --msg "$1"
