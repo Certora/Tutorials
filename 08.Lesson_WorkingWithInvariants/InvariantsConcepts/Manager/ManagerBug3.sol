@@ -18,7 +18,7 @@ contract Manager {
 
 
 	function createFund(uint256 fundId) public {
-		// require(msg.sender != address(0));
+		require(msg.sender != address(0)); /*! bug !*/
 		require(funds[fundId].currentManager == address(0));
 		require(!isActiveManager[msg.sender]);
 		funds[fundId].currentManager = msg.sender;
