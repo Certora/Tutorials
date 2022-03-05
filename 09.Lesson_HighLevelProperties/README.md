@@ -8,7 +8,7 @@ In this Lesson, after you've already practiced coming up with meaningful propert
 
 High-level properties are usually implemented as invariants or parametric rules, as oppose to rules that monitor the behavior of the system as a result of a specific function call. The latter will very rarely represent high-level rules, due to its diminished "attack vector" possibility.
 
-- [ ] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
+- [x] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
 
 </br>
 
@@ -25,7 +25,7 @@ Upload your solutions to the directories to get review by the Certora team.
 
 </br>
 
-- [ ] Continue to the next lesson: [Vacuous Rules](../10.Lesson_VacuousRules) to learn about vacuous rules, how to avoid them, and how to catch them on time.
+- [x] Continue to the next lesson: [Vacuous Rules](../10.Lesson_VacuousRules) to learn about vacuous rules, how to avoid them, and how to catch them on time.
 
 </br>
 

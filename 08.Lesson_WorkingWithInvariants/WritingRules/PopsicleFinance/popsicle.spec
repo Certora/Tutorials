@@ -32,6 +32,7 @@ rule popsicleDoesntGetExploited(method f) {
     uint256 attackerAssetsAfter = totalAssetsOf(e.msg.sender);
 
     assert attackerAssetsAfter == attackerAssetsBefore, "attacker gained assets";
+    assert false;
 }
 
 rule rewardsResetOnCollect(address acct, method f) {
@@ -45,6 +46,7 @@ rule rewardsResetOnCollect(address acct, method f) {
 
     assert (rewardsAfter<rewardsBefore => f.selector==collectFees().selector, "rewards decreased without being collected");
     assert f.selector==collectFees().selector => rewardsAfter == 0, "all rewards werent collected";
+    assert false;
 }
 
 rule assetsIncreaseAfterDeposit() {
@@ -55,6 +57,7 @@ rule assetsIncreaseAfterDeposit() {
     uint256 assetsAfter = assetsOf(e.msg.sender);
 
     assert assetsAfter >= assetsBefore, "assets decreased after deposit";
+    assert false;
 }
 
 rule assetsDecreaseAfterWithdraw() {
@@ -65,4 +68,5 @@ rule assetsDecreaseAfterWithdraw() {
     uint256 assetsAfter = assetsOf(e.msg.sender);
 
     assert assetsAfter <= assetsBefore, "assets increased after withdraw";
+    assert false;
 }

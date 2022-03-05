@@ -46,6 +46,7 @@ rule properlyWorkingSwap0(address from, address to) {
     uint256 balance1After = getTokenBalance(token1, e.msg.sender);
     assert ((balance1After - balance1Before) >= 0, "token1 balance decreased");
     assert (balance0After == 0, "not all token0 balance was transferred");
+    assert false;
 }
 
 // ***Unit test*** - swapping token1 works properly
@@ -60,6 +61,7 @@ rule properlyWorkingSwap1(address from, address to) {
     uint256 balance1After = getTokenBalance(token1, e.msg.sender);
     assert ((balance0After - balance0Before) >= 0, "token1 balance decreased");
     assert (balance1After == 0, "not all token0 balance was transferred");
+    assert false;
 }
 
 // ***Variable transition*** - constant product of tokens amount are maintained
@@ -72,6 +74,7 @@ rule constantK(method f) {
     uint256 KAfter = getK();
 
     assert KAfter == KBefore, "K changed";
+    assert false;
 }
 
 // ***Valid state*** - contract is never drained
