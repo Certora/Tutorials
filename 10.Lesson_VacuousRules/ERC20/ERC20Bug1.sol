@@ -279,7 +279,7 @@ contract ERC20 is IERC20, IERC20Metadata {
             senderBalance >= amount,
             "ERC20: transfer amount exceeds balance"
         );
-        require(false);
+        // require(false); bug
         unchecked {
             _balances[sender] = senderBalance - amount;
         }

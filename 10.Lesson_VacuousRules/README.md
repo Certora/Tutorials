@@ -31,9 +31,9 @@ rule MethodsVacuityCheck(method f) {
 This rule calls every function in the contract and then `assert false`. It tries to capture vacuous **functions** in the contract.
 The results we get should always be thumbs down since assert false will always throw a violation. However, if the contract itself has a function that reverts every time it's being called regardless of input, then the function is vacuous, alerting the developers (because it does nothing).
 
-- [ ] Create a `.spec` file named "Sanity" and write the `MethodsVacuityCheck` rule. Run a verification against [ERC20Fixed.sol](ERC20/ERC20Fixed.sol) and [ERC20Bug1.sol](ERC20/ERC20Bug1.sol).
+- [x] Create a `.spec` file named "Sanity" and write the `MethodsVacuityCheck` rule. Run a verification against [ERC20Fixed.sol](ERC20/ERC20Fixed.sol) and [ERC20Bug1.sol](ERC20/ERC20Bug1.sol).
 
-- [ ] Find the bug in `ERC20Bug1`, fix it, and rerun the verification to verify that you get an all thumbs down result.
+- [x] Find the bug in `ERC20Bug1`, fix it, and rerun the verification to verify that you get an all thumbs down result.
 
 > :bulb: Remember, when running a sanity rule, we want to see an all-failing results report.
 
@@ -122,15 +122,15 @@ This method will catch vacuity caused by both tautology and under-approximation.
 
 </br>
 
-- [ ] Read the entire `"Simple Map"` example from the documentation. - [Link](https://docs.certora.com/en/latest/docs/user-guide/map/simple.html). Focus in particular on the option of calling a function `@withrevert` and the corresponding storage data of `lastReverted`.
+- [x] Read the entire `"Simple Map"` example from the documentation. - [Link](https://docs.certora.com/en/latest/docs/user-guide/map/simple.html). Focus in particular on the option of calling a function `@withrevert` and the corresponding storage data of `lastReverted`.
 
-- [ ] Read the common pitfalls article on vacuity [Link](https://docs.certora.com/en/latest/docs/confluence/pitfalls.html?highlight=lastreverted#lastreverted-updates).
+- [x] Read the common pitfalls article on vacuity [Link](https://docs.certora.com/en/latest/docs/confluence/pitfalls.html?highlight=lastreverted#lastreverted-updates).
 
-- [ ] Go over the rules and invariants in [ERCVacuity](ERC20/ERCVacuity.spec). Use the methods you've just learned to determine if they are vacuous rules.
+- [x] Go over the rules and invariants in [ERCVacuity](ERC20/ERCVacuity.spec). Use the methods you've just learned to determine if they are vacuous rules.
  
-- [ ] Go back to the `.spec` files that you've written for the `Spartan Protocol` and `Popsicle Finance`, and look at them with a new point of view. Try to apply the methods we've learned in this lesson to check whether you've written any vacuous rules and invariants.
+- [x] Go back to the `.spec` files that you've written for the `Spartan Protocol` and `Popsicle Finance`, and look at them with a new point of view. Try to apply the methods we've learned in this lesson to check whether you've written any vacuous rules and invariants.
 
-- [ ] If you did write vacuous rules, try to rethink if the rules make sense in the first place. If they do, fix them.
+- [x] If you did write vacuous rules, try to rethink if the rules make sense in the first place. If they do, fix them.
 
 </br>
 
@@ -140,7 +140,7 @@ This method will catch vacuity caused by both tautology and under-approximation.
 
 </br>
 
-- [ ] Continue to the next lesson: [Loops](../11.Lesson_Loops) to learn about the complexity of handling loops and ways to approach it.
+- [x] Continue to the next lesson: [Loops](../11.Lesson_Loops) to learn about the complexity of handling loops and ways to approach it.
 
 </br>
 
