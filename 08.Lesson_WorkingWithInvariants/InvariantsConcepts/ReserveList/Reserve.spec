@@ -19,10 +19,13 @@ methods {
     assert(getIdOfToken(t) == reserveId <=> getTokenAtIndex(reserveId) == t, "basic case: list correlation failed");
 } */
 
+// too loose 
+// lets 15 => 401 401 => pass?
+
 // invariants work
-invariant bothListsAreCorrelatedHintInv(uint256 reserveId, address t)
-    (t != 0 && reserveId != 0) => (getIdOfToken(t) == reserveId <=> getTokenAtIndex(reserveId) == t) 
-    && (t != 0 && reserveId == 0) => (getIdOfToken(t) == reserveId <=> getTokenAtIndex(reserveId) == t)
+invariant bothListsAreCorrelated(uint256 reserveId, address t)
+    t != 0 && ((reserveId != 0) => (getIdOfToken(t) == reserveId <=> getTokenAtIndex(reserveId) == t))
+    && ((reserveId == 0) => (getIdOfToken(t) == reserveId <=> getTokenAtIndex(reserveId) == t))
 
 // basic case throws
 // invariant bothListsAreCorrelatedBasicInv(uint256 reserveId, address t) 
@@ -37,37 +40,37 @@ invariant reserveCounterIsMaxIndex(uint256 i, address t)
     // remove 0, reserve Count == 1
     // token id 1 still exists
 
-invariant indexLessThanCount(address token)
-    (getReserveCount() > 0 => getIdOfToken(token) < getReserveCount()) &&
-    (getReserveCount() == 0 => getIdOfToken(token) == 0)
-    {
-        preserved removeReserve(address t) {
-            require t == token;
-        }
-    }
-
 // 3rd proof
 // Id of assets is injective (i.e. different tokens should have distinct ids).
 invariant injectiveAssetIds(uint256 i, uint256 j)
     (getTokenAtIndex(i) != 0 && getTokenAtIndex(j) != 0) => (i != j <=> getTokenAtIndex(i) != getTokenAtIndex(j))
     {
-        preserved addReserve(address token, address stableToken, address varToken, uint256 fee) {
-            requireInvariant bothListsAreCorrelatedHintInv(i, getTokenAtIndex(i));
-            requireInvariant bothListsAreCorrelatedHintInv(j, getTokenAtIndex(j));
+        preserved addReserve(address token, address stableToken, address varToken, uint256 fee) { 
+            requireInvariant bothListsAreCorrelated(i, getTokenAtIndex(i));
+            requireInvariant bothListsAreCorrelated(j, getTokenAtIndex(j));
         }
     }
 
 // 4th proof
 // Independency of tokens in list - removing one token from the list doesn't affect other tokens.
-invariant independentTokens(address t, address s)
-    (t != 0 && s != 0 && getIdOfToken(t) != 0 && getIdOfToken(s) != 0) => 
-
 rule independentTokens(address t, address s) {
     require(t != 0 && s != 0 && t != s);
-    require(getReserveCount() > 2);
     uint256 i = getIdOfToken(t);
     uint256 j = getIdOfToken(s);
     require(i != j);
     removeReserve(t);
     assert(getIdOfToken(s) == j);
+}
+
+// 5th proof
+// Each non-view function changes reservesCount by 1.
+rule reservesCountChangesByOne(method f) {
+    env e;
+    calldataarg args;
+    require(f.selector == addReserve(address, address, address, uint256).selector || f.selector == removeReserve(address).selector);
+    uint256 reserveCountBefore = getReserveCount();
+    f(e, args);
+    uint256 reserveCountAfter = getReserveCount();
+    assert (reserveCountAfter != reserveCountBefore, "no change in reserve count");
+    assert (((reserveCountAfter > reserveCountBefore) => (reserveCountAfter - reserveCountBefore == 1)) || ((reserveCountAfter > reserveCountBefore) => (reserveCountAfter - reserveCountBefore == 1)), "change in reserve count not 1");
 }

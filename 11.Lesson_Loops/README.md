@@ -24,7 +24,7 @@ As we mentioned before, the Certora Prover does not run in the traditional sense
 
 </br>
 
-- [ ] Follow the instructions on [BankLoops](BankLoops) and [ReserveList](ReserveList) to exercise loop handling with correct use of `--optimistic_loop` and `--loop_iter`.
+- [ ] Follow the instructions on [BankLoops](BankLoops) to exercise loop handling with correct use of `--optimistic_loop` and `--loop_iter`.
 
 
 </br>

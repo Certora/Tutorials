@@ -22,7 +22,7 @@ contract ERC20 is IERC20 {
     string public symbol;
     uint public decimals;
 
-    function myAddress() external override returns (address) {
+    function myAddress() external view override returns (address) {
         return address(this);
     }
 

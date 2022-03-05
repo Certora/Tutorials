@@ -1,6 +1,6 @@
 # Working With Invariants
 
-- [ ] Follow the instructions in [Invariants Concepts](InvariantsConcepts) to learn about preserved blocks and the correct structure of verifications in spec files.
+- [x] Follow the instructions in [Invariants Concepts](InvariantsConcepts) to learn about preserved blocks and the correct structure of verifications in spec files.
 
 - [ ] Go back to your list of properties for [Spartan Protocol](WritingRules/SpartanProtocol) and [Popsicle Finance](WritingRules/PopsicleFinance). Choose at least 5-7 properties from each system that you think you can write using the CVL commands you've learned so far. Try to verify them.
 

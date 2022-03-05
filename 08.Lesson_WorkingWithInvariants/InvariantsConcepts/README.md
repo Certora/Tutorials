@@ -291,7 +291,7 @@ invariant example(bytes32 hashId, env e)
 
     </br>
 
-  - [ ] Id of assets is injective (i.e. different tokens should have distinct ids).
+  - [x] Id of assets is injective (i.e. different tokens should have distinct ids).
     
     <details>
     <summary>Hint:</summary>
@@ -301,10 +301,10 @@ invariant example(bytes32 hashId, env e)
 
     </br>
     
-  - [ ] Independency of tokens in list - removing one token from the list doesn't affect other tokens.
+  - [x] Independency of tokens in list - removing one token from the list doesn't affect other tokens.
     
-  - [ ] Each non-view function changes reservesCount by 1.
+  - [x] Each non-view function changes reservesCount by 1.
 
-- [ ] If you're able to think of additional interesting properties implement them as well. 
+- [x] If you're able to think of additional interesting properties implement them as well.
 
 Upload your solutions for review by the Certora Team.

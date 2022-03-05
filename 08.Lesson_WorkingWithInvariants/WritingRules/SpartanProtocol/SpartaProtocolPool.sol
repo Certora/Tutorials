@@ -35,7 +35,7 @@ contract SpartaProtocolPool is ERC20 {
         token0 = _token0;
         token1 = _token1;
         owner = msg.sender;
-    }    
+    }
     
     // initializing the pool according to the amount of tokens sent by the creator.
     // the creator receives 100,000 LP tokens (shares) in exchange.
@@ -144,4 +144,16 @@ contract SpartaProtocolPool is ERC20 {
         IERC20(token1).transfer(user, pay_in_1);
     }    
     
+    // utility functions for testing
+    function getBalance(address a) public view returns (uint256) {
+        return a.balance;
+    }  
+
+    function getTokenBalance(address token, address user) public view returns (uint256) {
+        return IERC20(token).balanceOf(user);
+    }
+
+    function getK() public view returns (uint256) {
+        return K;
+    }
 }
