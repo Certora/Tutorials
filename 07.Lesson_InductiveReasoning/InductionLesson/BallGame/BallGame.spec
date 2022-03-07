@@ -8,11 +8,12 @@ invariant neverReachPlayer4()
 
 	
 
-rule dontGetTo3or4() { // i probably did this wrong?
-	// never mind I think this is just the difference between rules and invariants
+rule dontGetTo3or4(method f) {
 	env e;
+	calldataarg args;
+
 	require ballAt() == 1; // initialize contract?
-	pass(e);
+	f(e, args);
 	assert ballAt() != 4 && ballAt() != 3;
 }
 
