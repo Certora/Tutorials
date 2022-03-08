@@ -12,7 +12,7 @@ High-level properties are usually implemented as invariants or parametric rules,
 
 </br>
 
-- [ ] Create a `.spec` file for [Borda Election](ThinkingPropertiesExercise/Borda) and [ERC20](ThinkingPropertiesExercise/ERC20), and try to prove 5 properties in each of them based on your properties.
+- [x] Create a `.spec` file for [Borda Election](ThinkingPropertiesExercise/Borda) and [ERC20](ThinkingPropertiesExercise/ERC20), and try to prove 5 properties in each of them based on your properties.
 
 Upload your solutions to the directories to get review by the Certora team.
 
