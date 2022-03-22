@@ -1,0 +1,40 @@
+### Borda Election
+
+</br>
+
+In the [Borda directory](Borda) you will find the Borda Election system we've been working on throughout the course.
+This implementation of the system is stripped from most of its public getters to resemble a real live system (without unnecessary public getters for each field).
+
+- [ ] Create a harness contract and fill it with any functions needed for verifying the set of properties listed in the next bullet.
+
+- [ ] Implement the following list properties, and verify your `.spec` file against the harness contract you've created.
+
+    - [ ] Any voter that had cast his vote already is marked as registered.
+
+    - [ ] Voters that are marked as Black Listed has at least 3 votes attempts.
+
+    - [ ] Voters that has at least 3 vote attempts recorded are marked black listed.
+
+    (hint: properties 2 & 3 can be merged into 1 property )
+
+    - [ ] Monotonicity of points - number of total distributed points is non decreasing (hint: ghost).
+
+    - [ ] Monotonicity of points 2 - number of contender's points is non decreasing (hint: ghosts).
+
+    - [ ] Monotonicity of voters - number of voters that has voted is non decreasing (hint: ghosts).
+
+    - [ ] A single contender's point count is smaller than total point count (hint: ghosts)
+
+    - [ ] In each successful vote casting, exactly 6 points are being distributed (hint: ghosts).
+
+    - [ ]  The total number of points casted divided by 6 equals to the number of voters casted their votes (hint: ghosts).
+
+Upload your solution to the [Borda directory](Borda) for review by the Certora team.
+
+</br>
+
+---
+
+### “The advance of technology is based on making it fit in so that you don't really even notice it, so it's part of everyday life.” - Bill Gates
+
+---
