@@ -60,7 +60,7 @@ rule increaseAllowanceIntegrity(address spender, uint256 amount){
     address owner;
     require owner == e.msg.sender;
     uint256 _allowance = allowance(owner, spender);
-    increaseAllowance(e, spender, amount);
+    increaseAllowance(e, spender, amount); // if this reverts, allowance doesnt change and the assert passes
     uint256 allowance_ = allowance(owner, spender);
     assert _allowance <= allowance_;
     assert false, "increaseAllowanceIntegrity has non reverting path";
@@ -94,7 +94,7 @@ rule lastRevertedExample(address sender, address recipiecnt, uint256 amount){
     transferFrom@withrevert(e, sender, recipiecnt, amount);
     uint256 allownce_ = allowance(sender, recipiecnt);
 
-    assert lastReverted => _allownce < amount;
+    assert lastReverted => _allownce < amount; // last reverted here is the allowance checking function, which doesnt revert, this a vacous check
     assert false, "lastRevertedExample has non reverting path";
 }
 
