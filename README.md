@@ -1,4 +1,4 @@
-# Certora Onboarding
+# Certora Tutorials 
 
 ## Hello and welcome to Certora's beginner's course!
 
