@@ -7,7 +7,7 @@ fi
 certoraRun tokens/FTT.sol:FTT  \
     --verify FTT:erc20.spec $RULE  \
     --solc solc5.3 \
-    --staging \
+    --cloud \
     --send_only \
     --optimistic_loop \
     --msg "FTT:erc20.spec $1"

@@ -7,7 +7,7 @@ fi
 certoraRun tokens/USDT.sol:TetherToken  \
     --verify TetherToken:erc20.spec $RULE  \
     --solc solc4.25 \
-    --staging \
+    --cloud \
     --send_only \
     --optimistic_loop \
     --msg "USDT:erc20.spec $1"

@@ -4,9 +4,9 @@ then
 fi
 
 
-certoraRun tokens/ERC20Basic.sol:ERC20Basic  \
+certoraRun tokens/ERC20Basic.sol  \
     --verify ERC20Basic:erc20.spec $RULE  \
     --solc solc8.12 \
-    --staging \
+    --cloud \
     --send_only \
     --msg "Basic:erc20.spec $1"
