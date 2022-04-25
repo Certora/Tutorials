@@ -37,10 +37,12 @@ The folder contains a simple widely used ERC20s (Sushi, USTC, USTC, FFT) and a s
     use the additional argument to run just one rule at a time:
     ```./scripts/verifyDoYouTrustMe.sh  <ruleName>```
     
-7. contribute to the database of ERC20 rules by prepare a PR with additional buggy example and a rule
+7. contribute to the database of ERC20 rules by preparing a PR with additional buggy examples and a rule
 
 ### Useful references
 1. running scripts 
 2. understanding results?  
 
 ## Day 2
+
+## Day 3
