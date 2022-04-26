@@ -20,7 +20,7 @@ function poolBalance() returns uint256 {
 }
 
 /* 
-    calcPermium properties:
+    calcPremium properties:
         a. max value: calcPremium(x) < x    where x!=0
         b. monotonicity: x < y => calcPremium(x) <= calcPremium(y)
 */
