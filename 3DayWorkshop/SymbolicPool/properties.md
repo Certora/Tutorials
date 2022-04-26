@@ -66,3 +66,14 @@
 
 - A user cannot withdraw the same balance twice
   Implementation: rule `noDoubleWithdraw`
+
+  ### Math Properties
+
+- Premium is smaller than the flashloan amount and holds monotonicity
+  Implementation: rule `integrityOfCalcPremium`
+
+- Amount to shares conversion is monotonic
+  Implementation: rule `monotonicity_amountToShares`
+
+- Shares to amount conversion is monotonic
+  Implementation: rule `monotonicity_sharesToAmount`

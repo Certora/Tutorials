@@ -123,7 +123,19 @@ rule deposit_GR_zero() {
 }
 
 /* 
-    State Transition: when a user become an LP provider  
+    State Transition: when a user become an LP provider 
+	Formula:
+	{
+		isLPproviderBefore = balanceOf(msg.sender) > 0
+	} 
+	<
+		f(e, args)
+	>
+	{
+		isLPproviderAfter = balanceOf(msg.sender)
+		f.selector == deposit => isLPproviderAfter;
+		f.selector == withdraw => isLPproviderBefore;
+	}
 */
 rule changeLpProvider(address user, method f) {
     env e;
@@ -141,6 +153,18 @@ rule changeLpProvider(address user, method f) {
 
 /*
     Variable Transition : totalSupply can only change on deposit and withdraw
+	Formula:
+	{
+		before = totalSupply()
+	}
+	<
+		f(e, args)
+	>
+	{
+		after = totalSupply()
+		after > before => f.selector == deposit
+		after < before => f.selector == withdraw
+	}
 */
 rule changeTotalSupply(method f) {
     uint256 before = totalSupply() ;
@@ -324,6 +348,9 @@ rule user_solvency_on_flashLoan(address user) {
 	assert(user == e.msg.sender && shares_pre == 0) =>( total_post == total_pre - premium );
 }
 
+/*
+	User doesn't lose funds on method calls which are not a flashloan
+*/
 rule user_solvency_without_flashloan(address user, method f) filtered {
 	f -> f.selector != flashLoan(address,uint256).selector  &&  
 		f.selector != transferFrom(address, address, uint256).selector
