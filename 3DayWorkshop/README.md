@@ -6,9 +6,10 @@ This training assumes knowledge in Defi: ERC20, liquidity pools.
 ## Day 1 -  CVL Language - Basic Rules & Understand Results
 
 Folder ERC20 contains a generic spec for ERC20 contracts. We will use this as an example for learning CVL. We will practice running Certora Prover and understanding the results.
-The folder contains a simple widely used ERC20s (Sushi, USTC, USTC, FFT) and a simple ERC20Basic contract.   
+The folder contains widely used ERC20s (Sushi, USTC, USTC, FFT) and a simple ERC20Basic contract.   
 
-1. Go over [ERC20 spec](3DayWorkshop/ERC20/erc20.spec)
+1. Go over [ERC20 spec](ERC20/erc20.spec).
+
 2. Run verification scripts:
 
     From the folder ERC20 run a script, for example:
@@ -17,7 +18,7 @@ The folder contains a simple widely used ERC20s (Sushi, USTC, USTC, FFT) and a s
 
     
     Follow the progress of your runs in 
-    [prover.certora.com](http://prover.certora.com)
+    [prover.certora.com](http://prover.certora.com).
 
 3. Understand violations reported on each of the tokens:
     
@@ -37,12 +38,28 @@ The folder contains a simple widely used ERC20s (Sushi, USTC, USTC, FFT) and a s
     use the additional argument to run just one rule at a time:
     ```./scripts/verifyDoYouTrustMe.sh  <ruleName>```
     
-7. contribute to the database of ERC20 rules by preparing a PR with additional buggy examples and a rule
+7. contribute to the database of ERC20 rules by preparing a PR with additional buggy examples and a rule.
+ 
 
-### Useful references
-1. running scripts 
-2. understanding results?  
+## Day 2 -  Thinking about Properties 
 
-## Day 2
+1. Learn about the different types of properties. 
 
-## Day 3
+2. Practice thinking about properties
+for [symbolic pool](SymbolicPool/contracts/Pool.sol), a generic example based on features presented in AAVE's protocol. 
+
+3. Check your properties against those listed in [properties.md](SymbolicPool/properties.md). 
+4. Check if the specs files provide good coverage by injecting bugs to the code and re-running the spec. 
+5. Add properties to get better coverage.
+## Day 3 -  Finding Real Bugs 
+Folder [PracticeBugFinding](PracticeBugFinding) contains a few examples of bugs based on real-life bugs: 
+ - Beginner level: [ReserveList](ReserveList) - Example based on AAVE V3 data structure
+  - Intermediate level: [Popsicle](Popsicle) - Example based on Popsicle Finance
+  - Advance level: [ConstantProductPool](ConstantProductPool) - Example based on sushiSwap Trident
+
+Each folder contains a run script and a start of a spec file.
+
+ 1. Learn the contract from a high level view (without searching for the bug).
+ 2. Think about properties for this contract. 
+ 3. Write rules for these contracts. 
+ 4. Check if you found all bugs in the answer folders which contains a fixed version of the code and a set of rules that uncover the bugs.

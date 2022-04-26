@@ -54,7 +54,7 @@
 - User solvency on methods other than flashloan
   Implementation: rule `user_solvency_without_flashloan`
 
-  ### Unit Tests
+### Unit Tests
 
 - Deposit works as expected
   Implementation: rule `correct_balance_on_deposit`
@@ -62,7 +62,7 @@
 - Withdraw works as expected
   Implementation: rule `correct_balance_on_withdraw`
 
-  ### Risk Assessment
+### Risk Assessment
 
 - A user cannot withdraw the same balance twice
   Implementation: rule `noDoubleWithdraw`
