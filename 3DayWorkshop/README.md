@@ -53,9 +53,9 @@ for [symbolic pool](SymbolicPool/contracts/Pool.sol), a generic example based on
 5. Add properties to get better coverage.
 ## Day 3 -  Finding Real Bugs 
 Folder [PracticeBugFinding](PracticeBugFinding) contains a few examples of bugs based on real-life bugs: 
- - Beginner level: [ReserveList](ReserveList) - Example based on AAVE V3 data structure
-  - Intermediate level: [Popsicle](Popsicle) - Example based on Popsicle Finance
-  - Advance level: [ConstantProductPool](ConstantProductPool) - Example based on sushiSwap Trident
+ - Beginner level: [ReserveList](PracticeBugFinding/ReserveList) - Example based on AAVE V3 data structure
+  - Intermediate level: [Popsicle](PracticeBugFinding/Popsicle) - Example based on Popsicle Finance
+  - Advance level: [ConstantProductPool](PracticeBugFinding/ConstantProductPool) - Example based on sushiSwap Trident
 
 Each folder contains a run script and a start of a spec file.
 
