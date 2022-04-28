@@ -49,20 +49,31 @@ rule transferIncreasesRecipientBalance {
     }
 }
 
+definition insufficientBalance(env e, uint amount) returns bool =
+    amount > balanceOf(e.msg.sender) => lastReverted;
+
+definition transferWouldOverflow(address recipient, amount) returns bool =
+    balanceOf(recipient) + amount >= max_uint256;
+
+
 rule transferRevertConditions {
     address recipient; address sender;
     uint amount;
 
     transfer@withrevert(e, recipient, amount);
 
-//     assert amount > balance_sender_before => lastReverted,
-//         "transfer must revert if sender's balance is insufficient";
-//
-//     assert balance_recip_before + amount >= max_uint256 => lastReverted,
-//         "transfer must revert if recipient's account would overflow";
-//
-//     assert recipient == 0 => lastReverted,
-//         "transfer must revert if recipient is 0";
+    assert insufficientBalance(e, amount) => lastReverted,
+        "transfer must revert if sender's balance is insufficient";
+
+    assert transferWouldOverflow(recipient, amount) => lastReverted,
+        "transfer must revert if recipient's account would overflow";
+
+    assert recipient == 0 => lastReverted,
+         "transfer must revert if recipient is 0";
+
+    assert lastReverted
+        => insufficientBalance(e, sender) || transferWouldOverflow(recipient, amount) || recipient == 0,
+        "transfer must only revert if one of the three revert conditions is true";
 //
 //     The above only check that transfer _does_ revert as appropriate.  We also
 //     want to say that these are the _only_ conditions when transfer reverts.
