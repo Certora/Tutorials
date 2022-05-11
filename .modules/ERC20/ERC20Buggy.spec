@@ -1,9 +1,8 @@
-/* f.selecor
+/* f.selector
 
- * On the right side of the implication above we see a f.selector.
  * The use of f.selector is very similar to its use in solidity -
  * since f is a parametric method that calls every function in contract in parallel,
- * we specify (or selecting) to address one particular path - when the f.selector was scheduleMeeting.
+ * we specify (or selecting) to address one particular path - when the f.selector was a specific function.
  */
 
 // Checks that the sum of sender and recipient accounts remains the same after transfer(), i.e. assets doesn't disappear nor created out of thin air
@@ -12,10 +11,9 @@ rule integrityOfTransfer(address recipient, uint256 amount) {
 	uint256 balanceSenderBefore = balanceOf(e, e.msg.sender);
 	uint256 balanceRecipientBefore = balanceOf(e, recipient);
 	transfer(e, recipient, amount);
-	uint256 balanceSenderAfter = balanceOf(e, e.msg.sender);
-	uint256 balanceRecipientAfter = balanceOf(e, recipient);
 
-	assert balanceRecipientBefore + balanceSenderBefore == balanceSenderAfter + balanceRecipientAfter, "the total funds before and after a transfer should remain the constant";
+	assert balanceRecipientBefore + balanceSenderBefore == balanceOf(e, e.msg.sender) + balanceOf(e, recipient),
+        "the total funds before and after a transfer should remain the constant";
 }
 
 
@@ -53,21 +51,25 @@ rule balanceChangesFromCertainFunctions(method f, address user){
 
     assert userBalanceBefore != userBalanceAfter => 
         (f.selector == transfer(address, uint256).selector ||
-         f.selector == transferFrom(address, address, uint256).selector),
-         "user's balance changed as a result function other than transfer(), transderFrom(), mint(), burn()";
+         f.selector == transferFrom(address, address, uint256).selector ||
+         f.selector == mint(address, uint256).selector ||
+         f.selector == burn(address, uint256).selector),
+         "user's balance changed as a result function other than transfer(), transferFrom(), mint() or burn()";
 }
 
-/* possible exercise to understand why it fails */
-// // Checks that the totalSupply of the token is at least equal to a single user's balance
-// rule totalSupplyNotLessThanSingleUserBalance(method f, address user) {
-// 	env e;
-// 	calldataarg args;
-// 	uint256 totalSupplyBefore = totalSupply(e);
-//     uint256 userBalanceBefore = balanceOf(e, user);
-//     require totalSupplyBefore >= userBalanceBefore;
-//     f(e, args);
-//     uint256 totalSupplyAfter = totalSupply(e);
-//     uint256 userBalanceAfter = balanceOf(e, user);
 
-// 	assert totalSupplyAfter >= userBalanceAfter, "msg";
-// }
+// Checks that the totalSupply of the token is at least equal to a single user's balance
+// This rule breaks also on a fixed version of ERC20 -
+// why? understand the infeasible state that the rule start with 
+rule totalSupplyNotLessThanSingleUserBalance(method f, address user) {
+	env e;
+	calldataarg args;
+	uint256 totalSupplyBefore = totalSupply(e);
+    uint256 userBalanceBefore = balanceOf(e, user);
+    f(e, args);
+    uint256 totalSupplyAfter = totalSupply(e);
+    uint256 userBalanceAfter = balanceOf(e, user);
+	assert totalSupplyBefore >= userBalanceBefore => 
+            totalSupplyAfter >= userBalanceAfter,
+        "a user's balance is exceeding the total supply of token";
+}
