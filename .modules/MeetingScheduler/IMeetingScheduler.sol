@@ -1,29 +1,30 @@
 pragma solidity ^0.8.7;
 
 /** Meeting Scheduler Overview
- * @dev This contract simulate a meeting scheduler for various uses.
+ * @dev This contract simulates a meeting scheduler for various uses.
  * 
- * The scheduler follows a very clear path through different states of meeting's life.
- * The system allows one to create a schedule, defining start & end of the meeting.
+ * The scheduler follows a clear path through the different states of a meeting's life.
+ * The system allows one to create a schedule, defining the start and end times of the meeting.
  * The scheduler also tracks the number of participants attending the meeting.
  *
- * - The meetings in the system are going through the following states - before creation they are
- * classified as UNINITIALIZED.
+ * The meetings in the system are going through the following states: 
+ * - Before creation, they are classified as UNINITIALIZED.
  *
- * - At creation the state change to PENDING, the start & end time are being set according to 
- * organizer's order, and the num of participants are nullified.
+ * - At creation, the meeting's state changes to PENDING, the start and end times are set according to the 
+ * organizer's order, and the number of participants is nullified.
  *
- * - At this point a meeting can be started by anybody if start time has arrived (change to STARTED),
- * or be cancelled (change to CANCELLED) by owner. A meeting that has already occured can not be labeld CANCELLED.
+ * - Anybody can start a PENDING meeting if the start time has arrived (the meeting's status 
+ * changes to STARTED).
+ * -A meeting's owner be cancel it (changes to CANCELLED) by its owner. A meeting that has already
+ * occurred can not be labeled CANCELLED.
  *
- * - In case that the meeting has already started and the end time arrived, anybody can change the status
- * to ENDED.
+ * - When the end time arrives, a STARTED meeting becomes ENDED.
  */
 
 interface IMeetingScheduler {
     
     enum MeetingStatus {
-        UNINITIALIZED, 
+        UNINITIALIZED,
         PENDING,
         STARTED,
         ENDED,
@@ -65,7 +66,7 @@ interface IMeetingScheduler {
         view
         returns (address);
 
-    // Creates a registry of meetingId in the map and updating its details.
+    // Creates a registry of meetingId in the map and updates its details.
     function scheduleMeeting(
         uint256 meetingId,
         uint256 startTime,
@@ -78,7 +79,7 @@ interface IMeetingScheduler {
     // Changes the status of a meeting to CANCELLED if it hasn't started yet
     function cancelMeeting(uint256 meetingId) external;
 
-    // Changes the status of a meeting to ENDED only if it really occured
+    // Changes the status of a meeting to ENDED only if it occured and its end time has arrived
     function endMeeting(uint256 meetingId) external;
 
     // Increases a meeting's participants' count

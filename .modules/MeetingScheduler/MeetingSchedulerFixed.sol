@@ -51,6 +51,7 @@ contract MeetingScheduler is IMeetingScheduler {
         return meetings[meetingId].organizer;
     }
 
+
     function scheduleMeeting(
         uint256 meetingId,
         uint256 startTime,
@@ -107,7 +108,7 @@ contract MeetingScheduler is IMeetingScheduler {
         ScheduledMeeting memory scheduledMeeting = meetings[meetingId];
         require(
             scheduledMeeting.status == MeetingStatus.STARTED,
-            "can't end a meeting if not started"
+            "can't end a meeting if it hasn't started"
         );
         require(
             block.timestamp >= scheduledMeeting.endTime,
@@ -121,7 +122,7 @@ contract MeetingScheduler is IMeetingScheduler {
         ScheduledMeeting memory meeting = meetings[meetingId];
         require(
             meeting.status == MeetingStatus.STARTED,
-            "can only join to a meeting that has started"
+            "can only join a meeting that has started"
         );
         meetings[meetingId].numOfParticipents++;
     }
