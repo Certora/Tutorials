@@ -59,11 +59,11 @@ contract MeetingScheduler is IMeetingScheduler {
     ) external override {
         require(
             meetings[meetingId].status == MeetingStatus.UNINITIALIZED,
-            "meeting has already been scheduled"
+            "this meeting has already been scheduled"
         );
         require(
             startTime > block.timestamp,
-            "invalid start time, meeting has to be scheduled in the future"
+            "invalid start time, a meeting has to be scheduled in the future"
         );
         require(endTime > startTime, "meeting has to end after it starts");
         meetings[meetingId] = ScheduledMeeting({
@@ -83,7 +83,7 @@ contract MeetingScheduler is IMeetingScheduler {
         );
         require(
             block.timestamp >= scheduledMeeting.startTime,
-            "meeting can't start in the past"
+            "a meeting can't start in the past"
         );
         require(
             block.timestamp < scheduledMeeting.endTime,
@@ -99,7 +99,7 @@ contract MeetingScheduler is IMeetingScheduler {
         );
         require(
             scheduledMeeting.status == MeetingStatus.PENDING,
-            "meetings can be cancelled only if it's currently pending"
+            "a meeting can be cancelled only if it's currently pending"
         );
         meetings[meetingId].status = MeetingStatus.CANCELLED;
     }
@@ -108,11 +108,11 @@ contract MeetingScheduler is IMeetingScheduler {
         ScheduledMeeting memory scheduledMeeting = meetings[meetingId];
         require(
             scheduledMeeting.status == MeetingStatus.STARTED,
-            "can't end a meeting if it hasn't started"
+            "can't end a meeting if has not started"
         );
         require(
             block.timestamp >= scheduledMeeting.endTime,
-            "meeting cannot be ended unless its end time passed"
+            "meeting cannot be ended unless its end time has passed"
         );
 
         meetings[meetingId].status = MeetingStatus.ENDED;
