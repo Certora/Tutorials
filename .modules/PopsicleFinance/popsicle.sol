@@ -25,7 +25,7 @@ contract PopsicleFinance is ERC20 {
     }
     
     struct UserInfo {
-        uint feesCollectedPerShare; // the total fees per share that have been already collected
+        uint feesCollectedPerShare; // the total fees per share that has been already collected
         uint Rewards; // general "debt" of popsicle to the user 
     }
 
@@ -34,7 +34,7 @@ contract PopsicleFinance is ERC20 {
         uint amount = msg.value;
         // reward is set to be the amount of fees that have accumulated, but yet to be collected. (total, not per share)
         uint reward = balances[msg.sender] * (totalFeesEarnedPerShare - accounts[msg.sender].feesCollectedPerShare);
-        // once the reward has been saved, the collected fees are updated
+        // once the reward has been saved, the collected fees are being updated
         accounts[msg.sender].feesCollectedPerShare = totalFeesEarnedPerShare;
         accounts[msg.sender].Rewards += reward;
         // Popsicle are minting "share tokens" owed to the user
