@@ -1,1 +1,1 @@
-../../../.modules/Manager/Manager.spec
+../../../../.modules/Manager/Manager.spec
