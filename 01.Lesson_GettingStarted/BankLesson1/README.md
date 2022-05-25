@@ -157,7 +157,7 @@ require  getTotalFunds(e) >= getFunds(e, e.msg.sender);
 The prover will now assume that in the initial state, before calling `deposit()`, the total funds are at least the user's funds. Run the entire spec:
 
 ```sh
-certoraRun BankFixed.sol:Bank --verify Bank:TotalGreaterThanUser.spec --solc solc7.6 --msg "running with precondition"
+certoraRun BankFixed.sol:Bank --verify Bank:TotalGreaterThanUser.spec --solc solc7.6 --rule totalFundsAfterDepositWithPrecondition --msg "running with precondition"
 ```
 
 > :bulb: The `--msg` flag adds a message description to your run. 
