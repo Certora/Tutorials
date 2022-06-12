@@ -47,7 +47,7 @@ methods {
 rule noFeeOnTransferFrom(address alice, address bob, uint256 amount) {
     env e; /* a representation of the calling context (msg.sender, block.timestamp, ... ) */
     require alice != bob; /* without this require you will get a counter example in which alice and bob are the same address  */
-    require allowance(alice, e.msg.sender) >= amount;
+    // require allowance(alice, e.msg.sender) >= amount;
     uint256 balanceBefore = balanceOf(bob);
 
     transferFrom(e, alice, bob, amount); 
@@ -98,11 +98,11 @@ rule noFeeOnTransfer(address bob, uint256 amount) {
 
 rule transferFromCorrect(address from, address to, uint256 amount, method f) filtered {f -> f.selector == transferFrom(address,address,uint256).selector || f.selector == transferFrom(address,address,uint256).selector } {
     env e;
-    require e.msg.value == 0;
+    // require e.msg.value == 0;
     uint256 fromBalanceBefore = balanceOf(from);
     uint256 toBalanceBefore = balanceOf(to);
     uint256 allowanceBefore = allowance(from, e.msg.sender);
-    require fromBalanceBefore + toBalanceBefore <= max_uint256;
+    // require fromBalanceBefore + toBalanceBefore <= max_uint256;
 
     transferFrom(e, from, to, amount);
 
@@ -134,7 +134,10 @@ rule transferFromReverts(address from, address to, uint256 amount) {
     env e;
     uint256 allowanceBefore = allowance(from, e.msg.sender);
     uint256 fromBalanceBefore = balanceOf(from);
-    require from != 0 && e.msg.sender != 0;
+    uint256 toBalanceBefore = balanceOf(to);
+     
+    // require from != 0;
+    // require e.msg.sender != 0;
     require e.msg.value == 0;
     require fromBalanceBefore + balanceOf(to) <= max_uint256;
 
@@ -146,7 +149,7 @@ rule transferFromReverts(address from, address to, uint256 amount) {
 rule transferReverts(address from, address to, uint256 amount) {
     env e;
     uint256 fromBalanceBefore = balanceOf(e.msg.sender);
-    require e.msg.sender != 0;
+    // require e.msg.sender != 0;
     require e.msg.value == 0;
     require fromBalanceBefore + balanceOf(to) <= max_uint256;
 
@@ -229,7 +232,7 @@ invariant ZeroAddressNoBalance()
 */
 rule changingAllowanceWithIncreaseDecrease(method f, address from, address spender) 
     {
-    require(decreaseAllowance(address, uint256).selector in currentContract);
+    // require(decreaseAllowance(address, uint256).selector in currentContract);
     uint256 allowanceBefore = allowance(from, spender);
     env e;
     if (f.selector == approve(address, uint256).selector) {
@@ -255,7 +258,7 @@ rule changingAllowanceWithIncreaseDecrease(method f, address from, address spend
        } else if( f.selector == decreaseAllowance(address, uint256).selector) {
         address spender_;
         uint256 amount;
-        require amount <= allowanceBefore;
+        // require amount <= allowanceBefore;
         decreaseAllowance(e, spender_, amount);
         if (from == e.msg.sender && spender == spender_) {
             assert allowance(from, spender) == allowanceBefore - amount;
@@ -265,7 +268,7 @@ rule changingAllowanceWithIncreaseDecrease(method f, address from, address spend
     } else if ( f.selector == increaseAllowance(address, uint256).selector) {
         address spender_;
         uint256 amount;
-        require amount + allowanceBefore < max_uint256;
+        // require amount + allowanceBefore < max_uint256;
         increaseAllowance(e, spender_, amount);
         if (from == e.msg.sender && spender == spender_) {
             assert allowance(from, spender) == allowanceBefore + amount;
@@ -281,7 +284,7 @@ rule changingAllowanceWithIncreaseDecrease(method f, address from, address spend
 
 rule changingAllowanceWithOutIncreaseDecrease(method f, address from, address spender) 
     {
-    require(!decreaseAllowance(address, uint256).selector in currentContract);
+    // require(!decreaseAllowance(address, uint256).selector in currentContract);
     uint256 allowanceBefore = allowance(from, spender);
     env e;
     if (f.selector == approve(address, uint256).selector) {
@@ -332,7 +335,7 @@ rule changingAllowanceWithOutIncreaseDecrease(method f, address from, address sp
 rule transferSumOfFromAndToBalancesStaySame(address to, uint256 amount) {
     env e;
     mathint sum = balanceOf(e.msg.sender) + balanceOf(to);
-    require sum < max_uint256;
+    // require sum < max_uint256;
     transfer(e, to, amount); 
     assert balanceOf(e.msg.sender) + balanceOf(to) == sum;
 }
@@ -340,7 +343,7 @@ rule transferSumOfFromAndToBalancesStaySame(address to, uint256 amount) {
 rule transferFromSumOfFromAndToBalancesStaySame(address from, address to, uint256 amount) {
     env e;
     mathint sum = balanceOf(from) + balanceOf(to);
-    require sum < max_uint256;
+    // require sum < max_uint256;
     transferFrom(e, from, to, amount); 
     assert balanceOf(from) + balanceOf(to) == sum;
 }
