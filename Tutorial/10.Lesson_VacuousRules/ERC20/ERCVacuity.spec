@@ -1,0 +1,1 @@
+../../../.modules/ERC20/ERCVacuity.spec

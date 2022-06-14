@@ -42,7 +42,7 @@ interface IBorda {
     // Gets the number of points a specified contender has
     function getPointsOfContender(address contender) external view returns(uint256);
 
-    // Gets a boolean indicating whether a voter has voted
+    // Gets a boolean indication whether a voter has voted
     function hasVoted(address voter) external view returns(bool);
 
     // Gets the winner at this point of time, and the number of points they have
