@@ -10,7 +10,7 @@ methods {
 
 /**** for introduction ****/
 
-/// if you call transfer and you have the funds, your balance decreases and
+/// if you call transfer and the transaction doesn't revert, your balance decreases and
 /// recipient's balance increases
 rule transferSpec {
     // TODO
@@ -40,6 +40,8 @@ rule transferDoesntRevert {
 /**** Exercises ****/
 
 // TODO: as above but for transferFrom
+
+
 
 /**** Parametric examples ****/
 
