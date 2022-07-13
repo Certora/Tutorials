@@ -10,7 +10,7 @@ rule transferSpec {
     env e;
 
     require e.msg.sender == sender;
-    require sender != recip; require other != sender;
+    require sender != recip;
 
     uint balance_sender_before = balanceOf(sender);
     uint balance_recip_before  = balanceOf(recip);
