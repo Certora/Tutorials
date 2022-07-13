@@ -65,7 +65,7 @@ contract ERC20 is IERC20, IERC20Metadata {
      * @dev Returns the name of the token.
      */
     function name() public view virtual override returns (string memory) {
-        return _name;
+        return "";
     }
 
     /**
@@ -73,7 +73,7 @@ contract ERC20 is IERC20, IERC20Metadata {
      * name.
      */
     function symbol() public view virtual override returns (string memory) {
-        return _symbol;
+        return "";
     }
 
     /**
