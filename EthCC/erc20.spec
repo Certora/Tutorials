@@ -3,7 +3,7 @@ methods {
     balanceOf(address)                    returns (uint256) envfree
     transfer(address,uint256)             returns (bool)
 
-    allowance(address,address)            returns (uint)
+    allowance(address,address)            returns (uint256) envfree
     transferFrom(address,address,uint256) returns (bool)
     approve(address,uint256)              returns (bool)
 }
@@ -121,38 +121,79 @@ rule transferDoesntRevert4(env e, address recipient, uint256 amount) {
     assert !lastReverted;
 }
 
-// /**** Exercises ****/
+/**** Exercises ****/
 
-// // TODO: as above but for transferFrom
+// TODO: as above but for transferFrom
 
 
 
-// /**** Parametric examples ****/
+/**** Parametric examples ****/
 
-// /// only msg.sender can change their allowance
-// rule onlyOwnerCanApprove {
-//     // TODO
-// }
+/// only msg.sender can change their allowance
+rule onlyOwnerCanApprove {
+    env e;
+    address owner;
+    address spender;
+    uint256 amount;
 
-// /// only approve changes allowances
-// rule onlyApproveChangesAllowances {
-//     // TODO
+    uint256 allowanceBefore = allowance(owner, spender);
 
-//     require allowance_before != allowance_after;
+    approve(e, spender, amount);
 
-//     assert f.selector == approve(address, uint).selector;
-// }
+    uint256 allowanceAfter = allowance(owner, spender);
 
-// rule withoutApproveAllowanceDoesntChange(method f)
-// filtered { f -> f.selector != approve(address, uint).selector }
-// {
-//     assert allowance_before == allowance_after;
-// }
+    assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
+        "The caller of approve() must be the owner of the tokens involved.";
+}
 
-// /**** "Flex" examples ****/
+/// only the proper methods change allowances
+rule onlyCertainMethodsChangeAllowances(method f) {
+    env e;
+    calldataarg args;
+    address owner;
+    address spender;
+    uint256 amount;
 
-// /// balance changes correspond to borrow changes
-// /// @dev Armen's example from Nurit
+    uint256 allowanceBefore = allowance(owner, spender);
+
+    f(e, args);
+
+    uint256 allowanceAfter = allowance(owner, spender);    
+
+    assert allowanceBefore != allowanceAfter => 
+        (f.selector == approve(address, uint256).selector ||
+         f.selector == transferFrom(address, address, uint256).selector ||
+         f.selector == increaseAllowance(address, uint256).selector ||
+         f.selector == decreaseAllowance(address, uint256).selector),
+         "User's allowance must change only as a result of calls to approve(), transferFrom(), increaseAllowance() or decreaseAllowance()";
+}
+
+rule withoutApproveAllowanceDoesntChange(method f)
+filtered {
+    f -> f.selector != approve(address, uint).selector
+      && f.selector != transferFrom(address, address, uint256).selector
+      && f.selector != increaseAllowance(address, uint256).selector
+      && f.selector != decreaseAllowance(address, uint256).selector
+}
+{
+    env e;
+    calldataarg args;
+    address owner;
+    address spender;
+
+    uint256 allowanceBefore = allowance(owner, spender);
+
+    f(e, args);
+
+    uint256 allowanceAfter = allowance(owner, spender);    
+
+    assert allowanceBefore == allowanceAfter;
+}
+
+/**** "Flex" examples ****/
+
+/// balance changes correspond to borrow changes
+/// @dev Armen's example from Nurit
 // rule totalSupplyCorrelatedWithTotalBalances {
 // }
 
