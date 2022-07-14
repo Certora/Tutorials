@@ -10,4 +10,4 @@ certoraRun .modules/ERC20/ERC20Fixed.sol:ERC20 \
     --loop_iter 3 \
     $RULE \
     --send_only \
-    --msg "EthCC ERC20: $1"
+    --msg "EthCC ERC20: $1 $2"

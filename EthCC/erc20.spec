@@ -11,24 +11,21 @@ methods {
 /**** for introduction ****/
 
 /// if you call transfer and the transaction doesn't revert, your balance decreases and
-/// recipient's balance increases
+/// recipient's balance increases by the correct amount
+/// link https://vaas-stg.certora.com/output/93493/1ff00d81d71e881cd6da?anonymousKey=291e8910cc73e67443e9f9c285d4dcc9682e4e53
+// error reason: didn't specify recipient and sender are different
 rule transferSpec(env e, address recipient, uint256 amount) {
     uint256 myBalance = balanceOf(e.msg.sender);
     uint256 recipientBalance = balanceOf(recipient);
     transfer(e, recipient, amount);
 
-    //assert myBalance == balanceOf(e.msg.sender) - amount, "sender's balance must decrease by sent amount";
-    //assert recipientBalance == balanceOf(recipient) + amount, "recipient's balance must increase by recieved amount";
-
-    // can also do:
     uint256 myBalanceAfter = balanceOf(e.msg.sender);
     uint256 recipientBalanceAfter = balanceOf(recipient);
     assert myBalanceAfter == myBalance - amount;
     assert recipientBalanceAfter == recipientBalance + amount;
 }
 
-//Run and view a counterexample - didn't specify recipient and sender
-//       are different and didn't specify amount is a non-zero amount
+//Run and view a counterexample - didn't specify recipient and sender are different
 // link https://vaas-stg.certora.com/output/93493/1ff00d81d71e881cd6da?anonymousKey=291e8910cc73e67443e9f9c285d4dcc9682e4e53
 
 
@@ -41,10 +38,6 @@ rule transferSpecFixed(env e, address recipient, uint256 amount) {
     uint256 recipientBalance = balanceOf(recipient);
     transfer(e, recipient, amount);
 
-    //assert myBalance == balanceOf(e.msg.sender) - amount, "sender's balance must decrease by sent amount";
-    //assert recipientBalance == balanceOf(recipient) + amount, "recipient's balance must increase by recieved amount";
-
-    // can also do:
     uint256 myBalanceAfter = balanceOf(e.msg.sender);
     uint256 recipientBalanceAfter = balanceOf(recipient);
     assert myBalanceAfter == myBalance - amount;
@@ -63,10 +56,11 @@ rule transferReverts(env e, address recipient, uint256 amount) {
 }
 
 /**** quick example, not a lot of detail ****/
-
+// reminders
+// roadmap
 /// if you call transfer and do have enough funds, the transaction doesn't
 /// revert
-// payable
+// revert reason: sending value to non payable function
 // https://vaas-stg.certora.com/output/93493/c50effc27cb05751bba8?anonymousKey=0fb67e37162faa0d78141db49cb961e101396dc0
 rule transferDoesntRevert(env e, address recipient, uint256 amount) {
     require balanceOf(e.msg.sender) > amount;
@@ -75,7 +69,7 @@ rule transferDoesntRevert(env e, address recipient, uint256 amount) {
     assert !lastReverted;
 }
 
-// overflow
+// revert reason: overflow
 // https://vaas-stg.certora.com/output/93493/6f01654f7ff1d4d48a54/?anonymousKey=3a6306692c778fddb5d3e32da346a9dd0eb071cd
 rule transferDoesntRevert1(env e, address recipient, uint256 amount) {
     require balanceOf(e.msg.sender) > amount;
@@ -85,7 +79,7 @@ rule transferDoesntRevert1(env e, address recipient, uint256 amount) {
     assert !lastReverted;
 }
 
-// send to 0
+// revert reason: sending to 0 address
 // https://vaas-stg.certora.com/output/93493/b27ededc5b996dfcadea?anonymousKey=1c5156807322eb08b09c043b5c5de0d60307bc19
 rule transferDoesntRevert2(env e, address recipient, uint256 amount) {
     require balanceOf(e.msg.sender) > amount;
@@ -96,7 +90,7 @@ rule transferDoesntRevert2(env e, address recipient, uint256 amount) {
     assert !lastReverted;
 }
 
-// send from 0
+// revert reason: sending from 0 address
 // https://vaas-stg.certora.com/output/93493/bf639a4e5d332e1d7853/?anonymousKey=d15b8038eb4d208d07fd2f7fc0cbb6f4dc4f0c5a
 rule transferDoesntRevert3(env e, address recipient, uint256 amount) {
     require balanceOf(e.msg.sender) > amount;
@@ -123,7 +117,24 @@ rule transferDoesntRevert4(env e, address recipient, uint256 amount) {
 
 /**** Exercises ****/
 
-// TODO: as above but for transferFrom
+/// if you call transfer and the transaction doesn't revert, your balance decreases and
+/// recipient's balance increases
+rule transferFromSpec(env e, address recipient, uint256 amount) {
+    assert false;
+}
+
+/// if you call transferFrom and you don't have the funds, the transaction
+/// reverts
+rule transferFromReverts(env e, address recipient, uint256 amount) {
+    assert false;
+}
+
+/// if you call transferFrom and do have enough funds, the transaction doesn't
+/// revert
+rule transferFromDoesntRevert(env e, address recipient, uint256 amount) {
+    assert false;
+}
+
 
 
 
