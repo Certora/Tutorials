@@ -155,13 +155,54 @@ rule onlyOwnerCanApprove {
         "The caller of approve() must be the owner of the tokens involved.";
 }
 
-/// only the proper methods change allowances
-rule onlyCertainMethodsChangeAllowances(method f) {
+/// talk about coverage
+
+
+/// generalize above w owner but all methods
+
+rule onlyOwnerCanChangeAllowance {
+    method f;
     env e;
     calldataarg args;
     address owner;
     address spender;
-    uint256 amount;
+
+    uint256 allowanceBefore = allowance(owner, spender);
+
+    f(e, args);
+
+    uint256 allowanceAfter = allowance(owner, spender);
+
+    assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
+        "The caller of a function which changes an allowance must be the owner of the tokens involved.";
+}
+
+/// violation from transfer from, fix it
+
+/// v1, am I happy? no, need to account for...
+/// v2, am I happy? no, need to account for...
+/// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
+/// --> (essentially state change, not by name) 
+
+/// this is an example of a common property called state change
+/// (btw, on day 2, we'll put this type of rule into context with a set of 6 ways of considering properties. We'll go into that in more detail tomorrow)
+
+/// stakeholder logic
+/// "with this, now I know I have control over my money. The only way I can give m"
+/// Only I should approve, only I should change the allowance, I can only do it when I mean to do it
+
+
+/// parametric rules as exploration
+
+/// mention equivalence between different syntax
+
+/// only the proper methods change allowances
+rule onlyCertainMethodsChangeAllowances {
+    method f;
+    env e;
+    calldataarg args;
+    address owner;
+    address spender;
 
     uint256 allowanceBefore = allowance(owner, spender);
 
@@ -177,7 +218,7 @@ rule onlyCertainMethodsChangeAllowances(method f) {
          "User's allowance must change only as a result of calls to approve(), transferFrom(), increaseAllowance() or decreaseAllowance()";
 }
 
-rule withoutApproveAllowanceDoesntChange(method f)
+rule withoutCertainMethodsAllowancesDontChange(method f)
 filtered {
     f -> f.selector != approve(address, uint).selector
       && f.selector != transferFrom(address, address, uint256).selector
