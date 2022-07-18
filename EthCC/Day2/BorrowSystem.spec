@@ -51,11 +51,7 @@ methods {
  */
 invariant onlyCollateralCanBorrow(address user)
 	userBorrowAmount(user) > 0 => userCollateralAmount(user) > 0
-/*	{
-		preserved {
-			setUp();
-		}
-	} */
+
 /*
  * Rules:
  * Given some pre-conditions, what are the desired post conditions after some
