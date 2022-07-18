@@ -33,9 +33,18 @@ contract BorrowSystemFixed {
 	// amount of collateralToken user has deposited
 	mapping(address => uint256) public userCollateralAmount;
 
-	// actions for the batchCalls
-	uint8 internal constant CALL_BORROW = 1;
-	uint8 internal constant CALL_REPAY = 2;
+
+	/* 
+	 * Check if a user's collateral balance covers his borrow according
+	 * to the current price. Returns true when the user is solvent.
+	 */
+	function _isSolvent(address user) private returns (bool) {
+		uint256 rate = oracle.get(borrowToken, collateralToken);
+
+		require(rate != 0);
+
+		return userBorrowAmount[user] == 0 || userBorrowAmount[user] * rate < userCollateralAmount[user];
+	}
 	
 	/* Borrow amount and provide collateral */
 	function borrow(uint256 borrowAmount, uint256 collateralAmount) public {
@@ -80,6 +89,11 @@ contract BorrowSystemFixed {
 		collateralToken.transfer(to, collateral); 
 	}
 
+
+	// actions for the batchCalls
+	uint8 internal constant CALL_BORROW = 1;
+	uint8 internal constant CALL_REPAY = 2;
+
 	/*
 	 * Allows calling a few functions in a batch mode and interaction 
 	 * with other contracts.
@@ -104,17 +118,5 @@ contract BorrowSystemFixed {
 				callee[i].call(datas[i]);
 			}
 		}
-	}
-
-	/* 
-	 * Check if a user's collateral balance covers his borrow according
-	 * to the current price. Returns true when the user is solvent.
-	 */
-	function _isSolvent(address user) private returns (bool) {
-		uint256 rate = oracle.get(borrowToken, collateralToken);
-
-		require(rate != 0);
-
-		return userBorrowAmount[user] == 0 || userBorrowAmount[user] * rate < userCollateralAmount[user];
 	}
 }
