@@ -179,6 +179,23 @@ rule onlyOwnerCanChangeAllowance {
 
 /// violation from transfer from, fix it
 
+rule onlyOwnerCanIncreaseAllowance {
+    method f;
+    env e;
+    calldataarg args;
+    address owner;
+    address spender;
+
+    uint256 allowanceBefore = allowance(owner, spender);
+
+    f(e, args);
+
+    uint256 allowanceAfter = allowance(owner, spender);
+
+    assert allowanceBefore < allowanceAfter => owner == e.msg.sender,
+        "The caller of a function which increases an allowance must be the owner of the tokens involved.";
+}
+
 /// v1, am I happy? no, need to account for...
 /// v2, am I happy? no, need to account for...
 /// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
