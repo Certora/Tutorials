@@ -1,1 +1,0 @@
-../../../.modules/MeetingScheduler/MeetingsBuggy.spec

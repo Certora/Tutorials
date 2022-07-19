@@ -1,1 +1,0 @@
-../../../../.modules/Manager/ManagerPartialSolution.spec
