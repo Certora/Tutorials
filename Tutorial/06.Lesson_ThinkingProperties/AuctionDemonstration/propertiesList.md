@@ -1,0 +1,1 @@
+../../../.modules/Auction/propertiesList.md

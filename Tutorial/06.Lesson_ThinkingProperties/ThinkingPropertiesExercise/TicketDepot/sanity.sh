@@ -1,0 +1,1 @@
+../../../../.modules/TicketDepot/sanity.sh
