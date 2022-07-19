@@ -1,1 +1,0 @@
-../../../.modules/CVT/ScriptExercise2/README.md

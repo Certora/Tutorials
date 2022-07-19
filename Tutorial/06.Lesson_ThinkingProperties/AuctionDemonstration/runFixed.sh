@@ -1,1 +1,0 @@
-../../../.modules/Auction/runFixed.sh
