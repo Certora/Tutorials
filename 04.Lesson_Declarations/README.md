@@ -22,7 +22,7 @@
 
 </br>
 
-- [ ] Read the documentation on [Types and Type Handling](https://certora.atlassian.net/wiki/spaces/CPD/pages/7340101/Types) to learn about the different CVL types available to use, their distinction from EVM types, casting operations, and useful macros.
+- [ ] Read the documentation on [Types and Type Handling](https://docs.certora.com/en/latest/docs/ref-manual/cvl/types.html) to learn about the different CVL types available to use, their distinction from EVM types, casting operations, and useful macros.
 
 </br>
 

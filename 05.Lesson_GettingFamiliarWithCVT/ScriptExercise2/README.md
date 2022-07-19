@@ -29,7 +29,7 @@ For example:
 certoraRum A.sol:contractA --verify A:parametric.spec --rule integrity --method "foo(uint256, address, bytes32)"
 ```
 
-You can read more about it in the documentation [--method](https://certora.atlassian.net/wiki/spaces/CPD/pages/7340043/Certora+Prover+CLI+Options#--method).
+You can read more about it in the documentation [--method](https://docs.certora.com/en/latest/docs/ref-manual/cli/options.html#method).
 
 </br>
 
