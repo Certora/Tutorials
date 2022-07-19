@@ -115,7 +115,7 @@ rule transferDoesntRevert4(env e, address recipient, uint256 amount) {
 
 /**** Exercises ****/
 
-/// if you call transfer and the transaction doesn't revert, your balance decreases and
+/// if you call transferFrom and the transaction doesn't revert, your balance decreases and
 /// recipient's balance increases
 rule transferFromSpec(env e, address recipient, uint256 amount) {
     assert false;
