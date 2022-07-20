@@ -81,7 +81,8 @@ rule transferFromDoesntRevert(env e, address recipient, uint256 amount) {
 
 /**** Parametric examples ****/
 
-/// only msg.sender can change their allowance
+/// The caller of `approve` must be the owner of the tokens involved.
+
 rule onlyOwnerCanApprove {
     env e;
     address owner;
@@ -95,13 +96,10 @@ rule onlyOwnerCanApprove {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
-        "The caller of approve() must be the owner of the tokens involved.";
+        "The caller of `approve` must be the owner of the tokens involved";
 }
 
-/// talk about coverage
-
-
-/// generalize above w owner but all methods
+/// The caller of a function which changes an allowance must be the owner of the tokens involved.
 
 rule onlyOwnerCanChangeAllowance {
     method f;
@@ -117,10 +115,10 @@ rule onlyOwnerCanChangeAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which changes an allowance must be the owner of the tokens involved.";
+        "The caller of a function which changes an allowance must be the owner of the tokens involved";
 }
 
-/// violation from transfer from, fix it
+/// The caller of a function which increases an allowance must be the owner of the tokens involved.
 
 rule onlyOwnerCanIncreaseAllowance {
     method f;
@@ -136,27 +134,12 @@ rule onlyOwnerCanIncreaseAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore < allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which increases an allowance must be the owner of the tokens involved.";
+        "The caller of a function which increases an allowance must be the owner of the tokens involved";
 }
 
-/// v1, am I happy? no, need to account for...
-/// v2, am I happy? no, need to account for...
-/// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
-/// --> (essentially state change, not by name) 
 
-/// this is an example of a common property called state change
-/// (btw, on day 2, we'll put this type of rule into context with a set of 6 ways of considering properties. We'll go into that in more detail tomorrow)
+/// A user's allowance must change only as a result of calls to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`.
 
-/// stakeholder logic
-/// "with this, now I know I have control over my money. The only way I can give m"
-/// Only I should approve, only I should change the allowance, I can only do it when I mean to do it
-
-
-/// parametric rules as exploration
-
-/// mention equivalence between different syntax
-
-/// only the proper methods change allowances
 rule onlyCertainMethodsChangeAllowances {
     method f;
     env e;
@@ -175,8 +158,10 @@ rule onlyCertainMethodsChangeAllowances {
          f.selector == transferFrom(address, address, uint256).selector ||
          f.selector == increaseAllowance(address, uint256).selector ||
          f.selector == decreaseAllowance(address, uint256).selector),
-         "User's allowance must change only as a result of calls to approve(), transferFrom(), increaseAllowance() or decreaseAllowance()";
+         "A user's allowance must change only as a result of calls to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`";
 }
+
+/// Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change.
 
 rule withoutCertainMethodsAllowancesDontChange(method f)
 filtered {
@@ -197,7 +182,8 @@ filtered {
 
     uint256 allowanceAfter = allowance(owner, spender);    
 
-    assert allowanceBefore == allowanceAfter;
+    assert allowanceBefore == allowanceAfter,
+        "Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change";
 }
 
 /**** "Flex" examples ****/
@@ -210,4 +196,15 @@ filtered {
 // /**** Exercises ****/
 
 // /// TODO: rules for how balance can change
+
+
+
+/// v1, am I happy? no, need to account for...
+/// v2, am I happy? no, need to account for...
+/// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
+/// --> (essentially state change, not by name) 
+
+/// stakeholder logic
+/// "with this, now I know I have control over my money. The only way I can give m"
+/// Only I should approve, only I should change the allowance, I can only do it when I mean to do it
 
