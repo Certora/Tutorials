@@ -23,11 +23,17 @@ cache/
 
 # Certora
 .certora*
+<<<<<<< HEAD
 .certora*.json
 **.last_conf*
 certora-logs
 *resource_errors.json
 
+=======
+.last_confs
+certora_*
+*resource_errors.json
+>>>>>>> 4ad95900b7fab81a41edd5208b80db1b8f19de61
 
 # mac
 .DS_Store
