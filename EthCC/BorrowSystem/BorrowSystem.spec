@@ -3,7 +3,7 @@
  * smart contract using the Certora Prover. For more information,
  * visit: https://www.certora.com/
  *
- * To run, use: Examples/Liquidate/run.sh
+ * To run, use ./runBorrowSystemBroken.sh or ./runBorrowSystemFixed.sh
  */
 
 using DummyERC20A as _collateralToken
