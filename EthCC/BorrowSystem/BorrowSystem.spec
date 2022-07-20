@@ -17,6 +17,7 @@ using DummyERC20B as _borrowToken
  * on environment.
  */
 methods {
+
 	// ERC20 functions
 	_collateralToken.balanceOf(address user) returns (uint256) envfree;
 	_borrowToken.balanceOf(address user) returns (uint256) envfree;
@@ -24,6 +25,7 @@ methods {
 	// State mapping variables
 	userBorrowAmount(address user) returns (uint256) envfree;
 	userCollateralAmount(address user) returns (uint256) envfree;
+
 	// Global variable of BorrowSystem
 	collateralToken() returns (address) envfree
 	borrowToken() returns (address) envfree
