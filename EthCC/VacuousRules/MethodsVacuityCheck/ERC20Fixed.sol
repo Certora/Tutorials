@@ -1,1 +1,1 @@
-../../../../.modules/ERC20/ERC20Fixed.sol
+../../../.modules/ERC20/ERC20Fixed.sol

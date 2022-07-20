@@ -1,1 +1,1 @@
-../../../../.modules/ERC20/IERC20.sol
+../../../.modules/ERC20/IERC20.sol
