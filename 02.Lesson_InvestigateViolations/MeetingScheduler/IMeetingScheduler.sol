@@ -33,7 +33,7 @@ interface IMeetingScheduler {
     struct ScheduledMeeting {
         uint256 startTime;
         uint256 endTime;
-        uint256 numOfParticipents;
+        uint256 numOfParticipants;
         address organizer;
         MeetingStatus status;
     }
