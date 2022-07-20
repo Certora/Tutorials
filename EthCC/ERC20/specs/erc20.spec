@@ -12,12 +12,15 @@ methods {
 // decreasing by `amount` and `balanceOf(recipient)` increasing by `amount`
 rule transferSpec(env e, address recipient, uint256 amount) {
     require e.msg.sender != recipient;
+
     uint256 myBalance = balanceOf(e.msg.sender);
     uint256 recipientBalance = balanceOf(recipient);
+
     transfer(e, recipient, amount);
 
     uint256 myBalanceAfter = balanceOf(e.msg.sender);
     uint256 recipientBalanceAfter = balanceOf(recipient);
+
     assert myBalanceAfter == myBalance - amount;
     assert recipientBalanceAfter == recipientBalance + amount;
 }
@@ -34,12 +37,23 @@ rule transferReverts(env e, address recipient, uint256 amount) {
 // transfering to recipient should always result in their balance increasing
 rule checkAddition(env e, address recipient, uint256 amount) {
     require recipient != e.msg.sender;
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert amount > 0 <=> balanceAfter > balanceBefore;
 }
 /// link: https://vaas-stg.certora.com/output/93493/21e78521f584e34c6a15/?anonymousKey=cc03b75f69edda25037066149f0d97dea21c5de1
+
+rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    
+    assert balanceAfter > balanceBefore;
+}
+
 
 // if you call transfer and do have enough funds, the transaction doesn't revert
 rule transferDoesntRevert(env e, address recipient, uint256 amount) {
@@ -57,20 +71,17 @@ rule transferDoesntRevert(env e, address recipient, uint256 amount) {
 
 /**** Exercises ****/
 
-/// if you call transferFrom and the transaction doesn't revert, your balance decreases and
-/// recipient's balance increases
+/// if you call transferFrom and the transaction doesn't revert, your balance decreases and recipient's balance increases
 rule transferFromSpec(env e, address recipient, uint256 amount) {
     assert false;
 }
 
-/// if you call transferFrom and you don't have the funds, the transaction
-/// reverts
+/// if you call transferFrom and you don't have the funds, the transaction reverts
 rule transferFromReverts(env e, address recipient, uint256 amount) {
     assert false;
 }
 
-/// if you call transferFrom and do have enough funds, the transaction doesn't
-/// revert
+/// if you call transferFrom and do have enough funds, the transaction doesn't revert
 rule transferFromDoesntRevert(env e, address recipient, uint256 amount) {
     assert false;
 }

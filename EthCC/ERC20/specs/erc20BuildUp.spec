@@ -143,21 +143,25 @@ rule transferSpec(env e, address recipient, uint256 amount) {
 
 // -- Step-1 -- //
 
-// want, need to assume amount > 0
+// want to say this but need to assume amount > 0
+/// link: https://prover.certora.com/output/93493/8b5cf1e2c52327e64c37?anonymousKey=35760eb3dc8290d9bafc9fb6a07471223ca81848
 rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert balanceAfter > balanceBefore;
 }
 
 // -- Step-2 -- //
 
-// using if
+// one way is by using if else
 rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     if (amount > 0) {
         assert balanceAfter > balanceBefore;
     } else {
@@ -167,23 +171,26 @@ rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
 
 // -- Step-3 -- //
 
-// using require
+// another is by using require
 rule checkAddition(env e, address recipient, uint256 amount) {
     require amount > 0;
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert balanceAfter > balanceBefore;
 }
 
 // -- Step-4 -- //
 
-// using implication, recommended
+// recommended way is to use an implication
 /// link: https://vaas-stg.certora.com/output/93493/77e5621c6416784dab65/?anonymousKey=8cc71c985b93b1fc4e938d412dd4ec11b477a627
 rule checkAddition(env e, address recipient, uint256 amount) {
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert amount > 0 => balanceAfter > balanceBefore;
 }
 
@@ -193,9 +200,11 @@ rule checkAddition(env e, address recipient, uint256 amount) {
 /// link: https://vaas-stg.certora.com/output/93493/fc4dcbd6d0d8467b07b9?anonymousKey=007ab11f8fdbf7ff50b4745b025d51401127fd40
 rule checkAddition(env e, address recipient, uint256 amount) {
     require recipient != e.msg.sender;
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert amount > 0 => balanceAfter > balanceBefore;
 }
 
@@ -205,9 +214,11 @@ rule checkAddition(env e, address recipient, uint256 amount) {
 /// link: https://vaas-stg.certora.com/output/93493/21e78521f584e34c6a15/?anonymousKey=cc03b75f69edda25037066149f0d97dea21c5de1
 rule checkAddition(env e, address recipient, uint256 amount) {
     require recipient != e.msg.sender;
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert amount > 0 <=> balanceAfter > balanceBefore;
 }
 
