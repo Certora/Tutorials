@@ -47,8 +47,8 @@ contract BorrowSystemBroken {
 	
 	/* Borrow amount and provide collateral */
 	function borrow(uint256 borrowAmount, uint256 collateralAmount) public {
-		userBorrowAmount[msg.sender] += borrowAmount;
-		userCollateralAmount[msg.sender] += collateralAmount;
+		userBorrowAmount[msg.sender] = borrowAmount;
+		userCollateralAmount[msg.sender] = collateralAmount;
 
 		require(_isSolvent(msg.sender), "user is not solvent");
 
@@ -58,10 +58,12 @@ contract BorrowSystemBroken {
 
 	/* The user (msg.sender) repays a part of its borrow and gets back a part of his collateral */
 	function repay(uint256 borrowAmount, uint256 collateralAmount) public {
+		
+		require(_isSolvent(msg.sender), "user is not solvent");
+		
 		userBorrowAmount[msg.sender] -= borrowAmount;
 		userCollateralAmount[msg.sender] -= collateralAmount;
 
-		require(_isSolvent(msg.sender), "user is not solvent");
 
 		borrowToken.transferFrom(msg.sender, address(this), borrowAmount); 
 		collateralToken.transfer(msg.sender, collateralAmount);
