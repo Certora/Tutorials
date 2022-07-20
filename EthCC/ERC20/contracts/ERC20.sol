@@ -4,7 +4,7 @@
 pragma solidity ^0.8.0;
 
 /**
- * @dev Implementation of the {IERC20} interface.
+ * @dev Implementation of the EIP20 standard without using an interface to simplify the repo layout.
  *
  * This implementation is agnostic to the way tokens are created. This means
  * that a supply mechanism has to be added in a derived contract using {_mint}.
