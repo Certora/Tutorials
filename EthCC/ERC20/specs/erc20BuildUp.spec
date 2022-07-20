@@ -4,7 +4,7 @@
 // -- Step-1 -- //
 
 // want to do this, what are these random variables?
-rule transfer {
+rule transferSpec {
     transfer(recipient, amount);
 
     assert myBalanceAfter == myBalanceBefore - amount;
@@ -14,7 +14,7 @@ rule transfer {
 // -- Step-2 -- //
 
 // defined the variables, but how do we know what the other variables are?
-rule transfer {
+rule transferSpec {
     address myBalanceBefore = balanceOf(msg.sender);
     address recipientBalanceBefore = balanceOf(recipient);
 
@@ -30,7 +30,7 @@ rule transfer {
 // -- Step-3 -- //
 
 // we defined the variables but can we actually do that?
-rule transfer(address msg.sender, address recipient, uint256 amount) {
+rule transferSpec(address msg.sender, address recipient, uint256 amount) {
     address myBalanceBefore = balanceOf(msg.sender);
     address recipientBalanceBefore = balanceOf(recipient);
 
@@ -46,7 +46,7 @@ rule transfer(address msg.sender, address recipient, uint256 amount) {
 // -- Step-4 -- //
 
 // we can also define them like this
-rule transfer {
+rule transferSpec {
     address msg.sender; address recipient; uint256 amount;
 
     address myBalanceBefore = balanceOf(msg.sender);
@@ -135,6 +135,82 @@ rule transferSpec(env e, address recipient, uint256 amount) {
     assert myBalanceAfter == myBalanceBefore - amount;
     assert recipientBalanceAfter == recipientBalance + amount;
 }
+
+
+// ------------------------------------------------------------------ //
+
+// transfering to recipient should always result in their balance increasing
+
+// -- Step-1 -- //
+
+// want, need to assume amount > 0
+rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    assert balanceAfter > balanceBefore;
+}
+
+// -- Step-2 -- //
+
+// using if
+rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    if (amount > 0) {
+        assert balanceAfter > balanceBefore;
+    } else {
+        assert true;
+    }
+}
+
+// -- Step-3 -- //
+
+// using require
+rule checkAddition(env e, address recipient, uint256 amount) {
+    require amount > 0;
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    assert balanceAfter > balanceBefore;
+}
+
+// -- Step-4 -- //
+
+// using implication, recommended
+/// link: https://vaas-stg.certora.com/output/93493/77e5621c6416784dab65/?anonymousKey=8cc71c985b93b1fc4e938d412dd4ec11b477a627
+rule checkAddition(env e, address recipient, uint256 amount) {
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    assert amount > 0 => balanceAfter > balanceBefore;
+}
+
+// -- Step-5 -- //
+
+// missing one little assumption
+/// link: https://vaas-stg.certora.com/output/93493/fc4dcbd6d0d8467b07b9?anonymousKey=007ab11f8fdbf7ff50b4745b025d51401127fd40
+rule checkAddition(env e, address recipient, uint256 amount) {
+    require recipient != e.msg.sender;
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    assert amount > 0 => balanceAfter > balanceBefore;
+}
+
+// -- Step-6 -- //
+
+// can make bi-implications in the assert 
+/// link: https://vaas-stg.certora.com/output/93493/21e78521f584e34c6a15/?anonymousKey=cc03b75f69edda25037066149f0d97dea21c5de1
+rule checkAddition(env e, address recipient, uint256 amount) {
+    require recipient != e.msg.sender;
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    assert amount > 0 <=> balanceAfter > balanceBefore;
+}
+
 
 // ------------------------------------------------------------------ //
 
