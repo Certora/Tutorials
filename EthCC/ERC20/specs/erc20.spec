@@ -114,7 +114,8 @@ rule onlyOwnerCanChangeAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which changes an allowance must be the owner of the tokens involved";
+        "The caller of a function which changes an allowance must be the owner 
+        of the tokens involved";
 }
 
 /// The caller of a function which increases an allowance must be the owner of the tokens involved.
@@ -133,7 +134,8 @@ rule onlyOwnerCanIncreaseAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore < allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which increases an allowance must be the owner of the tokens involved";
+        "The caller of a function which increases an allowance must be the 
+        owner of the tokens involved";
 }
 
 
@@ -157,7 +159,8 @@ rule onlyCertainMethodsChangeAllowances {
          f.selector == transferFrom(address, address, uint256).selector ||
          f.selector == increaseAllowance(address, uint256).selector ||
          f.selector == decreaseAllowance(address, uint256).selector),
-         "A user's allowance must change only as a result of calls to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`";
+         "A user's allowance must change only as a result of calls to 
+         `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`";
 }
 
 /// Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change.
@@ -182,7 +185,8 @@ filtered {
     uint256 allowanceAfter = allowance(owner, spender);    
 
     assert allowanceBefore == allowanceAfter,
-        "Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change";
+        "Without a call to `approve`, `transferFrom`, `increaseAllowance` or 
+        `decreaseAllowance`, a user's allowance must not change";
 }
 
 /**** "Flex" examples ****/
