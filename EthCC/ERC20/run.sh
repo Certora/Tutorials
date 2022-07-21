@@ -9,4 +9,4 @@ certoraRun contracts/ERC20.sol:ERC20 \
     --optimistic_loop \
     --loop_iter 1 \
     $RULE \
-    --send_only
+    --send_only --solc solc8.13
