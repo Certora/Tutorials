@@ -200,25 +200,15 @@ filtered {
         `decreaseAllowance`, a user's allowance must not change";
 }
 
-/**** "Flex" examples ****/
+/**** Exercises ****/
 
-/// balance changes correspond to borrow changes
-/// @dev Armen's example from Nurit
-// rule totalSupplyCorrelatedWithTotalBalances {
-// }
+/// We have been considering the question: If there is a change in `allowance`, 
+/// what else must necessarily be the case?
 
-// /**** Exercises ****/
+/// Now consider the question: If there is a change in token balance, what else 
+/// must necessarily be the case?
 
-// /// TODO: rules for how balance can change
+/// Using what we’ve learned, write some parametric rules to test whether the 
+/// contract is functioning as it should.
 
-
-
-/// v1, am I happy? no, need to account for...
-/// v2, am I happy? no, need to account for...
-/// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
-/// --> (essentially state change, not by name) 
-
-/// stakeholder logic
-/// "with this, now I know I have control over my money. The only way I can give m"
-/// Only I should approve, only I should change the allowance, I can only do it when I mean to do it
 
