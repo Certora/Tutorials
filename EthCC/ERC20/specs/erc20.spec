@@ -12,12 +12,15 @@ methods {
 // decreasing by `amount` and `balanceOf(recipient)` increasing by `amount`
 rule transferSpec(env e, address recipient, uint256 amount) {
     require e.msg.sender != recipient;
+
     uint256 myBalance = balanceOf(e.msg.sender);
     uint256 recipientBalance = balanceOf(recipient);
+
     transfer(e, recipient, amount);
 
     uint256 myBalanceAfter = balanceOf(e.msg.sender);
     uint256 recipientBalanceAfter = balanceOf(recipient);
+
     assert myBalanceAfter == myBalance - amount;
     assert recipientBalanceAfter == recipientBalance + amount;
 }
@@ -34,12 +37,23 @@ rule transferReverts(env e, address recipient, uint256 amount) {
 // transfering to recipient should always result in their balance increasing
 rule checkAddition(env e, address recipient, uint256 amount) {
     require recipient != e.msg.sender;
+
     uint256 balanceBefore = balanceOf(recipient);
     transfer(e, recipient, amount);
     uint256 balanceAfter = balanceOf(recipient);
+
     assert amount > 0 <=> balanceAfter > balanceBefore;
 }
 /// link: https://vaas-stg.certora.com/output/93493/21e78521f584e34c6a15/?anonymousKey=cc03b75f69edda25037066149f0d97dea21c5de1
+
+rule checkAdditionOfTransfer(env e, address recipient, uint256 amount) {
+    uint256 balanceBefore = balanceOf(recipient);
+    transfer(e, recipient, amount);
+    uint256 balanceAfter = balanceOf(recipient);
+    
+    assert balanceAfter > balanceBefore;
+}
+
 
 // if you call transfer and do have enough funds, the transaction doesn't revert
 rule transferDoesntRevert(env e, address recipient, uint256 amount) {
@@ -57,20 +71,17 @@ rule transferDoesntRevert(env e, address recipient, uint256 amount) {
 
 /**** Exercises ****/
 
-/// if you call transferFrom and the transaction doesn't revert, your balance decreases and
-/// recipient's balance increases
+/// if you call transferFrom and the transaction doesn't revert, your balance decreases and recipient's balance increases
 rule transferFromSpec(env e, address recipient, uint256 amount) {
     assert false;
 }
 
-/// if you call transferFrom and you don't have the funds, the transaction
-/// reverts
+/// if you call transferFrom and you don't have the funds, the transaction reverts
 rule transferFromReverts(env e, address recipient, uint256 amount) {
     assert false;
 }
 
-/// if you call transferFrom and do have enough funds, the transaction doesn't
-/// revert
+/// if you call transferFrom and do have enough funds, the transaction doesn't revert
 rule transferFromDoesntRevert(env e, address recipient, uint256 amount) {
     assert false;
 }
@@ -114,7 +125,8 @@ rule onlyOwnerCanChangeAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore != allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which changes an allowance must be the owner of the tokens involved";
+        "The caller of a function which changes an allowance must be the owner 
+        of the tokens involved";
 }
 
 /// The caller of a function which increases an allowance must be the owner of the tokens involved.
@@ -133,7 +145,8 @@ rule onlyOwnerCanIncreaseAllowance {
     uint256 allowanceAfter = allowance(owner, spender);
 
     assert allowanceBefore < allowanceAfter => owner == e.msg.sender,
-        "The caller of a function which increases an allowance must be the owner of the tokens involved";
+        "The caller of a function which increases an allowance must be the 
+        owner of the tokens involved";
 }
 
 
@@ -157,7 +170,8 @@ rule onlyCertainMethodsChangeAllowances {
          f.selector == transferFrom(address, address, uint256).selector ||
          f.selector == increaseAllowance(address, uint256).selector ||
          f.selector == decreaseAllowance(address, uint256).selector),
-         "A user's allowance must change only as a result of calls to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`";
+         "A user's allowance must change only as a result of calls to 
+         `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`";
 }
 
 /// Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change.
@@ -182,28 +196,19 @@ filtered {
     uint256 allowanceAfter = allowance(owner, spender);    
 
     assert allowanceBefore == allowanceAfter,
-        "Without a call to `approve`, `transferFrom`, `increaseAllowance` or `decreaseAllowance`, a user's allowance must not change";
+        "Without a call to `approve`, `transferFrom`, `increaseAllowance` or 
+        `decreaseAllowance`, a user's allowance must not change";
 }
 
-/**** "Flex" examples ****/
+/**** Exercises ****/
 
-/// balance changes correspond to borrow changes
-/// @dev Armen's example from Nurit
-// rule totalSupplyCorrelatedWithTotalBalances {
-// }
+/// We have been considering the question: If there is a change in `allowance`, 
+/// what else must necessarily be the case?
 
-// /**** Exercises ****/
+/// Now consider the question: If there is a change in token balance, what else 
+/// must necessarily be the case?
 
-// /// TODO: rules for how balance can change
+/// Using what we’ve learned, write some parametric rules to test whether the 
+/// contract is functioning as it should.
 
-
-
-/// v1, am I happy? no, need to account for...
-/// v2, am I happy? no, need to account for...
-/// v3, am I happy? Well, I can't think of anything else, but how can I be confident I'm not missing something
-/// --> (essentially state change, not by name) 
-
-/// stakeholder logic
-/// "with this, now I know I have control over my money. The only way I can give m"
-/// Only I should approve, only I should change the allowance, I can only do it when I mean to do it
 
