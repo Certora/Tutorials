@@ -120,6 +120,7 @@ rule noDoubleWithdraw(address user) {
     assert lastReverted; 
 }
 
-
+/**
 add more ides to here:
 https://docs.google.com/document/d/14kQOZINtlZxf_br_k5CCJeAhaJtADO9sHVBtxgf7daA/edit# 
+**/ 
