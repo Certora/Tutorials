@@ -1,7 +1,7 @@
 import {IFlashLoanReceiver} from './IFlashLoanReceiver.sol';
 import {ERC20} from './ERC20.sol';
 import {IERC20} from './IERC20.sol';
-import {IPool} from './IPOOL.sol';
+import {IPool} from './IPool.sol';
 pragma solidity >=0.8.0;
 
 /* 
