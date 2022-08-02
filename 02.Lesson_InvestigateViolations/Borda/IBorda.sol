@@ -23,7 +23,7 @@ interface IBorda {
         uint8 age;
         // true if the contender is registered
         bool registered;
-        // points a candidate has recieved.
+        // points a candidate has received.
         uint256 points;
     }
 
