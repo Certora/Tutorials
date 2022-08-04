@@ -1,0 +1,6 @@
+{
+    "name": "CertoraRun",
+    "build": {
+        "dockerfile": "Dockerfile"
+    }
+}
