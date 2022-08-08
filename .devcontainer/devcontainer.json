@@ -1,6 +1,4 @@
 {
     "name": "CertoraRun",
-    "build": {
-        "dockerfile": "Dockerfile"
-    }
+    "image": "ozcertora/certorarun:latest"
 }
