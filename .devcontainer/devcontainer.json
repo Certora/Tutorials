@@ -1,4 +1,4 @@
 {
     "name": "CertoraRun",
-    "image": "ozcertora/certorarun:latest"
+    "image": "ozcertora/certorarun:ubuntu"
 }
