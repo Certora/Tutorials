@@ -1,4 +1,4 @@
 {
-    "name": "CertoraRun",
-    "image": "ozcertora/certorarun:ubuntu"
+    "name": "certora-prover",
+    "image": "certora/certora-prover:ubuntu"
 }
