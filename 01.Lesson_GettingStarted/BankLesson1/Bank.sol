@@ -1,4 +1,4 @@
-pragma solidity ^0.7.0;
+pragma solidity ^0.8.0;
 
 contract Bank {
     // mapping from a user to its balance
@@ -24,7 +24,7 @@ contract Bank {
     function withdraw() public returns (bool success)  {
 		uint256 amount = getFunds(msg.sender);
 		funds[msg.sender] = 0;
-		success = msg.sender.send(amount);
+		success = payable(msg.sender).send(amount);
 		totalFunds -=amount;
     }
 	
