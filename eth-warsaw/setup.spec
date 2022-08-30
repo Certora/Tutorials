@@ -65,37 +65,31 @@ rule onlyOwnerOrTransferFromChangeBalance(method f)
     Exercise 1.
     Write a unit test rule that tests the transfer() function.
     Follow the increaseAllowanceCorrectness example above.
+    Uncomment assert and fill in the rest of the rule so it runs.
+    If you discover a bug, try to find it in the solidity code.
 
 */
 
-// TODO delete before commit
-rule transferCorrectness(address recipient, uint256 amount) {
-    env e;
+rule transferCorrectness() {
 
-    uint256 balanceSenderBefore = balanceOf(e.msg.sender);
-    transfer(e, recipient, amount);
-    uint256 balanceSenderAfter = balanceOf(e.msg.sender);
-
-    assert balanceSenderAfter == balanceSenderBefore - amount ;
+    // assert balanceSenderAfter == balanceSenderBefore - amount;
+    assert true;
 }
 
 /**
 
     Exercise 2.
     Write a parametric rule that verifies fixed totalSupply. 
-    Follow the onlyOwnerOrTransferFromChangeBalance parametric rule example above
+    Follow the onlyOwnerOrTransferFromChangeBalance parametric rule example above.
+    Uncomment assert and fill in the rest of the rule so it runs.
+    If you discover a bug, try to find it in the solidity code.
 
 */
-// TODO: delete before commit
+
 rule totalSupplyIsFixed(method f) {
-    env e;
-    calldataarg args;
 
-    uint256 totalBefore = totalSupply();
-    f(e, args);
-    uint256 totalAfter = totalSupply();
-
-    assert totalBefore == totalAfter;
+    // assert totalBefore == totalAfter;
+    assert true;
 }
 
 
@@ -103,16 +97,11 @@ rule totalSupplyIsFixed(method f) {
 
     Bonus exercise:
         Write a rule that verifies the following property:
-            any user can transfer their balance
+            any user can transfer their entire balance out
 */
-// TODO: delete in the final version
-rule canTransferBalance() {
-    env e;
-    address recipient;
 
-    require balanceOf(e.msg.sender) > 0;
-    require recipient != 0;
-    transfer@withrevert(e, recipient, balanceOf(e.msg.sender));
-    assert !lastReverted;
-    
+rule canTransferBalance() {
+
+
+    assert true;   
 }
