@@ -1,6 +1,8 @@
 Please choose a license key and use it by running a 
 `export CERTORAKEY={license}`
-command in the terminal
+command in the terminal.
+
+Note that these keys expire by the end of EthWarsaw, but you can always join our community program and get a long-term license.
 
 1.  73ac5f9b4dea8ffa3d3d7a2ed4e289a861c0baad
 2.  f76f97bb62be45d84891b11ecc633b19b62b5dfd

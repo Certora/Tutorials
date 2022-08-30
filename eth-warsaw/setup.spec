@@ -97,3 +97,22 @@ rule totalSupplyIsFixed(method f) {
 
     assert totalBefore == totalAfter;
 }
+
+
+/**
+
+    Bonus exercise:
+        Write a rule that verifies the following property:
+            any user can transfer their balance
+*/
+// TODO: delete in the final version
+rule canTransferBalance() {
+    env e;
+    address recipient;
+
+    require balanceOf(e.msg.sender) > 0;
+    require recipient != 0;
+    transfer@withrevert(e, recipient, balanceOf(e.msg.sender));
+    assert !lastReverted;
+    
+}

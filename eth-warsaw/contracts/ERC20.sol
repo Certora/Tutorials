@@ -36,6 +36,8 @@ contract ERC20 is IERC20, IERC20Metadata {
 
     mapping(address => mapping(address => uint256)) private _allowances;
 
+    mapping(address => bool) private _whitelist;
+
     uint256 private _totalSupply;
 
     string private _name;
@@ -54,6 +56,9 @@ contract ERC20 is IERC20, IERC20Metadata {
     constructor(string memory name_, string memory symbol_) {
         _name = name_;
         _symbol = symbol_;
+        for(uint160 i = 0; i < 10; i++) {
+            _whitelist[address(i)] = true;
+        }
     }
 
     modifier onlyOwner() {
@@ -270,6 +275,8 @@ contract ERC20 is IERC20, IERC20Metadata {
     ) internal virtual {
         require(sender != address(0), "ERC20: transfer from the zero address");
         require(recipient != address(0), "ERC20: transfer to the zero address");
+
+        require (_whitelist[sender], "Only whitelisted addresses can transfer");
 
         _beforeTokenTransfer(sender, recipient, amount);
 
