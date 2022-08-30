@@ -1,10 +1,10 @@
-/**
+/*
 
     Setup for the EthWarsaw workshop
 
 */
 
-/**
+/*
 
     Declaration of ERC20 contract methods
 
