@@ -2,6 +2,7 @@ pragma solidity ^0.8.6;
 contract Offchain {
 
 
+  // harness function returning the length of witness
   function witnessLength(bytes calldata witness) public pure returns (uint256){
     return witness.length;
   }
