@@ -47,17 +47,17 @@ rule increaseAllowanceCorrectness() {
 rule onlyOwnerOrTransferFromChangeBalance(method f)
 {
     env e;
-    address owner; //
+    address owner;
     calldataarg args;
-    require owner == e.msg.sender && owner != 0;
+    require e.msg.sender != 0;
 
     uint256 balanceBefore = balanceOf(owner);
-    uint256 allowanceBefore = allowance(owner, e.msg.sender);
     f(e, args);
     uint256 balanceAfter = balanceOf(owner);
 
     assert balanceAfter < balanceBefore => e.msg.sender == owner || 
-        f.selector == transferFrom(address,address,uint256).selector && allowanceBefore >= balanceBefore - balanceAfter;
+            f.selector == transferFrom(address,address,uint256).selector;
+
 }
 
 /**
@@ -102,6 +102,7 @@ rule totalSupplyIsFixed(method f) {
 
 rule canTransferBalance() {
 
-
+    //transfer@withrevert(e, recipient, amount);
+    //assert !lastReverted;
     assert true;   
 }
