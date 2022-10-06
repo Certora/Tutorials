@@ -1,4 +1,4 @@
 Please import a license key  by running a 
-`export CERTORAKEY=da7741f5c0624c5fc290d075000716e92ad6ab64`
+`export CERTORAKEY=912117416e0b26b336eec0602b478fb01aa51e44`
 command in the terminal.
 
