@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8;
 
-contract Array {
+contract ArrayBug {
     address[] public arrOfTokens;
 
 
@@ -55,5 +55,14 @@ contract Array {
         arrOfTokens[index] = arrOfTokens[arrOfTokens.length - 1];
         // Remove the last element
         arrOfTokens.pop();
+    }
+
+    function frequency(address value) public view returns (uint) {
+        uint counter = 0;
+        for (uint i = 0; i < arrOfTokens.length; i++) {
+            if  (arrOfTokens[i] == value) 
+                counter++;
+        }
+        return counter;
     }
 }
