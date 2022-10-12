@@ -17,6 +17,12 @@ contract ArrayBug {
         }
         return address(0);
     }
+     function swap(uint256 i, uint256 j) public 
+    {
+        address temp = arrOfTokens[i];
+        arrOfTokens[i] = arrOfTokens[j];
+        arrOfTokens[j] = temp;
+    }
 
     function set(uint index, address value) public {
         require(index < arrOfTokens.length, "index out of bound");
