@@ -92,7 +92,7 @@ library EnumerableSet {
             }
 
             // Delete the slot where the moved value was stored
-            // set._values.pop();
+            set._values.pop();
 
             // Delete the index for the deleted slot
             delete set._indexes[value];
