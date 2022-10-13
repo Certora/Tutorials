@@ -55,7 +55,7 @@ definition CVL_LOAD_ARRAY_LENGTH() returns bool = (getLen() == getLen());
 * @notice this condition recaps the general characteristics of Set. It should hold for all set implementations i.e. AddressSet, UintSet, Bytes32Set
 * @retrun conjunction of the Set three essential properties.
 */
-definition SET_INVARIANT(uint256 i, bytes32 a) returns bool = MAP_POINTS_INSIDE_ARRAY(a) && MAP_IS_INVERSE_OF_ARRAY(i) && ARRAY_IS_INVERSE_OF_MAP(a) &&  CVL_LOAD_ARRAY_LENGTH(); 
+definition SET_INVARIANT(uint256 i, bytes32 a) returns bool = MAP_POINTS_INSIDE_ARRAY(a) && MAP_IS_INVERSE_OF_ARRAY(i) && ARRAY_IS_INVERSE_OF_MAP(a); 
 
 /**
  * @title Size of stored value does not exceed the size of an address type.
@@ -135,54 +135,54 @@ hook Sload bytes32 value _list .(offset 0)[INDEX uint256 index] STORAGE {
     reverseValidInternalIndexes[index] = firstAccess?lengthOfValidInternalIndexes:reverseValidInternalIndexes[index];
     validInternalIndexes[lengthOfValidInternalIndexes] = index;
     lengthOfValidInternalIndexes = lengthOfValidInternalIndexes + to_uint256(firstAccess?1:0);
-    require firstAccess && setActive => (SET_INVARIANT(index, value));
-    // require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, value);
+    require firstAccess && setActive => SET_INVARIANT(index, value);
+    require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, value);
 
     require mirrorArray[index] == value;
 }
 
-// hook Sstore _list .(offset 0)[INDEX uint256 index] bytes32 newValue (bytes32 oldValue) STORAGE {
-//     uint256 shortcutIndex = reverseValidInternalIndexes[index];
-//     bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexes) || validInternalIndexes[shortcutIndex] != index);
-//     reverseValidInternalIndexes[index] = firstAccess?lengthOfValidInternalIndexes:reverseValidInternalIndexes[index];
-//     validInternalIndexes[lengthOfValidInternalIndexes] = index;
-//     lengthOfValidInternalIndexes = lengthOfValidInternalIndexes + to_uint256(firstAccess?1:0);
+hook Sstore _list .(offset 0)[INDEX uint256 index] bytes32 newValue (bytes32 oldValue) STORAGE {
+    uint256 shortcutIndex = reverseValidInternalIndexes[index];
+    bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexes) || validInternalIndexes[shortcutIndex] != index);
+    reverseValidInternalIndexes[index] = firstAccess?lengthOfValidInternalIndexes:reverseValidInternalIndexes[index];
+    validInternalIndexes[lengthOfValidInternalIndexes] = index;
+    lengthOfValidInternalIndexes = lengthOfValidInternalIndexes + to_uint256(firstAccess?1:0);
     
-//     require firstAccess && setActive => SET_INVARIANT(index, oldValue);
-//     require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, oldValue);
+    require firstAccess && setActive => SET_INVARIANT(index, oldValue);
+    require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, oldValue);
 
-//     require mirrorArray[index] == oldValue;
-//     mirrorArray[index] = newValue;
-// }
+    require mirrorArray[index] == oldValue;
+    mirrorArray[index] = newValue;
+}
 
 
 
-// hook Sload uint256 index _list .(offset 32)[KEY bytes32 key] STORAGE {
-//     uint256 shortcutIndex = reverseValidInternalIndexesMap[key];
-//     bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexesMap) || validInternalIndexesMap[shortcutIndex] != key);
-//     reverseValidInternalIndexesMap[key] = firstAccess?lengthOfValidInternalIndexesMap:reverseValidInternalIndexesMap[key];
-//     validInternalIndexesMap[lengthOfValidInternalIndexesMap] = key;
-//     lengthOfValidInternalIndexesMap = lengthOfValidInternalIndexesMap + to_uint256(firstAccess?1:0);
+hook Sload uint256 index _list .(offset 32)[KEY bytes32 key] STORAGE {
+    uint256 shortcutIndex = reverseValidInternalIndexesMap[key];
+    bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexesMap) || validInternalIndexesMap[shortcutIndex] != key);
+    reverseValidInternalIndexesMap[key] = firstAccess?lengthOfValidInternalIndexesMap:reverseValidInternalIndexesMap[key];
+    validInternalIndexesMap[lengthOfValidInternalIndexesMap] = key;
+    lengthOfValidInternalIndexesMap = lengthOfValidInternalIndexesMap + to_uint256(firstAccess?1:0);
     
-//     require firstAccess && setActive => SET_INVARIANT(index, key);
-//     require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, key);
+    require firstAccess && setActive => SET_INVARIANT(index, key);
+    require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(index, key);
 
-//     require mirrorMap[key] == index;
-// }
+    require mirrorMap[key] == index;
+}
 
-// hook Sstore _list .(offset 32)[KEY bytes32 key] uint256 newIndex (uint256 oldIndex) STORAGE {
-//     uint256 shortcutIndex = reverseValidInternalIndexesMap[key];
-//     bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexesMap) || validInternalIndexesMap[shortcutIndex] != key);
-//     reverseValidInternalIndexesMap[key] = firstAccess?lengthOfValidInternalIndexesMap:reverseValidInternalIndexesMap[key];
-//     validInternalIndexesMap[lengthOfValidInternalIndexesMap] = key;
-//     lengthOfValidInternalIndexesMap = lengthOfValidInternalIndexesMap + to_uint256(firstAccess?1:0);
+hook Sstore _list .(offset 32)[KEY bytes32 key] uint256 newIndex (uint256 oldIndex) STORAGE {
+    uint256 shortcutIndex = reverseValidInternalIndexesMap[key];
+    bool firstAccess = ((shortcutIndex >= lengthOfValidInternalIndexesMap) || validInternalIndexesMap[shortcutIndex] != key);
+    reverseValidInternalIndexesMap[key] = firstAccess?lengthOfValidInternalIndexesMap:reverseValidInternalIndexesMap[key];
+    validInternalIndexesMap[lengthOfValidInternalIndexesMap] = key;
+    lengthOfValidInternalIndexesMap = lengthOfValidInternalIndexesMap + to_uint256(firstAccess?1:0);
     
-//     require firstAccess && setActive => SET_INVARIANT(oldIndex, key);
-//     require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(oldIndex, key);
+    require firstAccess && setActive => SET_INVARIANT(oldIndex, key);
+    require firstAccess && addressSetActive => ADDRESS_SET_INVARIANT(oldIndex, key);
 
-//     require mirrorMap[key] == oldIndex;
-//     mirrorMap[key] = newIndex;
-// }
+    require mirrorMap[key] == oldIndex;
+    mirrorMap[key] = newIndex;
+}
 
 // This updates the new 
 /**
@@ -241,25 +241,25 @@ hook Sload uint256 len _list .(offset 0).(offset 0) STORAGE {
 /**
  * @title main Set general invariant
  **/
-// invariant setInvariant(uint256 i, bytes32 a)
-//     SET_INVARIANT(i, a)
-//     {
-//         preserved{
-//             require ACTIVATE_SET();
-//         }
-//     }
+invariant setInvariant(uint256 i, bytes32 a)
+    SET_INVARIANT(i, a)
+    {
+        preserved{
+            require ACTIVATE_SET();
+        }
+    }
 
 // /**
 //  * @title main AddressSet invariant
 //  * @dev user of the spec should add 'require ACTIVATE_ADDRESS_SET();' to every rule and invariant that refer to a contract that instantiates AddressSet  
 //  **/
-// invariant addressSetInvariant(uint256 i, bytes32 a)
-//     ADDRESS_SET_INVARIANT(i, a)
-//     {
-//         preserved{
-//             require ACTIVATE_ADDRESS_SET();
-//         }
-//     }
+invariant addressSetInvariant(uint256 i, bytes32 a)
+    ADDRESS_SET_INVARIANT(i, a)
+    {
+        preserved{
+            require ACTIVATE_ADDRESS_SET();
+        }
+    }
 
 
 // /**
@@ -275,108 +275,108 @@ rule api_add_succeeded()
     assert contains(e, a);
 }
 
-// /**
-//  * @title addAddress() fails to add an address if it already exists 
-//  * @notice check set membership using contains()
-//  **/
-// rule api_add_failed_contains()
-// {
-//     env e;
-//     address a;
-//     require ACTIVATE_ADDRESS_SET();
-//     require contains(e, a);
-//     assert !addAddress(e, a);
-// }
+/**
+ * @title addAddress() fails to add an address if it already exists 
+ * @notice check set membership using contains()
+ **/
+rule api_add_failed_contains()
+{
+    env e;
+    address a;
+    require ACTIVATE_ADDRESS_SET();
+    require contains(e, a);
+    assert !addAddress(e, a);
+}
 
-// /**
-//  * @title addAddress() fails to add an address if it already exists 
-//  * @notice check set membership using atIndex()
-//  **/
-// rule api_add_failed_at()
-// {
-//     env e;
-//     address a;
-//     uint256 index;
-//     require ACTIVATE_ADDRESS_SET();
-//     require atIndex(e, index) == a;
-//     assert !addAddress(e, a);
-// }
+/**
+ * @title addAddress() fails to add an address if it already exists 
+ * @notice check set membership using atIndex()
+ **/
+rule api_add_failed_at()
+{
+    env e;
+    address a;
+    uint256 index;
+    require ACTIVATE_ADDRESS_SET();
+    require atIndex(e, index) == a;
+    assert !addAddress(e, a);
+}
 
-// /**
-//  * @title contains() succeed after addAddress succeeded 
-//  **/
-// rule api_address_contained_affter_add()
-// {
-//     env e;
-//     address a;
-//     require ACTIVATE_ADDRESS_SET();
-//     addAddress(e, a);
-//     assert contains(e, a);
-// }
+/**
+ * @title contains() succeed after addAddress succeeded 
+ **/
+rule api_address_contained_affter_add()
+{
+    env e;
+    address a;
+    require ACTIVATE_ADDRESS_SET();
+    addAddress(e, a);
+    assert contains(e, a);
+}
 
-// /**
-//  * @title _removeAddress() succeeds to remove an address if it existed 
-//  * @notice check set membership using contains()
-//  **/
-// rule api_remove_succeeded_contains()
-// {
-//     env e;
-//     address a;
-//     require ACTIVATE_ADDRESS_SET();
-//     require contains(e, a);
-//     assert _removeAddress(e, a);
-// }
+/**
+ * @title _removeAddress() succeeds to remove an address if it existed 
+ * @notice check set membership using contains()
+ **/
+rule api_remove_succeeded_contains()
+{
+    env e;
+    address a;
+    require ACTIVATE_ADDRESS_SET();
+    require contains(e, a);
+    assert _removeAddress(e, a);
+}
 
-// /**
-//  * @title _removeAddress() fails to remove address if it didn't exist 
-//  **/
-// rule api_remove_failed()
-// {
-//     env e;
-//     address a;
-//     require ACTIVATE_ADDRESS_SET();
-//     require !contains(e, a);
-//     assert !_removeAddress(e, a);
-// }
+/**
+ * @title _removeAddress() fails to remove address if it didn't exist 
+ **/
+rule api_remove_failed()
+{
+    env e;
+    address a;
+    require ACTIVATE_ADDRESS_SET();
+    require !contains(e, a);
+    assert !_removeAddress(e, a);
+}
 
-// /**
-//  * @title _removeAddress() succeeds to remove an address if it existed 
-//  * @notice check set membership using atIndex()
-//  **/
-// rule api_remove_succeeded_at()
-// {
-//     env e;
-//     address a;
-//     uint256 index;
-//     require ACTIVATE_ADDRESS_SET();
-//     require atIndex(e, index) == a;
-//     assert _removeAddress(e, a);
-// }
+/**
+ * @title _removeAddress() succeeds to remove an address if it existed 
+ * @notice check set membership using atIndex()
+ **/
+rule api_remove_succeeded_at()
+{
+    env e;
+    address a;
+    uint256 index;
+    require ACTIVATE_ADDRESS_SET();
+    require atIndex(e, index) == a;
+    assert _removeAddress(e, a);
+}
 
-// /**
-//  * @title contains() failed after an address was removed
-//  **/
-// rule api_not_contains_affter_remove()
-// {
-//     env e;
-//     address a;
-//     require ACTIVATE_ADDRESS_SET();
-//     _removeAddress(e, a);
-//     assert !contains(e, a);
-// }
+/**
+ * @title contains() failed after an address was removed
+ **/
+rule api_not_contains_affter_remove()
+{
+    env e;
+    address a;
+    require ACTIVATE_ADDRESS_SET();
+    _removeAddress(e, a);
+    assert !contains(e, a);
+}
 
-// /**
-//  * @title contains() succeeds if atIndex() succeeded
-//  **/
-// rule cover_at_contains()
-// {
-//     env e;
-//     address a = 0;
-//     require ACTIVATE_ADDRESS_SET();
-//     uint256 index;
-//     require atIndex(e, index) == a;
-//     assert contains(e, a);
-// }
+/**
+ * @title contains() succeeds if atIndex() succeeded
+ **/
+rule cover_at_contains()
+{
+    env e;
+    address a = 0;
+    require ACTIVATE_ADDRESS_SET();
+    uint256 index;
+    require atIndex(e, index) == a;
+    assert contains(e, a);
+}
 
 /**
  * @title Solidity getArrayLength() and mirror ghost variable are identical
@@ -393,19 +393,19 @@ rule api_add_succeeded()
  * @notice The assertion should fail - it's a cover property written as an assertion. For large length, beyond loop_iter the assertion should pass.
  **/
 
-// rule cover_len0(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 0;}
-// rule cover_len1(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 1;}
-// rule cover_len2(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 2;}
-// rule cover_len3(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 3;}
-// rule cover_len4(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 4;}
-// rule cover_len5(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 5;}
-// rule cover_len6(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 6;}
-// rule cover_len7(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 7;}
-// rule cover_len8(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 8;}
-// rule cover_len16(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 16;}
-// rule cover_len32(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 32;}
-// rule cover_len64(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 64;}
-// rule cover_len128(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 128;}
-// rule cover_len256(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 256;}
-// rule cover_len512(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 512;}
-// rule cover_len1024(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 1024;}
+rule cover_len0(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 0;}
+rule cover_len1(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 1;}
+rule cover_len2(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 2;}
+rule cover_len3(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 3;}
+rule cover_len4(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 4;}
+rule cover_len5(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 5;}
+rule cover_len6(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 6;}
+rule cover_len7(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 7;}
+rule cover_len8(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 8;}
+rule cover_len16(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 16;}
+rule cover_len32(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 32;}
+rule cover_len64(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 64;}
+rule cover_len128(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 128;}
+rule cover_len256(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 256;}
+rule cover_len512(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 512;}
+rule cover_len1024(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 1024;}
