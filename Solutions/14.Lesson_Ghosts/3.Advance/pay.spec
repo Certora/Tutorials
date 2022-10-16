@@ -1,12 +1,25 @@
-/**
- * @title get Set array length
- * @dev user should define getLen() in Solidity harness file.
- */
 methods{
     getLen() returns (uint256) envfree
     atIndex(uint256) returns(address) envfree
     contains(address) returns(bool) envfree
+    getOwner() returns(address) envfree
+    getBalance(address) returns(uint256) envfree
 }
+
+invariant ownerOnlyZero()
+    getOwner() == 0
+    {
+        preserved{
+            require ACTIVATE_ADDRESS_SET();
+        }
+    }
+
+
+    /**
+ * @title get Set array length
+ * @dev user should define getLen() in Solidity harness file.
+ */
+
 /**
 * @title max uint256
 * @retrun 2^256-1
@@ -276,150 +289,150 @@ invariant addressSetInvariant(uint256 i, address a)
     }
 
 
+// // /**
+// //  * @title addAddress() successfully adds an address
+// //  **/
+// rule api_add_succeeded()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     require !contains(a);
+//     assert addAddress(e, a);
+//     assert contains(a);
+// }
+
 // /**
-//  * @title addAddress() successfully adds an address
+//  * @title addAddress() fails to add an address if it already exists 
+//  * @notice check set membership using contains()
 //  **/
-rule api_add_succeeded()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    require !contains(a);
-    assert addAddress(e, a);
-    assert contains(a);
-}
+// rule api_add_failed_contains()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     require contains(a);
+//     assert !addAddress(e, a);
+// }
 
-/**
- * @title addAddress() fails to add an address if it already exists 
- * @notice check set membership using contains()
- **/
-rule api_add_failed_contains()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    require contains(a);
-    assert !addAddress(e, a);
-}
+// /**
+//  * @title addAddress() fails to add an address if it already exists 
+//  * @notice check set membership using atIndex()
+//  **/
+// rule api_add_failed_at()
+// {
+//     env e;
+//     address a;
+//     uint256 index;
+//     require ACTIVATE_ADDRESS_SET();
+//     require atIndex(index) == a;
+//     assert !addAddress(e, a);
+// }
 
-/**
- * @title addAddress() fails to add an address if it already exists 
- * @notice check set membership using atIndex()
- **/
-rule api_add_failed_at()
-{
-    env e;
-    address a;
-    uint256 index;
-    require ACTIVATE_ADDRESS_SET();
-    require atIndex(index) == a;
-    assert !addAddress(e, a);
-}
+// /**
+//  * @title contains() succeed after addAddress succeeded 
+//  **/
+// rule api_address_contained_affter_add()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     addAddress(e, a);
+//     assert contains(a);
+// }
 
-/**
- * @title contains() succeed after addAddress succeeded 
- **/
-rule api_address_contained_affter_add()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    addAddress(e, a);
-    assert contains(a);
-}
+// /**
+//  * @title _removeAddress() succeeds to remove an address if it existed 
+//  * @notice check set membership using contains()
+//  **/
+// rule api_remove_succeeded_contains()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     require contains(a);
+//     assert _removeAddress(e, a);
+// }
 
-/**
- * @title _removeAddress() succeeds to remove an address if it existed 
- * @notice check set membership using contains()
- **/
-rule api_remove_succeeded_contains()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    require contains(a);
-    assert _removeAddress(e, a);
-}
+// /**
+//  * @title _removeAddress() fails to remove address if it didn't exist 
+//  **/
+// rule api_remove_failed()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     require !contains(a);
+//     assert !_removeAddress(e, a);
+// }
 
-/**
- * @title _removeAddress() fails to remove address if it didn't exist 
- **/
-rule api_remove_failed()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    require !contains(a);
-    assert !_removeAddress(e, a);
-}
+// /**
+//  * @title _removeAddress() succeeds to remove an address if it existed 
+//  * @notice check set membership using atIndex()
+//  **/
+// rule api_remove_succeeded_at()
+// {
+//     env e;
+//     address a;
+//     uint256 index;
+//     require ACTIVATE_ADDRESS_SET();
+//     require atIndex(index) == a;
+//     assert _removeAddress(e, a);
+// }
 
-/**
- * @title _removeAddress() succeeds to remove an address if it existed 
- * @notice check set membership using atIndex()
- **/
-rule api_remove_succeeded_at()
-{
-    env e;
-    address a;
-    uint256 index;
-    require ACTIVATE_ADDRESS_SET();
-    require atIndex(index) == a;
-    assert _removeAddress(e, a);
-}
+// /**
+//  * @title contains() failed after an address was removed
+//  **/
+// rule api_not_contains_affter_remove()
+// {
+//     env e;
+//     address a;
+//     require ACTIVATE_ADDRESS_SET();
+//     _removeAddress(e, a);
+//     assert !contains(a);
+// }
 
-/**
- * @title contains() failed after an address was removed
- **/
-rule api_not_contains_affter_remove()
-{
-    env e;
-    address a;
-    require ACTIVATE_ADDRESS_SET();
-    _removeAddress(e, a);
-    assert !contains(a);
-}
+// /**
+//  * @title contains() succeeds if atIndex() succeeded
+//  **/
+// rule cover_at_contains()
+// {
+//     env e;
+//     address a = 0;
+//     require ACTIVATE_ADDRESS_SET();
+//     uint256 index;
+//     require atIndex(index) == a;
+//     assert contains(a);
+// }
 
-/**
- * @title contains() succeeds if atIndex() succeeded
- **/
-rule cover_at_contains()
-{
-    env e;
-    address a = 0;
-    require ACTIVATE_ADDRESS_SET();
-    uint256 index;
-    require atIndex(index) == a;
-    assert contains(a);
-}
-
-/**
- * @title Solidity getArrayLength() and mirror ghost variable are identical
- **/
-rule api_len()
-{
-    require ACTIVATE_ADDRESS_SET();
-    assert mirrorArrayLen == getLen();
-}
+// /**
+//  * @title Solidity getArrayLength() and mirror ghost variable are identical
+//  **/
+// rule api_len()
+// {
+//     require ACTIVATE_ADDRESS_SET();
+//     assert mirrorArrayLen == getLen();
+// }
 
 
-/**
- * @title cover properties, checking various array lengths
- * @notice The assertion should fail - it's a cover property written as an assertion. For large length, beyond loop_iter the assertion should pass.
- **/
+// /**
+//  * @title cover properties, checking various array lengths
+//  * @notice The assertion should fail - it's a cover property written as an assertion. For large length, beyond loop_iter the assertion should pass.
+//  **/
 
-rule cover_len0(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 0;}
-rule cover_len1(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 1;}
-rule cover_len2(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 2;}
-rule cover_len3(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 3;}
-rule cover_len4(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 4;}
-rule cover_len5(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 5;}
-rule cover_len6(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 6;}
-rule cover_len7(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 7;}
-rule cover_len8(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 8;}
-rule cover_len16(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 16;}
-rule cover_len32(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 32;}
-rule cover_len64(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 64;}
-rule cover_len128(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 128;}
-rule cover_len256(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 256;}
-rule cover_len512(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 512;}
-rule cover_len1024(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 1024;}
+// rule cover_len0(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 0;}
+// rule cover_len1(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 1;}
+// rule cover_len2(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 2;}
+// rule cover_len3(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 3;}
+// rule cover_len4(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 4;}
+// rule cover_len5(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 5;}
+// rule cover_len6(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 6;}
+// rule cover_len7(){require ACTIVATE_ADDRESS_SET();assert mirrorArrayLen != 7;}
+// rule cover_len8(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 8;}
+// rule cover_len16(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 16;}
+// rule cover_len32(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 32;}
+// rule cover_len64(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 64;}
+// rule cover_len128(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 128;}
+// rule cover_len256(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 256;}
+// rule cover_len512(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 512;}
+// rule cover_len1024(){require ACTIVATE_ADDRESS_SET(); assert mirrorArrayLen != 1024;}
