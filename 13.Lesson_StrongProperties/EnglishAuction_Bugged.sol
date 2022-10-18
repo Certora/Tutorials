@@ -77,7 +77,7 @@ contract EnglishAuction {
 
     function bid() external payable {
         require(started, "not started");
-        require(!ended, "not ended");
+        require(!ended, "already ended");
         uint previousBid = highestBid;
         
         if (highestBidder == msg.sender) {
@@ -100,7 +100,9 @@ contract EnglishAuction {
     }
 
     function withdraw() external {
-        require(msg.sender != highestBidder, "bidder cannot withdraw");
+        if (!ended) {
+            require(msg.sender != highestBidder, "bidder cannot withdraw");
+        }
         uint bal = bids[msg.sender];
         payable(msg.sender).transfer(bal);
         bids[msg.sender] -= bal;
