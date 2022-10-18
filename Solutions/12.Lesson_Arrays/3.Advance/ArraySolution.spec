@@ -26,11 +26,11 @@ ghost uint256 setLength;
 ghost bool OneToOne_arrOfTokens;
 
 
-// definition bool UNIQUENESS() returns = OneToOne_arrOfTokens && (setLength == 0);
+
 
 hook Sstore arrOfTokens[INDEX uint256 index] address newValue (address oldValue) STORAGE {
 
-    //this is for the require that the validator array is unique 
+    // this is for the require that the validator array is unique 
     uint256 shortcutIndex = indexSetShortcut[index];
     bool firstAccess = (shortcutIndex >= setLength) || indexSetArray[shortcutIndex] != index;
     indexSetShortcut[index] = firstAccess?setLength:indexSetShortcut[index];
@@ -85,8 +85,7 @@ invariant flagConsistancy(uint256 i)
     {
         preserved{
             require OneToOne_arrOfTokens && (setLength == 0);
-            require Concistant_flag;
-            require setLengthFlag == 0;
+            require Concistant_flag && setLengthFlag == 0;
         }
     }
 
@@ -95,7 +94,6 @@ invariant uniqueArray(uint256 i, uint256 j)
     {
         preserved{
             require OneToOne_arrOfTokens && (setLength == 0);
-            require Concistant_flag;
-            require setLengthFlag == 0;
+            require Concistant_flag && setLengthFlag == 0;
         }
     }

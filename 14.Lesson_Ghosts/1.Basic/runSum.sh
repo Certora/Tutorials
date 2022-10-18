@@ -1,5 +1,5 @@
-certoraRun ERC20_token.sol \
---verify ERC20_token:sum.spec \
+certoraRun ERC20_tokenBug.sol \
+--verify ERC20_tokenBug:sum.spec \
 --solc solc8.6 \
 --send_only \
 --staging \

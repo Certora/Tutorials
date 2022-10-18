@@ -18,10 +18,6 @@ contract Array {
         return address(0);
     }
 
-    function set(uint index, address value) public {
-        require(index < arrOfTokens.length, "index out of bound");
-        arrOfTokens[index] = value;
-    }
 
     // Solidity can return the entire array.
     // But this function should be avoided for
@@ -44,16 +40,5 @@ contract Array {
 
     function getLength() public view returns (uint) {
         return arrOfTokens.length;
-    }
-
-    // Deleting an element creates a gap in the array.
-    // One trick to keep the array compact is to
-    // move the last element into the place to delete.
-    function removeReplaceFromEnd(uint index) public {
-        require(index < arrOfTokens.length, "index out of bound");
-        // Move the last element into the place to delete
-        arrOfTokens[index] = arrOfTokens[arrOfTokens.length - 1];
-        // Remove the last element
-        arrOfTokens.pop();
     }
 }

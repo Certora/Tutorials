@@ -1,4 +1,4 @@
-contract ERC20_token {
+contract ERC20_tokenBug {
     mapping (address => uint256) balances;
     uint256 totalSupply;
 

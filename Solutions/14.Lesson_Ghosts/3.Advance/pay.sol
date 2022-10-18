@@ -33,15 +33,17 @@ contract pay
     }
     function add(address user) public
     {
-        //require(amount > 0);
-        _list.add(user);
-        // {
-        //     balances[user] = amount;
-        // }
-        // else
-        // {
-        //     balances[user] += amount;
-        // }
+        if (_list.contains(user))
+        {
+            if (_list.add(user))
+            {
+                owner = user;
+            }
+        }
+        else{
+            _list.add(user);
+        }
+
     }
     function remove() public
     {

@@ -11,12 +11,24 @@ contract ArraySolution {
         return arrOfTokens[index];
     }
 
+    function swap(uint256 i, uint256 j) public 
+    {
+        address temp = arrOfTokens[i];
+        arrOfTokens[i] = arrOfTokens[j];
+        arrOfTokens[j] = temp;
+    }
+
     function getWithDefaultValue(uint index) public view returns(address){
         if (index < arrOfTokens.length)
         {
             return arrOfTokens[index];
         }
         return address(0);
+    }
+
+    function getFlag(address a) public view returns(bool)
+    {
+        return flag[a];
     }
 
     function set(uint index, address value) public {

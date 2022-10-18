@@ -22,13 +22,28 @@ contract pay
         return _list.contains(a);
     }
 
+    // function getBalance(address a)  external view returns(uint256)
+    // {
+    //     return balances[a];
+    // }
+
     function getOwner() view public returns(address)
     {
         return owner;
     }
     function add(address user) public
     {
-        _list.add(user);
+        if (_list.contains(user))
+        {
+            if (_list.add(user))
+            {
+                owner = user;
+            }
+        }
+        else{
+            _list.add(user);
+        }
+
     }
     function remove() public
     {
