@@ -1,23 +1,4 @@
 // SPDX-License-Identifier: MIT
-// based on https://solidity-by-example.org/app/english-auction/ 
-
-/*
-
-English auction for NFT.
-
-Auction
-- Seller of NFT deploys this contract.
-- Auction lasts for 7 days.
-- Participants can bid by depositing ETH greater than the current highest bidder.
-- All bidders can withdraw their bid if it is not the current highest bid.
-After the auction
-- Highest bidder becomes the new owner of NFT.
-
-
-
-
-*/
-
 pragma solidity ^0.8.13;
 
 interface IERC721 {
@@ -78,20 +59,19 @@ contract EnglishAuction {
     function bid() external payable {
         require(started, "not started");
         require(block.timestamp < endAt, "ended");
-        uint previousBid = highestBid;
+        require(msg.value > highestBid, "value < highest");
 
-        bids[highestBidder] += msg.value;
+        if (highestBidder != address(0)) {
+            bids[highestBidder] += highestBid;
+        }
+
         highestBidder = msg.sender;
-        highestBid = bids[highestBidder];
+        highestBid = msg.value;
 
-        require(bids[highestBidder] > previousBid, "new high value < highest");
         emit Bid(msg.sender, msg.value);
     }
 
     function withdraw() external {
-        if (!ended) {
-            require(msg.sender != highestBidder, "bidder cannot withdraw");
-        }
         uint bal = bids[msg.sender];
         bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
@@ -107,17 +87,11 @@ contract EnglishAuction {
         ended = true;
         if (highestBidder != address(0)) {
             nft.safeTransferFrom(address(this), highestBidder, nftId);
-            seller.transfer(bids[highestBidder]);
+            seller.transfer(highestBid);
         } else {
             nft.safeTransferFrom(address(this), seller, nftId);
         }
 
         emit End(highestBidder, highestBid);
-    }
-
-
-    // just a getter for ethBalane
-    function ethBalanceOf(address a) public view returns (uint256) {
-        return a.balance; 
     }
 }
