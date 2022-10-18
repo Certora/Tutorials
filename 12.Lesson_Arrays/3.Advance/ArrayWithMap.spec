@@ -33,6 +33,18 @@ hook Sload bool value flag[KEY address a] STORAGE
 
 invariant flagConsistancy(uint256 i)
     i < getLength() => getFlag(getWithDefaultValue(i))
+    {
+        preserved{
+            // add here
+            require true;
+        }
+    }
 
 invariant uniqueArray(uint256 i, uint256 j)
     i != j => ((getWithDefaultValue(i) != getWithDefaultValue(j)) || ((getWithDefaultValue(i) == 0) && (getWithDefaultValue(j) == 0)))
+    {
+        preserved{
+            // add here
+            require true;
+        }
+    }

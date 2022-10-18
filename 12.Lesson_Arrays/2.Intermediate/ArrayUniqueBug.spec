@@ -17,7 +17,8 @@ invariant frequencyLessThenTwo(address a)
     frequency(a) < 2
     {
         preserved{
-            requireInvariant frequencyLessThenTwo(get(to_uint256(getLength() - 1)));
+            // add
+            require true;
         }
     }
 

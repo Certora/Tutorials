@@ -25,7 +25,6 @@ invariant uniqueArray(uint256 i, uint256 j)
     i != j => ((getWithDefaultValue(i) != getWithDefaultValue(j)) || ((getWithDefaultValue(i) == 0) && (getWithDefaultValue(j) == 0)))
     {
         preserved{
-            requireInvariant frequencyLessThenTwo(get(to_uint256(getLength() - 1)));
             requireInvariant frequencyLessThenTwo(get(i));
             requireInvariant frequencyLessThenTwo(get(j));
         }

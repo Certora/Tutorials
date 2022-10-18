@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8;
 
-contract ArraySolution {
+contract ArrayWithMap {
     address[] public arrOfTokens;
     mapping (address => bool) flag;
 
