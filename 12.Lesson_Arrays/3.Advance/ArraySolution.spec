@@ -12,19 +12,6 @@ methods {
     getFlag(address)            returns (bool)      envfree
 }
 
-
-ghost mapping(uint256 => address) indexSetArrayFlag;
-ghost mapping(address => uint256) indexSetShortcutFlag;
-ghost mapping(address => bool) mirrorInitFlag;
-ghost uint256 setLengthFlag;
-ghost bool Concistant_flag;
-
-ghost mapping(uint256 => uint256) indexSetArray;
-ghost mapping(uint256 => uint256) indexSetShortcut;
-ghost mapping(address => uint256) reverseMapInit;
-ghost uint256 setLength;
-ghost bool OneToOne_arrOfTokens;
-
 hook Sstore arrOfTokens[INDEX uint256 index] address newValue (address oldValue) STORAGE 
 {
     require true;
