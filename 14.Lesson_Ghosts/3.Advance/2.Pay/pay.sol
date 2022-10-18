@@ -22,11 +22,6 @@ contract pay
         return _list.contains(a);
     }
 
-    // function getBalance(address a)  external view returns(uint256)
-    // {
-    //     return balances[a];
-    // }
-
     function getOwner() view public returns(address)
     {
         return owner;
