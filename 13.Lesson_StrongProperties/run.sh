@@ -1,6 +1,9 @@
+#!/bin/bash
+
 certoraRun EnglishAuction.sol DummyERC721.sol --verify EnglishAuction:EnglishAuction.spec \
 --solc solc8.13  --link EnglishAuction:nft=DummyERC721 --settings -optimisticFallback=true  \
 --msg "EnglishAuction $1" 
+
 #
 # overcoming calls to EOAs that are not easily linked (essentialy a dispatcher logic for ETH-sending only calls).
 # --settings -optimisticFallback=true  

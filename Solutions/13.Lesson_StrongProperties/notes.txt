@@ -1,0 +1,6 @@
+
+The files with mutations are here.
+The original file from https://solidity-by-example.org/app/english-auction/ and a custom buggy file is in BuggedVersions.
+
+In Mutations, we've seperated most bugs into individual files, and created a run.sh to run over them all.
+

@@ -1,0 +1,21 @@
+notes:
+    The idea in this exercise is to take some system, inspect its idea thoroughly, and make up properties that would eventually find bugs even in the parallel broken version.
+    It would be intersting to see which kinds of properties find which kinds of bugs.
+
+    We need to think how we organize this as an exercise to the team (so they don't just read the bugged code, it would spoil the idea).
+
+
+Bug Notes:
+- src has several bugs:
+    - the highest bidder can withdraw
+    - the highest bidder can deposit again, but his credit is calculated based on previous highest (instead of their own)
+    - Still, even if it was msg.value, there would have been a discrepancy between highest bid and their balance (since it uses an assignment of msg.value instead of addition)
+        - in one way, he can be "undertaken" by a lower investment
+        - on the other hand, they only pay the latest bid to the seller (does it just lock their funds?)
+
+- My bugs addition:
+    - reentrancy - withdraw to a deposit with a less than highest bid brakes solvency (but not if it's over highest bid, xD!). This also makes the highest bid larger than the
+    - re-invest bug - Logic seems to "break down the cases", but actually it assumes a new bidder has a current balance of 0 (the rest is lost).
+    - Bid() - can happen also after the timeframe ended. This enables to switch the highest bidder even after the time limit
+    - highest bidder can withdraw after the auction ended (draining someone else's funds)
+        - funnily, I unintentionally inserted it at first as a future-compatible to early ending of the auction.

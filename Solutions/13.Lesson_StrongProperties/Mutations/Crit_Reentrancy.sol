@@ -87,9 +87,10 @@ contract EnglishAuction {
 
     function withdraw() external {
         require(msg.sender != highestBidder, "bidder cannot withdraw");
+        // Crit bug - Reentrancy possible here
         uint bal = bids[msg.sender];
-        bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
+        bids[msg.sender] -= bal;
 
         emit Withdraw(msg.sender, bal);
     }

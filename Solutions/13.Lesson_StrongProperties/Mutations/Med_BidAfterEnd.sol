@@ -74,7 +74,7 @@ contract EnglishAuction {
 
     function bid() external payable {
         require(started, "not started");
-        require(block.timestamp < endAt, "ended");
+        require(!ended, "ended");
         uint previousBid = highestBid;
 
         bids[highestBidder] += msg.value;

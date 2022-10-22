@@ -77,7 +77,9 @@ contract EnglishAuction {
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
 
-        bids[highestBidder] += msg.value;
+        // Crit Bug - Higher balance than deserved. Treated as if it's always repeat highest bidder.
+        // Med bug - Highest bidder repeat gets less credit, but it pales in comparison to the above.
+        bids[highestBidder] = highestBid + msg.value;
         highestBidder = msg.sender;
         highestBid = bids[highestBidder];
 

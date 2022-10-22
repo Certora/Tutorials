@@ -13,9 +13,6 @@ Auction
 After the auction
 - Highest bidder becomes the new owner of NFT.
 
-
-
-
 */
 
 pragma solidity ^0.8.13;
@@ -77,9 +74,9 @@ contract EnglishAuction {
 
     function bid() external payable {
         require(started, "not started");
-        require(!ended, "already ended");
+        require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
-        
+
         if (highestBidder == msg.sender) {
             // same bidder expands their bid
             bids[highestBidder] = highestBid + msg.value;
@@ -87,25 +84,19 @@ contract EnglishAuction {
         else {
             // new bidder
             require (msg.value > highestBid, "value < highest");
+            // High bug - The balance is less than deserved on repeat bids.
             bids[highestBidder] = msg.value;
         }
 
-        highestBid = bids[HighestBidder];
-
-        // require the highest bidder now is over the previous bidder
-        require(highestBid > previousBid, "new high value < highest");
-        highestBidder = msg.sender;
-
+        require(bids[highestBidder] > previousBid, "new high value < highest");
         emit Bid(msg.sender, msg.value);
     }
 
     function withdraw() external {
-        if (!ended) {
-            require(msg.sender != highestBidder, "bidder cannot withdraw");
-        }
+        require(msg.sender != highestBidder, "bidder cannot withdraw");
         uint bal = bids[msg.sender];
+        bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
-        bids[msg.sender] -= bal;
 
         emit Withdraw(msg.sender, bal);
     }
@@ -118,7 +109,7 @@ contract EnglishAuction {
         ended = true;
         if (highestBidder != address(0)) {
             nft.safeTransferFrom(address(this), highestBidder, nftId);
-            seller.transfer(highestBid);
+            seller.transfer(bids[highestBidder]);
         } else {
             nft.safeTransferFrom(address(this), seller, nftId);
         }
@@ -128,7 +119,7 @@ contract EnglishAuction {
 
 
     // just a getter for ethBalane
-    function ethBalanceOf(address a) public returns (uint256) {
+    function ethBalanceOf(address a) public view returns (uint256) {
         return a.balance; 
     }
 }

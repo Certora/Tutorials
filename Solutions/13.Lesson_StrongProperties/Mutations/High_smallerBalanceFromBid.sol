@@ -77,9 +77,11 @@ contract EnglishAuction {
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
 
-        bids[highestBidder] += msg.value;
+        // High bug - less credit than deserved.
+        bids[highestBidder] += highestBid;
         highestBidder = msg.sender;
-        highestBid = bids[highestBidder];
+        // medium bug - highest bidder bidding again would have more balance than highest bid
+        highestBid = msg.value;
 
         require(bids[highestBidder] > previousBid, "new high value < highest");
         emit Bid(msg.sender, msg.value);

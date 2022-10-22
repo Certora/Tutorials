@@ -13,6 +13,9 @@ Auction
 After the auction
 - Highest bidder becomes the new owner of NFT.
 
+
+
+
 */
 
 pragma solidity ^0.8.13;

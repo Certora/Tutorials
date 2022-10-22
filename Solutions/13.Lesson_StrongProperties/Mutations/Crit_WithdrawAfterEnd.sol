@@ -86,7 +86,11 @@ contract EnglishAuction {
     }
 
     function withdraw() external {
-        require(msg.sender != highestBidder, "bidder cannot withdraw");
+        // Crit bug - The highest bidder can withdraw after the bid has ended, while his balance wasn't zeroed out by the end().
+        //            This effectively steals funds still in the protocol from other users.
+        if (!ended) {
+            require(msg.sender != highestBidder, "bidder cannot withdraw");
+        }
         uint bal = bids[msg.sender];
         bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
