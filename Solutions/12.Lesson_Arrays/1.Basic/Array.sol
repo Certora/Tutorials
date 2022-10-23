@@ -18,7 +18,6 @@ contract Array {
         return address(0);
     }
 
-
     // Solidity can return the entire array.
     // But this function should be avoided for
     // arrays that can grow indefinitely in length.
