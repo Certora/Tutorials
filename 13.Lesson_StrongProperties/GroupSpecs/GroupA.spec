@@ -35,14 +35,6 @@ rule sanity(method f) {
     assert false; 
 }
 
-rule whoChangedBalanceOf(env eB, env eF, method f) {
-    address u;
-    address a;
-    calldataarg args;
-    uint256 before = ethBalanceOf(a);
-    f(eF, args);
-    assert ethBalanceOf(a) == before, "balanceOf changed";
-}
 
 rule balancesCheck(env e, method f) {
     address winner; address random;
