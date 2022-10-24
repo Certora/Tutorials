@@ -1,6 +1,6 @@
-certoraRun ArrayBug.sol `
---verify ArrayBug:ArrayBugSolution.spec `
---solc solc8.6 `
+certoraRun.exe ArrayUniqueBug.sol `
+--verify ArrayUniqueBug:ArrayUniqueBug.spec `
+--solc solc8.8.exe `
 --send_only `
 --optimistic_loop `
 --loop_iter 4 `

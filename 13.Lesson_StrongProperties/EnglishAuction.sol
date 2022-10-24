@@ -15,7 +15,7 @@ After the auction
 
 */
 
-pragma solidity ^0.8.13;
+pragma solidity 0.8.13;
 
 interface IERC721 {
     function safeTransferFrom(
@@ -64,7 +64,7 @@ contract EnglishAuction {
     function start() external {
         require(!started, "started");
         require(msg.sender == seller, "not seller");
-
+        ended = true;
         nft.transferFrom(msg.sender, address(this), nftId);
         started = true;
         endAt = block.timestamp + 7 days;
@@ -77,8 +77,8 @@ contract EnglishAuction {
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
 
-        bids[highestBidder] += msg.value;
         highestBidder = msg.sender;
+        bids[highestBidder] += msg.value;
         highestBid = bids[highestBidder];
 
         require(bids[highestBidder] > previousBid, "new high value < highest");

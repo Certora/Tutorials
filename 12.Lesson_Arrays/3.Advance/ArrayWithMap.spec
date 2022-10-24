@@ -1,5 +1,3 @@
-
-
 methods {
     set(uint, address)                              envfree
     push(address)                                   envfree

@@ -26,7 +26,7 @@ You'll get extra points if other groups missed that mutation.
 
 
 After that period ends, we'll return to the groups to tweak their rules.
-After that tweak, we'll run agian against a bunch of prepared mutations and see which of them are caught.
+After that tweak, we'll run again against a bunch of prepared mutations and see which of them are caught.
 We'll have a similar scoring (but with less points rewarded since there are a lot).
 
 We will conclude with some discussion about the findings, thoughts, methods, and other things that you've found together during this exercise. (For example, which kind of bugs were found by which kind of rules, which rules felt strong but actually weren't, and which rules were surprisingly strong, etc).

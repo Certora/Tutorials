@@ -1,5 +1,3 @@
-
-
 methods {
     set(uint, address)                              envfree
     push(address)                                   envfree
@@ -12,21 +10,14 @@ methods {
     frequency(address)          returns (uint)      envfree
 }
 
-
 invariant frequencyLessThenTwo(address a)
     frequency(a) < 2
-    {
-        preserved{
-            // add
-            require true;
-        }
-    }
 
-invariant uniqueArray(uint256 i, uint256 j)
+invariant uniqueArray(uint256 i, uint256 j) 
     i != j => ((getWithDefaultValue(i) != getWithDefaultValue(j)) || ((getWithDefaultValue(i) == 0) && (getWithDefaultValue(j) == 0)))
     {
         preserved{
-            // add
-            require true;
+            requireInvariant frequencyLessThenTwo(getWithDefaultValue(i));
+            requireInvariant frequencyLessThenTwo(getWithDefaultValue(j));  
         }
     }
