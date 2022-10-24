@@ -79,7 +79,7 @@ contract EnglishAuction {
 
         bids[msg.sender] = msg.value;
         highestBidder = msg.sender;
-        highestBid = bids[highestBidder];
+        highestBid += bids[highestBidder];
 
         require(bids[highestBidder] > previousBid, "new high value < highest");
         emit Bid(msg.sender, msg.value);

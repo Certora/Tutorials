@@ -76,9 +76,11 @@ contract EnglishAuction {
         require(started, "not started");
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
+        
         bids[msg.sender] += msg.value;
         highestBidder = msg.sender;
         bids[highestBidder] += msg.value;
+        
         highestBid = bids[highestBidder];
 
         require(bids[highestBidder] > previousBid, "new high value < highest");
