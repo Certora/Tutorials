@@ -13,9 +13,6 @@ Auction
 After the auction
 - Highest bidder becomes the new owner of NFT.
 
-
-
-
 */
 
 pragma solidity ^0.8.13;
@@ -80,7 +77,7 @@ contract EnglishAuction {
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
 
-        bids[highestBidder] += msg.value;
+        bids[msg.sender] = msg.value;
         highestBidder = msg.sender;
         highestBid = bids[highestBidder];
 
