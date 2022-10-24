@@ -76,8 +76,7 @@ rule bidWithdraw() {
     assert CBalnce == ethBalanceOf(c);
     assert BalanceAOld + oldAbid == ethBalanceOf(a);
     assert bBalanceBeforeWithdraw == ethBalanceOf(b);
-    
-
+    assert bids(a) == 0;
     
 }
 
