@@ -74,21 +74,21 @@ contract EnglishAuction {
 
     function bid() external payable {
         require(started, "not started");
-        // require(block.timestamp < endAt, "ended");
+        require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
 
         bids[msg.sender] = msg.value;
         highestBidder = msg.sender;
         highestBid = bids[highestBidder];
 
-        // require(bids[highestBidder] > previousBid, "new high value < highest");
+        require(bids[highestBidder] > previousBid, "new high value < highest");
         emit Bid(msg.sender, msg.value);
     }
 
     function withdraw() external {
-        // require(msg.sender != highestBidder, "bidder cannot withdraw");
+        require(msg.sender != highestBidder, "bidder cannot withdraw");
         uint bal = bids[msg.sender];
-        // bids[msg.sender] = 0;
+        bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
 
         emit Withdraw(msg.sender, bal);
@@ -96,14 +96,15 @@ contract EnglishAuction {
 
     function end() external {
         require(started, "not started");
-        // require(block.timestamp >= endAt, "not ended");
+        require(block.timestamp >= endAt, "not ended");
         require(!ended, "ended");
 
+        ended = true;
         if (highestBidder != address(0)) {
-            // nft.safeTransferFrom(address(this), highestBidder, nftId);
-            seller.transfer(2 * bids[highestBidder]);
+            nft.safeTransferFrom(address(this), highestBidder, nftId);
+            seller.transfer(bids[highestBidder]);
         } else {
-            nft.safeTransferFrom(address(0), seller, nftId);
+            nft.safeTransferFrom(address(this), seller, nftId);
         }
 
         emit End(highestBidder, highestBid);
