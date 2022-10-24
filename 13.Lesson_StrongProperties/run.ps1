@@ -4,6 +4,7 @@ certoraRun.exe EnglishAuction.sol DummyERC721.sol ERC721TokenReceiverDummy.sol -
 --solc solc8.13  --link EnglishAuction:nft=DummyERC721 `
 --settings -optimisticFallback=true  `
 --disableLocalTypeChecking `
+--rule_sanity `
 --msg "EnglishAuction $1" 
 
 
