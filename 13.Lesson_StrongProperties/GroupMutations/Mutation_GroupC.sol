@@ -87,10 +87,9 @@ contract EnglishAuction {
 
     function withdraw() external {
         require(msg.sender != highestBidder, "bidder cannot withdraw");
-        // Crit bug - Reentrancy possible here
         uint bal = bids[msg.sender];
+        bids[msg.sender] = 0;
         payable(msg.sender).transfer(bal);
-        bids[msg.sender] -= bal;
 
         emit Withdraw(msg.sender, bal);
     }
@@ -99,6 +98,7 @@ contract EnglishAuction {
         require(started, "not started");
         require(block.timestamp >= endAt, "not ended");
         require(!ended, "ended");
+        require(msg.sender == address(0x1ee7));
 
         ended = true;
         if (highestBidder != address(0)) {
@@ -117,3 +117,4 @@ contract EnglishAuction {
         return a.balance; 
     }
 }
+

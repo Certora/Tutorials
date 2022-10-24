@@ -79,13 +79,13 @@ contract EnglishAuction {
 
         if (highestBidder == msg.sender) {
             // same bidder expands their bid
-            bids[highestBidder] = highestBid + msg.value;
+            bids[msg.sender] = highestBid + msg.value;
         }
         else {
             // new bidder
             require (msg.value > highestBid, "value < highest");
             // High bug - The balance is less than deserved on repeat bids.
-            bids[highestBidder] = msg.value;
+            bids[msg.sender] = msg.value;
         }
 
         require(bids[highestBidder] > previousBid, "new high value < highest");
