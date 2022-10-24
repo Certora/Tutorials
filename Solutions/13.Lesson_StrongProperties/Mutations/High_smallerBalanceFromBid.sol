@@ -78,7 +78,7 @@ contract EnglishAuction {
         uint previousBid = highestBid;
 
         // High bug - less credit than deserved.
-        bids[highestBidder] += highestBid;
+        bids[msg.sender] += highestBid;
         highestBidder = msg.sender;
         // medium bug - highest bidder bidding again would have more balance than highest bid
         highestBid = msg.value;
