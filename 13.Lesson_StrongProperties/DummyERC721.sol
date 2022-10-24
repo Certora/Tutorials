@@ -125,9 +125,7 @@ abstract contract ERC721TokenReceiver {
         return ERC721TokenReceiver.onERC721Received.selector;
     }
 }
-
-
-contract ERC721TokenReceiverDummy is ERC721TokenReceiver{
+contract ERC721TokenReceiverDummy is ERC721TokenReceiver {
     function onERC721Received(
         address,
         address,
@@ -137,3 +135,4 @@ contract ERC721TokenReceiverDummy is ERC721TokenReceiver{
         return '1';
     }
 }
+

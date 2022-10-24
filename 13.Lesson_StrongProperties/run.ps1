@@ -1,6 +1,6 @@
 #!/bin/bash
 
-certoraRun.exe EnglishAuction.sol DummyERC721.sol --verify EnglishAuction:EnglishAuction.spec `
+certoraRun.exe EnglishAuction.sol DummyERC721.sol ERC721TokenReceiverDummy.sol --verify EnglishAuction:EnglishAuction.spec `
 --solc solc8.13  --link EnglishAuction:nft=DummyERC721 `
 --settings -optimisticFallback=true  `
 --disableLocalTypeChecking `

@@ -1,13 +1,3 @@
 {
-    "topics": [
-        {
-            "name": "solc",
-            "messages": [
-                {
-                    "message": "ParserError: Expected primary expression.",
-                    "location": []
-                }
-            ]
-        }
-    ]
+    "topics": []
 }
