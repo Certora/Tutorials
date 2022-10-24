@@ -76,11 +76,7 @@ contract EnglishAuction {
         require(started, "not started");
         require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
-
-<<<<<<< HEAD
-=======
         bids[msg.sender] += msg.value;
->>>>>>> 70096b7988cbff55906cc191bd8c8b8bbe30eafd
         highestBidder = msg.sender;
         bids[highestBidder] += msg.value;
         highestBid = bids[highestBidder];

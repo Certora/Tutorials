@@ -21,7 +21,7 @@ methods {
     // DummyERC721 
     NFT.balanceOf(address) returns (uint256) envfree
     NFT.ownerOf(uint256) returns (address) envfree
-
+    onERC721Received( address,address,uint256,bytes) returns (address) => NONDET
     //eth balance
     ethBalanceOf(address) returns (uint256) envfree
 }
@@ -89,3 +89,4 @@ rule startAllowedOnlyOnce(method f){
     bool reverted = lastReverted;
     assert reverted;
  }
+
