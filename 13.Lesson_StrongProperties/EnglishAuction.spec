@@ -71,8 +71,8 @@ rule ownershipTransfer(method f){
     ( f.selector == end().selector => 
         (
             (startedBefore == startedAfter) && !endedBefore && endedAfter 
-         //   && (
-         //       (highestBidder() != 0 && highestBidder() == ownerAfter)  
+            && (highestBidderAfter !=0 => highestBidderAfter == ownerAfter)
+           //     (highestBidderAfter != 0 && highestBidder() == ownerAfter)  
           //      ||
           //      (highestBidder() == 0 && ownerAfter == seller())
            // )
