@@ -1,4 +1,4 @@
-/ SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: MIT
 // based on https://solidity-by-example.org/app/english-auction/
 /*
 English auction for NFT.
@@ -48,16 +48,16 @@ contract EnglishAuction {
         highestBid = _startingBid;
     }
     function start() external {
-        require(!started, “started”);
-        require(msg.sender == seller, “not seller”);
+        require(!started, "started");
+        require(msg.sender == seller, "not seller");
         nft.transferFrom(msg.sender, address(this), nftId);
         started = true;
         endAt = block.timestamp + 7 days;
         emit Start();
     }
     function bid() external payable {
-        require(started, “not started”);
-        require(block.timestamp < endAt, “ended”);
+        require(started, "not started");
+        require(block.timestamp < endAt, "ended");
         uint previousBid = highestBid;
         bids[msg.sender] = msg.value;
         highestBidder = msg.sender;
@@ -65,15 +65,15 @@ contract EnglishAuction {
         emit Bid(msg.sender, msg.value);
     }
     function withdraw() external {
-        require(msg.sender != highestBidder, “bidder cannot withdraw”);
+        require(msg.sender != highestBidder, "bidder cannot withdraw");
         uint bal = bids[msg.sender];
         payable(msg.sender).transfer(bal);
         emit Withdraw(msg.sender, bal);
     }
     function end() external {
-        require(started, “not started”);
-        require(block.timestamp >= endAt, “not ended”);
-        require(!ended, “ended”);
+        require(started, "not started");
+        require(block.timestamp >= endAt, "not ended");
+        require(!ended, "ended");
         if (highestBidder != address(0)) {
             nft.safeTransferFrom(address(this), highestBidder, nftId);
             seller.transfer(bids[highestBidder]);

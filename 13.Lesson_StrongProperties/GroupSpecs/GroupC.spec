@@ -4,13 +4,14 @@ using DummyERC721 as NFT
 methods {
     // getters 
     seller() returns (address)  envfree;
+    nftId()        returns (uint256) envfree;
     endAt() returns (uint256)   envfree;
     started() returns (bool)    envfree;
     ended() returns (bool)     envfree;
     highestBidder() returns (address)  envfree;
     highestBid() returns (uint256) envfree;
     bids(address) returns (uint256) envfree;
-    nftId()        returns (uint256) envfree;
+
 
     // state modifying 
     start(); 
@@ -23,6 +24,8 @@ methods {
 
     //eth balance
     ethBalanceOf(address) returns (uint256) envfree
+
+    onERC721Received( address, address, uint256, bytes ) returns (bytes4) => DISPATCHER(true)
 }
 
 

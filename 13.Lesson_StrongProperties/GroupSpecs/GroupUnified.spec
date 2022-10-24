@@ -1,9 +1,9 @@
-
 using DummyERC721 as NFT
 
 methods {
     // getters 
     seller() returns (address)  envfree;
+    nftId() returns (uint)  envfree;
     endAt() returns (uint256)   envfree;
     started() returns (bool)    envfree;
     ended() returns (bool)     envfree;
@@ -23,10 +23,7 @@ methods {
     onERC721Received( address,address,uint256,bytes) returns (address) => NONDET
     //eth balance
     ethBalanceOf(address) returns (uint256) envfree
-
-    onERC721Received( address, address, uint256, bytes ) returns (bytes4) => DISPATCHER(true)
 }
-
 
 
 // rule sanity(method f) {
@@ -153,15 +150,6 @@ rule GroupD_startAllowedOnlyOnce(method f){
     bool reverted = lastReverted;
     assert reverted;
  }
-
-
-invariant GroupE_highestBidMatchesBidder(address account)
-    ( bids(account) <= highestBid() && (bids(account) == highestBid() => account == highestBidder()) )
-        || highestBid() == startingBid() && highestBidder() == 0x0
-{ preserved {
-    // require bids(highestBidder()) == highestBid();
-    require bids(account) < highestBid();
-}}
 
 rule GroupE_monoticityOfBid(method f) {
     env e; calldataarg args;
