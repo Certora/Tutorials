@@ -5,11 +5,23 @@ methods {
     _removeAddress(address) envfree
     get_mapping_index(address) returns (uint256) envfree
     is_in_set_indexes(address) returns(bool) envfree
-    addAddress(address addr) returns (bool) envfree
+    addAddress(address) returns (bool) envfree
 }
 
 hook Sload bytes32 value _list.(offset 0)[INDEX uint256 index] STORAGE {
     require(to_uint256(value) < max_uint160);
+}
+
+function lastIndex() returns uint256 {
+    return to_uint256(getLen()-1);
+}
+    
+function lastValue() returns address {
+    return getVal(to_uint256(getLen()-1));
+} 
+
+function indexByValue(address value) returns uint256 {
+    return to_uint256(get_mapping_index(value)-1);
 }
 
 invariant uniquenessByIndex(uint256 i, uint256 j)
@@ -67,16 +79,16 @@ invariant boundedIndex(address value)
     get_mapping_index(value) <= getLen()
     {
         preserved _removeAddress(address addr){
-            requireInvariant boundedIndex(getVal(to_uint256(getLen()-1)));
+            //requireInvariant boundedIndex(getVal(to_uint256(getLen()-1)));
             requireInvariant inverseValue(value);
             requireInvariant uniquenessByAddress(addr, value);
             requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
             requireInvariant uniquenessByAddress(value, getVal(to_uint256(getLen()-1)));
         }
 
-        preserved addAddress(address addr) {
+        preserved {
+            require getLen() < max_uint;
             requireInvariant boundedIndex(getVal(to_uint256(getLen()-1)));
-            requireInvariant uniquenessByAddress(addr, value);
             requireInvariant inverseValue(value);
         }
     }
@@ -86,8 +98,8 @@ invariant inverseValue(address value)
     {
         preserved _removeAddress(address addr){
             requireInvariant uniquenessByAddress(addr, value);
-            requireInvariant uniquenessByAddress(addr, getVal((to_uint256(getLen()-1))));
-            requireInvariant uniquenessByAddress(value, getVal((to_uint256(getLen()-1))));
+            requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
+            requireInvariant uniquenessByAddress(value, getVal(to_uint256(getLen()-1)));
             //requireInvariant uniquenessByIndex(i, (to_uint256(getLen()-1)));
             //requireInvariant containsIntegrityByIndex(i);
             requireInvariant inverseValue(getVal((to_uint256(getLen()-1))));
@@ -99,9 +111,9 @@ invariant inverseIndex(uint256 i)
     (i < getLen() && i < max_uint) => (get_mapping_index(getVal(i)) == to_uint256(i+1)) 
     {
         preserved _removeAddress(address addr){
-            requireInvariant uniquenessByAddress(addr, getVal((to_uint256(getLen()-1))));
+            requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
             requireInvariant uniquenessByAddress(addr, getVal(i));
-            requireInvariant uniquenessByIndex(i, (to_uint256(getLen()-1)));
+            requireInvariant uniquenessByIndex(i, to_uint256(getLen()-1));
         }
 
         preserved {
