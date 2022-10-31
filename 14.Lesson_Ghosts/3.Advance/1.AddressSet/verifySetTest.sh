@@ -1,8 +1,11 @@
 certoraRun setTest.sol:SetTest  \
-    --verify SetTest:set.spec \
+    --verify SetTest:EnumerableSet.spec \
     --solc solc8.10 \
     --loop_iter 3 \
     --rule_sanity \
+    --staging \
     --optimistic_loop \
     --settings -adaptiveSolverConfig=false,-useBitVectorTheory,-showInternalFunctions \
-    --send_only 
+    --send_only \
+    --rule boundedIndex \
+    --msg "14.Lesson_Ghosts 3.Advance boundedIndex"

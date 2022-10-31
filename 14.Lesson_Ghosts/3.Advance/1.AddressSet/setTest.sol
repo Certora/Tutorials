@@ -23,7 +23,7 @@ uint256 constant MAX_UINT256 = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     return _list.remove(addr);
 
   }
-  function contains(address a) external view returns(bool)
+  function contains(address a) public view returns(bool)
   {
     return _list.contains(a);
   }
@@ -32,16 +32,29 @@ uint256 constant MAX_UINT256 = 0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     return _list.values();
   }
 
-  function getLen() external view returns(uint256)
+  function getLen() public view returns(uint256)
   {
     return _list.values().length;
   }
 
   function getVal(uint256 ind) external view returns (address) { 
-    return _list.at(ind);
+    if(ind < getLen()) {
+      return _list.at(ind);
+    }
+    else {
+      return address(0);
+    }
   }
-function get_mapping_index(address addr) external view returns (uint256) {
-        uint256 ret = _list.getIndexesVal(addr);  
+
+  function get_mapping_index(address addr) external view returns (uint256) {
+        uint256 ret;
+        if(contains(addr)) {
+          ret  = _list.getIndexesVal(addr) + 1 ;  
+        }
+        else {
+          ret = 0; 
+        }
+        
         return ret;
     }
 
