@@ -66,15 +66,6 @@ invariant containsIntegrityByIndex(uint256 i)
         }
     }
 
-invariant containsIntegrityByAddress(address value)
-    0 < get_mapping_index(value) && get_mapping_index(value) < getLen() <=> is_in_set_indexes(value)
-    {
-        preserved _removeAddress(address addr){
-            requireInvariant uniquenessByAddress(addr, value);
-            requireInvariant containsIntegrityByAddress(value);
-        }
-    }
-
 invariant boundedIndex(address value) 
     get_mapping_index(value) <= getLen()
     {
@@ -100,9 +91,16 @@ invariant inverseValue(address value)
             requireInvariant uniquenessByAddress(addr, value);
             requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
             requireInvariant uniquenessByAddress(value, getVal(to_uint256(getLen()-1)));
+            requireInvariant boundedIndex(value);
             //requireInvariant uniquenessByIndex(i, (to_uint256(getLen()-1)));
             //requireInvariant containsIntegrityByIndex(i);
             requireInvariant inverseValue(getVal((to_uint256(getLen()-1))));
+        }
+        preserved{
+            requireInvariant boundedIndex(value);
+            requireInvariant inverseValue(getVal((to_uint256(getLen()-1))));
+            require getLen() < max_uint;
+        
         }
     }
     
