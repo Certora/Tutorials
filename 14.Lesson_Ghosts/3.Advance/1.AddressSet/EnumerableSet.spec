@@ -1,3 +1,6 @@
+// Verified run
+// https://vaas-stg.certora.com/output/41958/9799944f4c0f9318c8df/?anonymousKey=d502697e45038910e26578ed720cfc6e7cd19f2e
+
 methods {
     contains(address) returns (bool) envfree
     getLen() returns (uint256) envfree
@@ -7,7 +10,6 @@ methods {
     is_in_set_indexes(address) returns(bool) envfree
     addAddress(address) returns (bool) envfree
 }
-
 hook Sload bytes32 value _list.(offset 0)[INDEX uint256 index] STORAGE {
     require(to_uint256(value) < max_uint160);
 }
@@ -70,7 +72,6 @@ invariant boundedIndex(address value)
     get_mapping_index(value) <= getLen()
     {
         preserved _removeAddress(address addr){
-            //requireInvariant boundedIndex(getVal(to_uint256(getLen()-1)));
             requireInvariant inverseValue(value);
             requireInvariant uniquenessByAddress(addr, value);
             requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
@@ -92,15 +93,12 @@ invariant inverseValue(address value)
             requireInvariant uniquenessByAddress(addr, getVal(to_uint256(getLen()-1)));
             requireInvariant uniquenessByAddress(value, getVal(to_uint256(getLen()-1)));
             requireInvariant boundedIndex(value);
-            //requireInvariant uniquenessByIndex(i, (to_uint256(getLen()-1)));
-            //requireInvariant containsIntegrityByIndex(i);
             requireInvariant inverseValue(getVal((to_uint256(getLen()-1))));
         }
-        preserved{
+        preserved {
             requireInvariant boundedIndex(value);
             requireInvariant inverseValue(getVal((to_uint256(getLen()-1))));
             require getLen() < max_uint;
-        
         }
     }
     

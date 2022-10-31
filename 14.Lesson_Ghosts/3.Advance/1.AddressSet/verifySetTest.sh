@@ -5,7 +5,6 @@ certoraRun setTest.sol:SetTest  \
     --rule_sanity \
     --staging \
     --optimistic_loop \
-    --settings -mediumTimeout=30,-adaptiveSolverConfig=false,-useBitVectorTheory,-showInternalFunctions \
+    --settings -mediumTimeout=1200,-adaptiveSolverConfig=false,-useBitVectorTheory,-showInternalFunctions \
     --send_only \
-    --rule uniquenessByIndex \
-    --msg "14.Lesson_Ghosts 3.Advance uniquenessByIndex timeout 30"
+    --msg "14.Lesson_Ghosts 3.Advance ALL timeout 1200"
