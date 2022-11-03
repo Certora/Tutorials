@@ -37,10 +37,13 @@ rule can_withdraw_attempt() {
         "withdraw must increase sender's ETH balance by `getFunds(sender)`";
 }
 
-invariant totalFunds_GE_single_user_funds()
-    // A quantifier is followed by a declaration of a variable to say "for all users, $exp$ should hold"
-    // Quantifiers are raising the complexity of of the run by a considerable amount, so often using them will result in a timeout
-    forall address user. getTotalFunds() >= getFunds(user)
+/**
+ * The total funds in the bank is larger than any individual's balance.
+ *
+ * @dev This doesn't pass for technical reasons, see `README.md` for discussion
+ */
+invariant totalFunds_GE_single_user_funds_attempt(address user)
+    getTotalFunds() >= getFunds(user)
 
 /* A declaration of a ghost.
  * A ghost is, in esssence, an uninterpeted function (remember lesson 3?).
