@@ -4,7 +4,40 @@ methods{
     getTotalFunds() returns uint256 envfree
 }
 
-rule can_withdraw() {
+/**
+ * This rule is intended to check that the Bank always returns the user's
+ * funds, even if we consider examples where the call to `withdraw` reverts.
+ *
+ * If `withdraw` does revert, the user's ETH balance will not change, so the
+ * rule will fail.
+ *
+ * This rule does fail because there are lots of uninteresting ways for a
+ * function to revert.  For example, a non-payable method will revert if the
+ * `msg.value` is nonzero.
+ *
+ * There are also interesting ways for `withdraw` to revert.  In particular, if
+ * the bank gets hacked, it may not _have_ the ETH to return to the user, so
+ * the call to `send` would fail.  See `README.md` for a discussion on how to
+ * ignore the uninteresting cases and still catch the interesting cases.
+ *
+ * @dev The `@withrevert` annotation on the call to `withdraw` instructs the
+ *      Prover to consider reverting calls, which are ignored by default.
+ */
+rule can_withdraw_attempt() {
+    env e;
+
+    uint256 user_balance_before = getEthBalance(e.msg.sender);
+    uint256 user_funds_before   = getFunds(e.msg.sender);
+
+    withdraw@withrevert(e);
+
+    uint256 user_balance_after  = getEthBalance(e.msg.sender);
+
+    assert user_balance_after == user_balance_before + user_funds_before,
+        "withdraw must increase sender's ETH balance by `getFunds(sender)`";
+}
+
+rule can_withdraw_1() {
     env e;
 
     uint256 balance_before = getEthBalance(e.msg.sender);
