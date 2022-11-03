@@ -37,19 +37,6 @@ rule can_withdraw_attempt() {
         "withdraw must increase sender's ETH balance by `getFunds(sender)`";
 }
 
-rule can_withdraw_1() {
-    env e;
-
-    uint256 balance_before = getEthBalance(e.msg.sender);
-    uint256 reserves       = getEthBalance(currentContract);
-    uint256 funds_before   = getFunds(e.msg.sender);
-
-    withdraw@withrevert(e);
-
-    uint256 balance_after  = getEthBalance(e.msg.sender);
-    assert balance_after == balance_before + funds_before;
-}
-
 invariant totalFunds_GE_single_user_funds()
     // A quantifier is followed by a declaration of a variable to say "for all users, $exp$ should hold"
     // Quantifiers are raising the complexity of of the run by a considerable amount, so often using them will result in a timeout
