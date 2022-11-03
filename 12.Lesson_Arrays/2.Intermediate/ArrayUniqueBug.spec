@@ -14,10 +14,9 @@ invariant frequencyLessThenTwo(address a)
     frequency(a) < 2
 
 invariant uniqueArray(uint256 i, uint256 j) 
-    i != j => ((getWithDefaultValue(i) != getWithDefaultValue(j)) || ((getWithDefaultValue(i) == 0) && (getWithDefaultValue(j) == 0)))
+    i != j => (getWithDefaultValue(i) != getWithDefaultValue(j))
     {
         preserved{
-            requireInvariant frequencyLessThenTwo(getWithDefaultValue(i));
-            requireInvariant frequencyLessThenTwo(getWithDefaultValue(j));  
+            require true;
         }
     }
