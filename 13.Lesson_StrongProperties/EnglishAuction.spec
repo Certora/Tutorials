@@ -27,59 +27,13 @@ methods {
 }
 
 
-
-rule ownershipTransfer(method f){
+rule sanity(method f) {
     env e;
     calldataarg args;
-    address ownerBefore;
-    address ownerAfter;
-    bool startedBefore;
-    bool endedBefore;
-    bool startedAfter;
-    bool endedAfter;
-
-    startedBefore = started();
-    endedBefore = ended();
-    ownerBefore = NFT.ownerOf(nftId());
     f(e,args);
-    ownerAfter = NFT.ownerOf(nftId());
-    startedAfter = started();
-    endedAfter = ended();
-    address highestBidderAfter;
-    address sellerAfter;
-
-    highestBidderAfter = highestBidder();
-    sellerAfter = seller();
-
-    assert(
-    (ownerBefore != ownerAfter)
-    =>
-    ( // start and end conditions
-        (f.selector == start().selector && ownerAfter == currentContract && ownerBefore == seller() ) ||
-        (f.selector == end().selector && ownerBefore == currentContract )
-    )
-    &&
-    ( f.selector == start().selector =>
-        (
-            !startedBefore && startedAfter 
-            // && 
-           // e.msg.sender == sellerAfter && 
-           // highestBidderAfter == sellerAfter
-        )
-    )
-    &&
-    ( f.selector == end().selector => 
-        (
-            (startedBefore == startedAfter) && !endedBefore && endedAfter 
-            && (highestBidderAfter !=0 => highestBidderAfter == ownerAfter)
-           //     (highestBidderAfter != 0 && highestBidder() == ownerAfter)  
-          //      ||
-          //      (highestBidder() == 0 && ownerAfter == seller())
-           // )
-        )
-    )
-    );
+    assert false; 
 }
+
 
 rule startAllowedOnlyOnce(method f){
     env e; env e1;
@@ -89,4 +43,5 @@ rule startAllowedOnlyOnce(method f){
     bool reverted = lastReverted;
     assert reverted;
  }
+
 
