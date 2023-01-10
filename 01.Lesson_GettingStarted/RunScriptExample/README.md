@@ -34,7 +34,7 @@ certoraRun BankLesson1/Bank.sol:Bank --verify Bank:BankLesson1/IntegrityOfDeposi
 
 </br>
 
-- [ ] In your VSCode terminal change directory to `Certora-OnBoarding/01.Lesson_GettinStarted`, and execute the script: 
+- [ ] In your VSCode terminal change directory to `Certora-OnBoarding/01.Lesson_GettingStarted`, and execute the script: 
 
 ``` sh
 sh  RunScriptExample/verifyIntegrityOfDeposit.sh "This is a run executed through a shell script"
