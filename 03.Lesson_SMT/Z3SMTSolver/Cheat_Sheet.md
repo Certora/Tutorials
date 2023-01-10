@@ -62,7 +62,7 @@
 	1. And, or, xor, not, => (implication), ite (if-then-else), = (Bi-implications).
 	2. Example:
 	``` 
-	(declare-const q Bool)
+	(declare-const p Bool)
 	(declare-const q Bool)
 	(declare-const r Bool)
 	(define-fun conjecture () Bool

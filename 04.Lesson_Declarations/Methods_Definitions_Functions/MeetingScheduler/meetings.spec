@@ -2,7 +2,7 @@ methods{
 	// getStateById(uint256) returns (MeetingStatus) envfree; ?? returns MeetingStatus? Do I define struct?
     getStartTimeById(uint256) returns (uint256) envfree;
     getEndTimeById(uint256) returns (uint256) envfree;
-    getNumOfParticipents(uint256) returns (uint256) envfree;
+    getnumOfParticipants(uint256) returns (uint256) envfree;
     getOrganizer(uint256) returns (address) envfree;
     scheduleMeeting(uint256, uint256, uint256);
     startMeeting(uint256);
@@ -14,7 +14,7 @@ methods{
 definition meetingUninitialized(e, uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) == 0 
     && getEndTimeById(meetingId) == 0 
-    && getNumOfParticipents(meetingId) == 0
+    && getnumOfParticipants(meetingId) == 0
     && getOrganizer(meetingId) == 0
     && getStateById(meetingId) == 0;
 
@@ -22,28 +22,28 @@ definition meetingUninitialized(e, uint256 meetingId)
 definition meetingPending(uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) != 0 
     && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getNumOfParticipents(meetingId) == 0
+    && getnumOfParticipants(meetingId) == 0
     && getOrganizer(meetingId) != 0
     && getStateById(meetingId) == 1;
 
 definition meetingStarted(uint256 meetingId) 
     returns bool = getStartTimeById(meetingId) != 0 
     && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getNumOfParticipents(meetingId) >= 0
+    && getnumOfParticipants(meetingId) >= 0
     && getOrganizer(meetingId) != 0
     && getStateById(meetingId) == 2;
 
 definition meetingEnded(uint256 meetingId)
     returns bool = getStartTimeById(meetingId) > 0 
     && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getNumOfParticipents(meetingId) >= 0
+    && getnumOfParticipants(meetingId) >= 0
     && getOrganizer(meetingId) != 0
     && getStateById(meetingId) == 3;
 
 definition meetingCancelled(uint256 meetingId)
     returns bool = getStartTimeById(meetingId) != 0 
     && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getNumOfParticipents(meetingId) == 0
+    && getnumOfParticipants(meetingId) == 0
     && getOrganizer(meetingId) != 0
     && getStateById(meetingId) == 4;
 
@@ -130,10 +130,10 @@ rule checkPendingToCancelledOrStarted(method f, uint256 meetingId) {
 rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
 	env e;
 	calldataarg args;
-    require getStateById(e, meetingId) == 0 => getNumOfParticipents(meetingId) == 0;
-	uint256 numOfParticipantsBefore = getNumOfParticipents(meetingId);
+    require getStateById(e, meetingId) == 0 => getnumOfParticipants(meetingId) == 0;
+	uint256 numOfParticipantsBefore = getnumOfParticipants(meetingId);
 	f(e, args);
-    uint256 numOfParticipantsAfter = getNumOfParticipents(meetingId);
+    uint256 numOfParticipantsAfter = getnumOfParticipants(meetingId);
 
 	assert numOfParticipantsBefore <= numOfParticipantsAfter, "the number of participants decreased as a result of a function call";
 }

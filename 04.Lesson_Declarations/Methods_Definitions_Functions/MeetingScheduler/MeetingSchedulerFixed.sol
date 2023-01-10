@@ -33,13 +33,13 @@ contract MeetingScheduler is IMeetingScheduler {
         return meetings[meetingId].endTime;
     }
 
-    function getNumOfParticipents(uint256 meetingId)
+    function getnumOfParticipants(uint256 meetingId)
         external
         view
         override
-        returns (uint256 numOfParticipents)
+        returns (uint256 numOfParticipants)
     {
-        return meetings[meetingId].numOfParticipents;
+        return meetings[meetingId].numOfParticipants;
     }
 
     function getOrganizer(uint256 meetingId)
@@ -69,7 +69,7 @@ contract MeetingScheduler is IMeetingScheduler {
         meetings[meetingId] = ScheduledMeeting({
             startTime: startTime,
             endTime: endTime,
-            numOfParticipents: 0,
+            numOfParticipants: 0,
             organizer: msg.sender,
             status: MeetingStatus.PENDING
         });
@@ -124,6 +124,6 @@ contract MeetingScheduler is IMeetingScheduler {
             meeting.status == MeetingStatus.STARTED,
             "can only join a meeting that has started"
         );
-        meetings[meetingId].numOfParticipents++;
+        meetings[meetingId].numOfParticipants++;
     }
 }

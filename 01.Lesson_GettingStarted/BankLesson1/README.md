@@ -68,6 +68,9 @@ certoraRun --help
 
 > :information_source: Later on, we will learn how to analyze systems containing multiple Solidity files.
 
+> :information_source: If you are on MacOS and get an error `Bad CPU type in executable`, you can fix it by installing Rosetta. Do this by executing
+`% softwareupdate --install-rosetta` in your terminal.
+
 </br>
 
 ### ***Results***

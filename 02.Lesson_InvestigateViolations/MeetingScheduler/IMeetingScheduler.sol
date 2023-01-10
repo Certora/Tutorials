@@ -33,7 +33,7 @@ interface IMeetingScheduler {
     struct ScheduledMeeting {
         uint256 startTime;
         uint256 endTime;
-        uint256 numOfParticipents;
+        uint256 numOfParticipants;
         address organizer;
         MeetingStatus status;
     }
@@ -54,7 +54,7 @@ interface IMeetingScheduler {
     function getEndTimeById(uint256 meetingId) external view returns (uint256);
 
     // Gets the number of participants of a specified meetingId
-    function getNumOfParticipents(uint256 meetingId)
+    function getnumOfParticipants(uint256 meetingId)
         external
         view
         returns (uint256);

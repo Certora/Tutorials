@@ -79,10 +79,10 @@ rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
 	// sets up meeting that is uninitialized but has nonzero number of participants. This shouldnt be allowed
 	env e;
 	calldataarg args;
-	uint256 numOfParticipantsBefore = getNumOfParticipents(e, meetingId);
+	uint256 numOfParticipantsBefore = getnumOfParticipants(e, meetingId);
 	require numOfParticipantsBefore > 0 => (getStateById(e, meetingId) != 0);
 	f(e, args);
-    uint256 numOfParticipantsAfter = getNumOfParticipents(e, meetingId);
+    uint256 numOfParticipantsAfter = getnumOfParticipants(e, meetingId);
 
 	assert numOfParticipantsBefore <= numOfParticipantsAfter, "the number of participants decreased as a result of a function call";
 }

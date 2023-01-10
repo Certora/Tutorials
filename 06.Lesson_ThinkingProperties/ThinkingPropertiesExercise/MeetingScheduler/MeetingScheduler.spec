@@ -30,9 +30,9 @@ rule reachEndedState(uint256 stateId, method f) {
 rule startedMeetingParticipantsOnlyIncrease(uint256 stateId, method f) {
     env e;
     calldataarg args;
-    uint256 numOfParticipantsBefore = getNumOfParticipents(e, stateId);
+    uint256 numOfParticipantsBefore = getnumOfParticipants(e, stateId);
     f(e, args);
-    uint256 numOfParticipantsAfter = getNumOfParticipents(e, stateId);
+    uint256 numOfParticipantsAfter = getnumOfParticipants(e, stateId);
     assert(numOfParticipantsAfter > numOfParticipantsBefore => (numOfParticipantsAfter == numOfParticipantsBefore + 1) && getStateById(e, stateId) == 2 && f.selector == joinMeeting(uint256).selector);
 }
 
