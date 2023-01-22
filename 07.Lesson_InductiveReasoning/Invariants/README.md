@@ -29,11 +29,11 @@ function withdraw() public returns (bool success)  {
 ```
 
 It seems like this method does what we want.  When we call `withdraw`, if we
-are owed `x` ETH, then `getFunds(msg.sender)` returns `x` (line 39), and then
-the contract sends `x` ETH to us (line 41).  We get our funds.
+are owed `x` ETH, then `getFunds(msg.sender)` returns `x` (line 38), and then
+the contract sends `x` ETH to us (line 40).  We get our funds.
 
 What might go wrong?  Well, if the bank doesn't have enough ETH to send us, the
-call to `msg.sender.send` on line 41 will fail, causing the transaction to
+call to `msg.sender.send` on line 40 will fail, causing the transaction to
 revert.  We would not be able to withdraw our funds!
 
 </br>
