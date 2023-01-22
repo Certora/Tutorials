@@ -1,4 +1,4 @@
-# Properties For MeetingScheduler
+# Properties For PopsicleFinance
 
 1. ***Unit tests*** deposit amount followed by withdraw amount should lead to no change in total supply and user balance of tokens
 2. ***Unit tests*** user rewards should be 0 after calling collectRewards
