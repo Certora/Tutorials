@@ -210,11 +210,10 @@ contract ERC20 is IERC20, IERC20Metadata {
         virtual
         returns (bool)
     {
-        // increase allowance subtracted (instead of adding) the amount of allowance that was supposed to be added
         _approve(
             msg.sender,
             spender,
-            _allowances[msg.sender][spender] + addedValue
+            _allowances[msg.sender][spender] - addedValue
         );
         return true;
     }

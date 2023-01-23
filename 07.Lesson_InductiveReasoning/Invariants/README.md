@@ -169,7 +169,7 @@ invariant totalFunds_GE_single_user_funds()
 
 [^Timeout]: Timeout is an intentional stop of the run (hard stop) after a predefined amount of time due to failure to produce a result. We define such a hard stop due to [the halting problem](https://en.wikipedia.org/wiki/Halting_problem).
 
-- [x] Run the invariant for yourself to see the results.
+- [ ] Run the invariant for yourself to see the results.
 
 However, although the invariant does verify that each user's balance must be less than the `totalFunds`, it does not promise that the `totalFunds` covers the sum of all users' balances. In other words the case where there are 2 users in the system: `funds[userA] = 8`, `funds[userA] = 6` and `totalFunds = 10` is valid. This case is clearly not what we meant. Each user can withdraw its balance, but once one has withdraw, there isn't enough money in the bank to pay the other user its deserved funds.
 
@@ -197,9 +197,9 @@ This time we make sure that there is enough money in the bank to pay all users i
 
 > :bulb: Note that this invariant covers the previous one - if `totalFunds` is greater or equal to the sum of all users' balances, it's in particular greater or equal to any specific user's balance.
 
-- [x] Run the invariant `totalFunds_GE_to_sum_of_all_funds` to see the results.
+- [ ] Run the invariant `totalFunds_GE_to_sum_of_all_funds` to see the results.
 
-- [x] Duplicate the invariant and change the inequality to a strict equality, i.e. `getTotalFunds() == sum_of_all_funds()`. </br>
+- [ ] Duplicate the invariant and change the inequality to a strict equality, i.e. `getTotalFunds() == sum_of_all_funds()`. </br>
 Run the new invariant to see the results.
 
 </br>
