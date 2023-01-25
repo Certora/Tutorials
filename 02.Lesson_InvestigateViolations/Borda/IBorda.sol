@@ -1,7 +1,7 @@
 pragma solidity ^0.7.0;
 
-/** Broda Election Overview
- * @dev This contract simulate a Borda election.
+/** Borda Election Overview
+ * @dev This contract simulates a Borda election.
  * 
  *
  * The election system follows the following rules:

@@ -10,13 +10,7 @@ In the sub directories you will also find a README file with hints and tips for 
 The goal of this exercise is to get familiar with the output of the Certora Prover, especially in case of violations, and to practice bug finding in the code.
 The bugs are relatively simple and can be probably found by eye quite easily. Try not to look for the bugs manually in the implementations before you run the verification and follow the counter example. As it should be, along with the tool's result you will follow the counter example through the implementation, and try to understand where it deviates from the intended way of operation. You will then try to mitigate the problem and check it.
 
-Throughout each README file within this directory and its sub directories, we shall add tips and hints in collapsables to supply assistant without forcing you to take it. You will have to click on the tip actively to see it.
-
-> :bulb:
-> <details>
->  <summary>An Expandable Tip</summary>
->  Always tip your waiters and waitresses.
-></details>
+Throughout each README file within this directory and its sub directories, we shall add tips and hints in collapsibles to supply assistance without forcing you to take it. You will have to click on the tip actively to see it.
 
 </br>
 For each of the systems in this directory do as follows:

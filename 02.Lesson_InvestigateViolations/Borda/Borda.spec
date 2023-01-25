@@ -21,7 +21,7 @@ rule registeredCannotChangeOnceSet(method f, address voter) {
 }
 
 
-/* Expalination on f.selector
+/* Explanation on f.selector
 
  * On the right side of the implication above we see a f.selector.
  * The use of f.selector is very similar to its use in solidity -
@@ -60,7 +60,7 @@ rule onceBlackListedNotOut(method f, address voter) {
 	bool black_listed_After;
 	age, registeredAfter, voted, vote_attempts, black_listed_After = getFullVoterDetails(e, voter);
 	
-	assert(registeredBefore && black_listed_Before) => black_listed_After, "the specified user got out of the black list";
+	assert((registeredBefore && black_listed_Before) => black_listed_After, "the specified user got out of the black list");
 }
 
 // Checks that a contender's point count is non-decreasing
