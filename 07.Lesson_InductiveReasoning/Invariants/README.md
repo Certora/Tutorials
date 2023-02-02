@@ -149,7 +149,7 @@ invariant inv_name(argType arg1, argType arg2, ...)
 
 As you might noticed, the syntax is fairly simple:
 
-1. A declaration of an invariant `invariant` following by the invariant name `inv_name`.
+1. A declaration of an invariant `invariant` followed by the invariant name `inv_name`.
 2. A list of argument - a list of variables the invariant needs to generate for its scope.
 3. An expression that must hold at any point in time[^between_transactions].
 
