@@ -150,7 +150,7 @@ invariant inv_name(argType arg1, argType arg2, ...)
 As you might noticed, the syntax is fairly simple:
 
 1. A declaration of an invariant `invariant` followed by the invariant name `inv_name`.
-2. A list of argument - a list of variables the invariant needs to generate for its scope.
+2. A list of arguments - a list of variables the invariant needs to generate for its scope.
 3. An expression that must hold at any point in time[^between_transactions].
 
 > :warning: Note that the invariant is not wrapped with curly brackets.
@@ -171,7 +171,7 @@ invariant totalFunds_GE_single_user_funds()
 
 - [ ] Run the invariant for yourself to see the results.
 
-However, although the invariant does verify that each user's balance must be less than the `totalFunds`, it does not promise that the `totalFunds` covers the sum of all users' balances. In other words the case where there are 2 users in the system: `funds[userA] = 8`, `funds[userA] = 6` and `totalFunds = 10` is valid. This case is clearly not what we meant. Each user can withdraw its balance, but once one has withdraw, there isn't enough money in the bank to pay the other user its deserved funds.
+However, although the invariant does verify that each user's balance must be less than the `totalFunds`, it does not promise that the `totalFunds` covers the sum of all users' balances. In other words the case where there are 2 users in the system: `funds[userA] = 8`, `funds[userB] = 6` and `totalFunds = 10` is valid. This case is clearly not what we meant. Each user can withdraw its balance, but once one has withdraw, there isn't enough money in the bank to pay the other user its deserved funds.
 
 Rethinking, we may come up with a second invariant that should always hold - "The sum over all users' balances should be less then or equal to the total funds in the system". If funds are only being transferred within the system, then equality should hold, but for our purpose we don't mind that the bank will hold extra ETH transferred from external source to make sure that the bank is solvent.
 
