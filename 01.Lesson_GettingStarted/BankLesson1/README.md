@@ -73,6 +73,11 @@ certoraRun --help
 
 </br>
 
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***bank integrityofdeposit***.
+</br>
+
 ### ***Results***
 
 The prover will print various information to the console. 
@@ -124,6 +129,11 @@ No violations were found. Great!
 
 </br>
 
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***bankfixed integrityofdeposit***.
+</br>
+
 ## Preconditions and Helper Variables
 
 Let’s define [another property](TotalGreaterThanUser.spec) and verify that after deposit, the `totalFunds` in the system are at least the funds of the `msg.sender`:
@@ -169,6 +179,11 @@ You will see the message in the run results mail and in the job's list in [prove
 
 </br>
 
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the jobs ***bankfixed totalfundsafterdepos*** and ***bankfixed running with precondition***.
+</br>
+
 ## Parametric Rules
 
 This property can be generalized to hold to all functions.
@@ -212,3 +227,9 @@ Notice that this rule uncovers the bug detected by P1: integrity of deposit.
 Parametric rules enable expressing reusable and concise correctness conditions. 
 Note that they are not dependent on the implementation. 
 You can integrate them easily into the CI to verify changes to the code, including signature changes, new functions, and implementation changes. 
+
+</br>
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the jobs ***parametric rule on bank*** and ***parametric rule on bankfixed***.
+</br>
