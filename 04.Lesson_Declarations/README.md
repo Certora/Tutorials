@@ -2,13 +2,13 @@
 
 </br>
 
-- [x] Go over the following sources of free and public information to learn how to think of systems as state machines:
+- [ ] Go over the following sources of free and public information to learn how to think of systems as state machines:
     
-  - [x] Part of a lecture explaining the idea of state machines[^1]. Watch the video from 48:58 to 1:02:45 - [Link](https://youtu.be/cQntMUMQyRw?t=2938)
+  - [ ] Part of a lecture explaining the idea of state machines[^1]. Watch the video from 48:58 to 1:02:45 - [Link](https://youtu.be/cQntMUMQyRw?t=2938)
 
-  - [x] A recitation on state machines for the same course[^1] - [Link](https://youtu.be/8FWfmvj3HYw).
+  - [ ] A recitation on state machines for the same course[^1] - [Link](https://youtu.be/8FWfmvj3HYw).
 
-  - [x] A short written explanation on state machines - [Link](https://www.cs.cornell.edu/courses/cs211/2006sp/Lectures/L26-MoreGraphs/state_mach.html)
+  - [ ] A short written explanation on state machines - [Link](https://www.cs.cornell.edu/courses/cs211/2006sp/Lectures/L26-MoreGraphs/state_mach.html)
 
 > :memo: If you feel you need some more explanations of the subject you can search the web for many additional great and free sources.
 
@@ -18,7 +18,7 @@
 
 </br>
 
-- [x] Follow the instructions on [Methods_Definitions_Functions](Methods_Definitions_Functions) to learn about method declarations, definitions, and functions in CVL, and exercise the concepts.
+- [ ] Follow the instructions on [Methods_Definitions_Functions](Methods_Definitions_Functions) to learn about method declarations, definitions, and functions in CVL, and exercise the concepts.
 
 </br>
 
@@ -32,7 +32,7 @@
 
 </br>
 
-- [x] Continue to the next lesson: [Getting Familiar With CVT](../05.Lesson_GettingFamiliarWithCVT) to learn about additional flags that you can use for your benefit.
+- [ ] Continue to the next lesson: [Getting Familiar With CVT](../05.Lesson_GettingFamiliarWithCVT) to learn about additional flags that you can use for your benefit.
 
 </br>
 

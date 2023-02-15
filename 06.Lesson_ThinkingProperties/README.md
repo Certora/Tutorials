@@ -30,19 +30,19 @@ Even the most skillful security engineer will contribute nothing to a system's s
 The process of coming up with properties and rules ideas is not done once you start the verification.
 You will find out that it is an iterative process. While writing rules, you will better understand the system through violations of your properties and discover more rules and invariants that you can and need to define in the specification.
 
-- [x] Go through the presentation [Categorizing Properties](Categorizing_Properties.pdf) to learn about different classes of properties that can be found in real-life systems.
+- [ ] Go through the presentation [Categorizing Properties](Categorizing_Properties.pdf) to learn about different classes of properties that can be found in real-life systems.
 
 </br>
 
-- [x] Follow the instructions in [AuctionDemonstration](AuctionDemonstration) to have a guided exercise with a demonstration of thinking about properties.
+- [ ] Follow the instructions in [AuctionDemonstration](AuctionDemonstration) to have a guided exercise with a demonstration of thinking about properties.
 
 </br>
 
-- [x] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
+- [ ] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
 
 </br>
 
-- [x] Create a `.spec` file for [MeetingScheduler](ThinkingPropertiesExercise/MeetingScheduler) and [TicketDepot](ThinkingPropertiesExercise/TicketDepot), and try to prove 5 properties in each of them based on your properties.
+- [ ] Create a `.spec` file for [MeetingScheduler](ThinkingPropertiesExercise/MeetingScheduler) and [TicketDepot](ThinkingPropertiesExercise/TicketDepot), and try to prove 5 properties in each of them based on your properties.
 
 Upload your solutions to the directories to get review by the Certora team.
 
@@ -65,7 +65,7 @@ Don't underestimate the importance of this phase. Formal verification is worthle
 
 </br>
 
-- [x] Continue to next lesson: [Inductive Reasoning](../07.Lesson_InductiveReasoning) to learn about inductive reasoning and the use of invariants.
+- [ ] Continue to next lesson: [Inductive Reasoning](../07.Lesson_InductiveReasoning) to learn about inductive reasoning and the use of invariants.
 
 </br>
 

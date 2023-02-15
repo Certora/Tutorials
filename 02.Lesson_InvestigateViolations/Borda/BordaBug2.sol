@@ -60,8 +60,7 @@ contract Borda is IBorda {
     }
 
     function registerVoter(uint8 age) external override returns (bool) {
-        // registering a voter checked whether they were not already registered as a contender. Instead it should check that they are not yet registered as a voter.
-        require (!_voters[msg.sender].registered, "you are already registered");
+        require (!_contenders[msg.sender].registered, "you are already registered");
         _voters[msg.sender] = Voters({age: age, registered: true, voted: false, vote_attempts: 0, black_listed: false});
         return true;
     }

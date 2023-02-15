@@ -144,16 +144,4 @@ contract SpartaProtocolPool is ERC20 {
         IERC20(token1).transfer(user, pay_in_1);
     }    
     
-    // utility functions for testing
-    function getBalance(address a) public view returns (uint256) {
-        return a.balance;
-    }  
-
-    function getTokenBalance(address token, address user) public view returns (uint256) {
-        return IERC20(token).balanceOf(user);
-    }
-
-    function getK() public view returns (uint256) {
-        return K;
-    }
 }
