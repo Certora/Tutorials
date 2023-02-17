@@ -25,7 +25,7 @@ In general, creating an arbitrary `env` variable and passing it to the function 
 
 Another reason to declare functions, even if they aren't `envfree`, is to make the specification more self-contained and readable. 
 
-- [x] Read the documentation on [method declarations](https://certora.atlassian.net/wiki/spaces/CPD/pages/181960777/Method+Declarations) up to "Summary Declarations" (not including). Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
+- [x] Read the documentation on [method declarations](https://docs.certora.com/en/latest/docs/confluence/advanced/methods.html), especially subsections [Entries in the methods block](https://docs.certora.com/en/latest/docs/cvl/methods.html?highlight=methods#entries-in-the-methods-block) and [Which function calls are summarized](https://docs.certora.com/en/latest/docs/cvl/methods.html?highlight=methods#which-function-calls-are-summarized). Do not continue reading the "Summary Types" subsection. Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
 
 This directory contains the three systems from the Lesson 1 Exercise. The interface implementations are the fixed versions (all the rules pass on them out of the box).
 
@@ -43,7 +43,7 @@ This directory contains the three systems from the Lesson 1 Exercise. The interf
 
 Like any other programming language, CVL provides a way to encapsulate code in functions for convenient code reuse.
 
-- [x] Read the documentation on [CVL functions](https://certora.atlassian.net/wiki/spaces/CPD/pages/238846033/CVL+Functions).
+- [x] Read the documentation on [CVL functions](https://docs.certora.com/en/latest/docs/confluence/anatomy/functions.html#cvl-functions).
 
 - [x] Have a look at the CVL functions in the altered, yet familiar spec from Lesson 1 - `TotalGreaterThenUser`: [BankFixed.sol](LessonExamples/BankFixed.sol) and [Functions_TotalGreaterThenUser.spec](LessonExamples/Functions_TotalGreaterThenUser.spec)
 
@@ -84,7 +84,7 @@ definition C() returns uint256 = 299792458;
 definition meetingUninitialized(uint256 meetingId) returns bool = getStartTimeById(meetingId) == 0 && getEndTimeById(meetingId) == 0 && ...;
 ```
 
-- [x] Read the documentation on [definitions](https://certora.atlassian.net/wiki/spaces/CPD/pages/41156868/Definitions) up to "Reference Ghost Functions" (not including).
+- [x] Read the documentation on [definitions](https://docs.certora.com/en/latest/docs/confluence/anatomy/definitions.html) up to "Reference Ghost Functions" (not including).
 
 - [x] Write the definitions of all the states in the [MeetingScheduler](MeetingScheduler) system.
 

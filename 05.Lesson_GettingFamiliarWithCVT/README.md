@@ -17,7 +17,7 @@ These scripts flags and features that we still haven't gone through. Try to see 
 
 </br>
 
-- [x] Have a brief look at the entry on [CLI Options](https://certora.atlassian.net/wiki/spaces/CPD/pages/7340043/Certora+Prover+CLI+Options) in the documentation.
+- [x] Have a brief look at the entry on [CLI Options](https://docs.certora.com/en/latest/docs/prover/cli/options.html#certora-prover-cli-options) in the documentation.
 This is where you'll go to learn about additional flags and options. Some of these can help you overcome problems, customize the output to your needs, and make your life much easier.
 We will introduce more specific flags in future lessons when using them help up solve problems.
 

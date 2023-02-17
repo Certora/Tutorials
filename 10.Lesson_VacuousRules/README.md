@@ -58,7 +58,7 @@ When we fail the newly added assert, the answer to our question is "Yes - there 
 
 When running a verification with the `--rule_sanity` flag, the tool runs the rule/invariant twice - once as written, and again changing the original asserts to requires and adding an `assert false` at the end. It combines the results and indicates whether the `assert false` did not fail, meaning the rule/invariant is empty.
 
-You can read more about the `--rule_sanity` flag in the documentation [Link](https://certora.atlassian.net/wiki/spaces/CPD/pages/7340043/Certora+Prover+CLI+Options#--rule_sanity[inlineExtension])
+You can read more about the `--rule_sanity` flag in the documentation [Link](https://docs.certora.com/en/latest/docs/prover/cli/options.html#rule-sanity)
 
 > :warning: The indication given for `--rule_sanity` at the moment is :warning: over a red background. A better presentation should be integrated soon.
 
