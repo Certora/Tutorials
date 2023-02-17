@@ -91,6 +91,15 @@ For that reason we often write a shell scripts of the run command that includes 
 </br>
 
 ---
+## Solutions to the lessons
+
+</br>
+
+- [ ] Some of the lessons in the Tutorials require you to write a `.spec` file containing your own rules for a given contract. Sometimes this can be quite challenging and if you get in trouble, you can have a look at the [Solutions](https://github.com/Certora/Tutorials/tree/master/Solutions) folder in the repository.
+
+</br>
+
+---
 
 ### Hurray! You've completed you first step towards being a security engineer
 
