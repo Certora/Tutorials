@@ -89,8 +89,8 @@ contract Borda is IBorda {
 
         _voters[msg.sender].voted = true;
         voteTo(first, 3);
-        voteTo(second, 2); // previously added 3 points for the 2nd and 3rd vote
-        voteTo(third, 1); // only the first vote should get 3 points, the second should get 2 and the third 1.
+        voteTo(second, 3);
+        voteTo(third, 3);
         
         
         return true;

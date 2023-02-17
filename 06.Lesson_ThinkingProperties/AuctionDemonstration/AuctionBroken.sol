@@ -63,8 +63,6 @@ contract AuctionImpl is TokenInterface {
 
 */
 	using SafeMath for uint256;
-
-	// uint256 public remainingTokens = 2**256-1; // new: tracks remainingTokens to be minted
 	address public owner ;
 	modifier authorized { require(msg.sender == owner); _; }
 	
@@ -84,8 +82,6 @@ contract AuctionImpl is TokenInterface {
 		
 	function newAuction(uint id, uint payment) public authorized {
 		require(auctions[id].end_time == 0); //check id in not occupied
-		// require(remainingTokens > 2, "no more tokens left to auction"); // new: add a minimum for new auctions
-		// auctions[id] = AuctionStrcut(remainingTokens,payment,owner, 0, now+1 days);
 		auctions[id] = AuctionStrcut(2**256-1,payment,owner, 0, now+1 days);
                          // arguments: prize, payment, winner, bid_expiry, end_time
 	}
@@ -105,14 +101,7 @@ contract AuctionImpl is TokenInterface {
 		require(auctions[id].bid_expiry != 0
 				&& (auctions[id].bid_expiry < now || 
 					auctions[id].end_time < now));
-
-		require(auctions[id].prize.safeAdd(auctions[id].prize) + getTotalSupply() >= getTotalSupply());
-
-		mint(auctions[id].winner, auctions[id].prize);
-		// new: update remaining tokens that can still be auctioned
-		//remainingTokens = remainingTokens.safeSub(auctions[id].prize);
-		//require(remainingTokens > 1, "Max mint limit reached");
-		// prover started at a state that was not possible with the added restrictions, needed to change spec, not sure if it would weaken it so i went with the other solution
+		mint(auctions[id].winner, auctions[id].prize);n
 		delete auctions[id];
 	}
   

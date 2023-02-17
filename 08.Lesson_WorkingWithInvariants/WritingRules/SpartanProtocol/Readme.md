@@ -5,9 +5,9 @@ This summary explains the two functions logic, and then how the attacker exploit
 
 ### addLiquidity:
 1. Transfer tokens to spartan account.
-2. Then the difference between the current spartan account tokens amount to the tokens amount recorded before the transfer is the transferred amount, mint LP token for this amount.
+2. Then the difference between (the current spartan account tokens amount) to (the tokens amount recorded before the transfer) is the transferred amount. Now mint LP token for this amount.
 
-If 1 and 2 happens in different transactions, then the transferred tokens can be use by another account that also added liquidity and its transaction took place between 1 and 2. The correctness holds only if 1+2 are done at one transaction.
+If 1 and 2 happens in different transactions, then the transferred tokens can be used by another account that also added liquidity and its transaction took place between 1 and 2. The correctness holds only if 1+2 are done at one transaction.
 
 ### removeLiquidity:
 1. Calculate LP token worth by calculating the portion of the those LP token from the total LP tokens and multiply by current pool balance.

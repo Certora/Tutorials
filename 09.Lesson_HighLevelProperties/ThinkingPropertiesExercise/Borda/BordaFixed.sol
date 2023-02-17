@@ -104,8 +104,4 @@ contract Borda is IBorda {
         }
     }
 
-    function getWinner() public view returns (address) {
-        return winner;
-    }
-
 }

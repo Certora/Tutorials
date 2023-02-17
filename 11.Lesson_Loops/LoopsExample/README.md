@@ -2,9 +2,9 @@
 
 In this example we will play with the flags `--optimistic_loop` and `--loop_iter`, and see how different settings for handling loops can change the verification result of the exact same rule on the exact same function.
 
-- [x] Have a look at [Loops.sol](Loops.sol) and [LoopsUnrolling.spec](LoopsUnrolling.spec)
+- [ ] Have a look at [Loops.sol](Loops.sol) and [LoopsUnrolling.spec](LoopsUnrolling.spec)
 
-- [x] Run the `.spec` file with the script [verifyLoops.sh](verifyLoops.sh) and see the results.
+- [ ] Run the `.spec` file with the script [verifyLoops.sh](verifyLoops.sh) and see the results.
 
 <details>
   <summary>Question: Do you understand why all 4 rules fail?</summary>
@@ -13,7 +13,7 @@ In this example we will play with the flags `--optimistic_loop` and `--loop_iter
 
 </br>
 
-- [x] If we were to add `--optimistic_loop` flag to `slow_copy_correct`, can you predict what the results would be?
+- [ ] If we were to add `--optimistic_loop` flag to `slow_copy_correct`, can you predict what the results would be?
 Change the script and check your prediction.
 
 <details>
@@ -23,7 +23,7 @@ Change the script and check your prediction.
 
 </br>
 
-- [x] If we were to add `--optimistic_loop` flag to `slow_copy_wrong`, can you predict what the results would be?
+- [ ] If we were to add `--optimistic_loop` flag to `slow_copy_wrong`, can you predict what the results would be?
 Change the script and check your prediction.
 
 
@@ -34,7 +34,7 @@ Change the script and check your prediction.
 
 </br>
 
-- [x] If we were to add `--loop_iter` flag with a larger number of loop unrolling what would've happen? Try running the last 2 runs (with the `--optimistic_loop`) using `--loop_iter` with values 3, 5 ,10.
+- [ ] If we were to add `--loop_iter` flag with a larger number of loop unrolling what would've happen? Try running the last 2 runs (with the `--optimistic_loop`) using `--loop_iter` with values 3, 5 ,10.
 
 <details>
   <summary>Question: Do you understand the results?</summary>
@@ -44,7 +44,7 @@ Change the script and check your prediction.
 
 </br>
 
-- [x] Now say that we were to remove the `--optimistic_loop` and keep the 3, 5, 10 `--loop_iter`, what will be the results? Try it.
+- [ ] Now say that we were to remove the `--optimistic_loop` and keep the 3, 5, 10 `--loop_iter`, what will be the results? Try it.
 
 <details>
   <summary>Question: Do you understand why both rules failed?</summary>
@@ -55,7 +55,7 @@ Change the script and check your prediction.
 
 Now we move to the constant iteration loop and do the entire procedure all over again. The rules failed when ran with neither `--optimistic_loop` nor `--loop_iter`.
 
-- [x] If we were to add `--loop_iter` flag to `const_loop_correct`, can you predict what the results would be?
+- [ ] If we were to add `--loop_iter` flag to `const_loop_correct`, can you predict what the results would be?
 Change the script and run it with value 3, 5, 10 for the `loop_iter` to check your prediction.
 
 <details>
@@ -66,7 +66,7 @@ Change the script and run it with value 3, 5, 10 for the `loop_iter` to check yo
 
 </br>
 
-- [x] If we were to add `--loop_iter` flag to `const_loop_wrong`, can you predict what the results would be?
+- [ ] If we were to add `--loop_iter` flag to `const_loop_wrong`, can you predict what the results would be?
 Change the script and run it with value 3, 5, 10 for the `loop_iter` to check your prediction.
 
 <details>
@@ -76,7 +76,7 @@ Change the script and run it with value 3, 5, 10 for the `loop_iter` to check yo
 
 </br>
 
-- [x] If we were to add `--optimistic_loop` flag what would've happen? Try running the last 2 runs (with the `--loop_iter` 3, 5 ,10).
+- [ ] If we were to add `--optimistic_loop` flag what would've happen? Try running the last 2 runs (with the `--loop_iter` 3, 5 ,10).
 
 <details>
   <summary>Question: Do you understand the results?</summary>
@@ -87,9 +87,9 @@ Change the script and run it with value 3, 5, 10 for the `loop_iter` to check yo
 
 </br>
 
-- [x] Try running the previous runs again, this time with an `assert false` at the end of each rule.
+- [ ] Try running the previous runs again, this time with an `assert false` at the end of each rule.
 
-- [x] Now remove the `assert false`, `--loop_iter` and keep the `--optimistic_loop`, what will be the results? Try it.
+- [ ] Now remove the `assert false`, `--loop_iter` and keep the `--optimistic_loop`, what will be the results? Try it.
 
 <details>
   <summary>Question: Do you understand the rules?</summary>

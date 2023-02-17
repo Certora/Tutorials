@@ -1,56 +1,3 @@
-methods{
-	// getStateById(uint256) returns (MeetingStatus) envfree; ?? returns MeetingStatus? Do I define struct?
-    getStartTimeById(uint256) returns (uint256) envfree;
-    getEndTimeById(uint256) returns (uint256) envfree;
-    getnumOfParticipants(uint256) returns (uint256) envfree;
-    getOrganizer(uint256) returns (address) envfree;
-    scheduleMeeting(uint256, uint256, uint256);
-    startMeeting(uint256);
-    cancelMeeting(uint256);
-    endMeeting(uint256);
-    joinMeeting(uint256) envfree;
-}
-
-definition meetingUninitialized(e, uint256 meetingId) 
-    returns bool = getStartTimeById(meetingId) == 0 
-    && getEndTimeById(meetingId) == 0 
-    && getnumOfParticipants(meetingId) == 0
-    && getOrganizer(meetingId) == 0
-    && getStateById(meetingId) == 0;
-
-
-definition meetingPending(uint256 meetingId) 
-    returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getnumOfParticipants(meetingId) == 0
-    && getOrganizer(meetingId) != 0
-    && getStateById(meetingId) == 1;
-
-definition meetingStarted(uint256 meetingId) 
-    returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getnumOfParticipants(meetingId) >= 0
-    && getOrganizer(meetingId) != 0
-    && getStateById(meetingId) == 2;
-
-definition meetingEnded(uint256 meetingId)
-    returns bool = getStartTimeById(meetingId) > 0 
-    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getnumOfParticipants(meetingId) >= 0
-    && getOrganizer(meetingId) != 0
-    && getStateById(meetingId) == 3;
-
-definition meetingCancelled(uint256 meetingId)
-    returns bool = getStartTimeById(meetingId) != 0 
-    && getEndTimeById(meetingId) > getStartTimeById(meetingId) 
-    && getnumOfParticipants(meetingId) == 0
-    && getOrganizer(meetingId) != 0
-    && getStateById(meetingId) == 4;
-
-function getStartTimeByIdFunction(uint256 meetingId) returns uint256 {
-    return getStartTimeById(meetingId);
-}
-
 /*  Representing enums
 
     enums are supported by the Certora Verification Language (CVL), 
@@ -73,8 +20,8 @@ function getStartTimeByIdFunction(uint256 meetingId) returns uint256 {
 rule startBeforeEnd(method f, uint256 meetingId, uint256 startTime, uint256 endTime) {
 	env e;
     scheduleMeeting(e, meetingId, startTime, endTime);
-    uint256 scheduledStartTime = getStartTimeById(meetingId);
-    uint256 scheduledEndTime = getEndTimeById(meetingId);
+    uint256 scheduledStartTime = getStartTimeById(e, meetingId);
+    uint256 scheduledEndTime = getEndTimeById(e, meetingId);
 
 	assert scheduledStartTime < scheduledEndTime, "the created meeting's start time is not before its end time";
 }
@@ -87,8 +34,8 @@ rule startOnTime(method f, uint256 meetingId) {
 	uint8 stateBefore = getStateById(e, meetingId);
 	f(e, args); // call only non reverting paths to any function on any arguments.
 	uint8 stateAfter = getStateById(e, meetingId);
-    uint256 startTimeAfter = getStartTimeById(meetingId);
-    uint256 endTimeAfter = getEndTimeById(meetingId);
+    uint256 startTimeAfter = getStartTimeById(e, meetingId);
+    uint256 endTimeAfter = getEndTimeById(e, meetingId);
     
 	assert (stateBefore == 1 && stateAfter == 2) => startTimeAfter <= e.block.timestamp, "started a meeting before the designated starting time.";
 	assert (stateBefore == 1 && stateAfter == 2) => endTimeAfter > e.block.timestamp, "started a meeting after the designated end time.";
@@ -130,8 +77,8 @@ rule checkPendingToCancelledOrStarted(method f, uint256 meetingId) {
 rule monotonousIncreasingNumOfParticipants(method f, uint256 meetingId) {
 	env e;
 	calldataarg args;
-    require getStateById(e, meetingId) == 0 => getnumOfParticipants(meetingId) == 0;
-	uint256 numOfParticipantsBefore = getnumOfParticipants(meetingId);
+    require getStateById(e, meetingId) == 0 => getnumOfParticipants(e, meetingId) == 0;
+	uint256 numOfParticipantsBefore = getnumOfParticipants(e, meetingId);
 	f(e, args);
     uint256 numOfParticipantsAfter = getnumOfParticipants(meetingId);
 

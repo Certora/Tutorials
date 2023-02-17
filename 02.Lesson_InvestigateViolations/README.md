@@ -23,17 +23,17 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [x] Open the interface and read the documentation and functions' signatures. The comments should get you clear on how the system should operate without going into implementation details.
+- [ ] Open the interface and read the documentation and functions' signatures. The comments should get you clear on how the system should operate without going into implementation details.
 
 </br>
 
-- [x] Open the spec file and go over the rules and comments there. Try to understand what the rule tries to capture and make sure that you understand this property. Look at the implementation of the rules and see if the code is clear to you.
+- [ ] Open the spec file and go over the rules and comments there. Try to understand what the rule tries to capture and make sure that you understand this property. Look at the implementation of the rules and see if the code is clear to you.
 
 > Make sure to read the comments at the top that explains about some new concepts that are used in the code.
 
 </br>
 
-- [x] Create a script (or multiple scripts) that will serve you for running the verifications of the system's buggy versions.
+- [ ] Create a script (or multiple scripts) that will serve you for running the verifications of the system's buggy versions.
 
 > :bulb:
 > <details>
@@ -43,7 +43,7 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [x] Run verifications of the contracts to find violations to the rules.
+- [ ] Run verifications of the contracts to find violations to the rules.
 
 > :bulb:
 > <details>
@@ -53,11 +53,11 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [x] Follow the violations as explained in [BankLesson1](../01.Lesson_GettingStarted/BankLesson1) to find out the source of the bugs.
+- [ ] Follow the violations as explained in [BankLesson1](../01.Lesson_GettingStarted/BankLesson1) to find out the source of the bugs.
 
-- [x] Fix the causes of the violations and check that the rules are really passing (green thumb up). **Be sure not to weaken the rules.**
+- [ ] Fix the causes of the violations and check that the rules are really passing (green thumb up). **Be sure not to weaken the rules.**
 
-- [x] Save your solution to each bug in the same file that you found it in, next to the changed line(s). Mark your findings by adding a comment explaining the fix in 1-2 sentences in the following format: //@note the require checked `a > b`, when it should've checked `b > a`.
+- [ ] Save your solution to each bug in the same file that you found it in, next to the changed line(s). Mark your findings by adding a comment explaining the fix in 1-2 sentences in the following format: //@note the require checked `a > b`, when it should've checked `b > a`.
 
 > :bulb:
 > <details>
@@ -90,7 +90,7 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [x] Continue to next lesson: [SMT](../03.Lesson_SMT) to learn about the underlying mechanism of the Certora Prover.
+- [ ] Continue to next lesson: [SMT](../03.Lesson_SMT) to learn about the underlying mechanism of the Certora Prover.
 
 </br>
 

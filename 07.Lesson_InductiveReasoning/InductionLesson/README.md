@@ -19,7 +19,7 @@ Start with [Ball Game](BallGame/BallGame.sol), implementing a ball game with fou
 
 The ball starts at Player 1. Let's prove that the ball can never reach Player 4.
 
-- [x] Run the `BallGame.spec` file supplied in the directory and investigate the counter-example.
+- [ ] Run the `BallGame.spec` file supplied in the directory and investigate the counter-example.
 Do you understand what fails? (true but not inductive)
 
 The initial state in the counter example is 3.
@@ -35,13 +35,13 @@ The Certora Prover was instructed to verify that the ball can never be at the ha
 
 The initial state "ball at the hands of player 3" is a possible state by the pre-condition.
 
-- [x] Fix the invariant to avoid superfluous initial states.
+- [ ] Fix the invariant to avoid superfluous initial states.
 
 We learned here that in order to prove the required property we needed to prove a stronger invariant.
 
-- [x] Try writing the invariant as a parametric rule. Make it pass.
+- [ ] Try writing the invariant as a parametric rule. Make it pass.
 
-- [x] Change the initial state in the solidity contract from `ballAt = 1` to `ballAt = 3` and rerun the same full spec file with the invariant and rule that passed.
+- [ ] Change the initial state in the solidity contract from `ballAt = 1` to `ballAt = 3` and rerun the same full spec file with the invariant and rule that passed.
 
 Did you expect the new results?
 Do you understand why the invariant fails and the rule passes?
@@ -74,33 +74,33 @@ For a more realistic example, [Manager](Manager/Manager.sol) implements transfer
 
 [Manager.spec](Manager/Manager.spec) contains a typical parametric rule.
 
-- [x] Run the `Manager.spec` file supplied in the directory and investigate the counter-example.
+- [ ] Run the `Manager.spec` file supplied in the directory and investigate the counter-example.
 Do you understand what fails?
 
-- [x] Understand the counter-examples and try thinking which additional properties are related and need to be proven together.
+- [ ] Understand the counter-examples and try thinking which additional properties are related and need to be proven together.
 
-- [x] Fix the rule.
+- [ ] Fix the rule.
 
-- [x] Check your rule as sometimes the rule is too strict and overly limits the possible initial states or executions.
+- [ ] Check your rule as sometimes the rule is too strict and overly limits the possible initial states or executions.
 
-  - [x] To check your rule, intentionally insert bugs into the contract. Insert bugs that should be detected by the rule (fail verification).
+  - [ ] To check your rule, intentionally insert bugs into the contract. Insert bugs that should be detected by the rule (fail verification).
 
-  - [x] Rerun the Certora Prover to get a counter example that fits your expectation.
+  - [ ] Rerun the Certora Prover to get a counter example that fits your expectation.
 
 - Run the rule on the pre-prepared buggy versions of the code:
 [ManagerBug1](Manager/ManagerBug1.sol) and [ManagerBug2](Manager/ManagerBug2.sol)
 
 Did your rule find violations?
 
-- [x] Try running the version of the rule as an invariant.
+- [ ] Try running the version of the rule as an invariant.
 
 Is this property an invariant of the system?
 
-- [x] Now, after trying to write the rule, have a look at the [Partial Solution](Manager/ManagerPartialSolution.spec). This is an almost correct implementation of the rule.
+- [ ] Now, after trying to write the rule, have a look at the [Partial Solution](Manager/ManagerPartialSolution.spec). This is an almost correct implementation of the rule.
 
-  - [x] Run the partial solution on the two buggy implementations of manager. Why doesn't it fail on both of them as expected?
+  - [ ] Run the partial solution on the two buggy implementations of manager. Why doesn't it fail on both of them as expected?
 
-  - [x] The solution pass on [ManagerBug1](Manager/ManagerBug1.sol) because the condition is too strict. Can you find the problem and fix it?
+  - [ ] The solution pass on [ManagerBug1](Manager/ManagerBug1.sol) because the condition is too strict. Can you find the problem and fix it?
 
 ### Explanation - Under/Over-Approximation
 
@@ -112,11 +112,11 @@ In the case of the [Manager Partial Solution](Manager/ManagerPartialSolution.spe
 
 This is a classic example of incorrect usage of precondition in rules.
 
-- [x] Once you know how to fix the expression, try to run 2 verifications on [ManagerBug1](Manager/ManagerBug1.sol):
+- [ ] Once you know how to fix the expression, try to run 2 verifications on [ManagerBug1](Manager/ManagerBug1.sol):
 
-  - [x] Correct the post-condition while leaving the too-strict pre-condition.
+  - [ ] Correct the post-condition while leaving the too-strict pre-condition.
 
-  - [x] Correct the pre-condition while leaving the "too-strict" post-condition.
+  - [ ] Correct the pre-condition while leaving the "too-strict" post-condition.
 
 Notice which of them pass the verification falsely and which caught the bug.
 Do you understand why these are the results?

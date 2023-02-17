@@ -1,6 +1,6 @@
 
 contract BallGame {
-	uint256 public ballAt = 3;
+	uint256 public ballAt = 1;
 
 	function pass() public {
 		require (ballAt >= 1 && ballAt <= 4);

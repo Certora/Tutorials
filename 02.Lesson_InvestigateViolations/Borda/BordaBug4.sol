@@ -91,8 +91,7 @@ contract Borda is IBorda {
         voteTo(first, 3);
         voteTo(second, 2);
         voteTo(third, 1);
-        // remove line that unregisters voters after voting as this will allow them to reregister and vote again
-        // _voters[msg.sender].registered = false;
+        _voters[msg.sender].registered = false;
         return true;
     }
 
