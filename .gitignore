@@ -25,6 +25,10 @@ cache/
 .certora*
 .last_confs
 certora_*
+.zip-output-url.txt
+
+# vim
+.*.swp
 
 # mac
 .DS_Store
