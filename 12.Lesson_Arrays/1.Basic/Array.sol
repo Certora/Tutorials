@@ -4,7 +4,6 @@ pragma solidity ^0.8;
 contract Array {
     address[] public arrOfTokens;
 
-
     function get(uint index) public view returns (address) {
         //Note: reverts when index is out of range 
         return arrOfTokens[index];
