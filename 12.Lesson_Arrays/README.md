@@ -47,6 +47,30 @@ specification in [Array.spec](1.Basic/Array.spec).
 
    </details>
 
+## 2. Intermediate
+Take a look in [ArrayUniqueBug.sol](2.Intermediate/ArrayUniqueBug.sol). Here
+the contract maintains a unique array of addresses by ensuring that the address
+to be pushed is not already in the array.
+
+1. The contract `ArrayUniqueBug` (from
+   [ArrayUniqueBug.sol](2.Intermediate/ArrayUniqueBug.sol)) has bugs. It allows the
+   array to become non-unique. Fix the contract by requiring `frequence(value) == 0`
+   in the appropriate places. Save the fixed contract as `ArraySolution.sol` and name
+   the contract `ArraySolution`.
+1. The `uniqueArray` invariant in
+   [ArrayUniqueBug.spec](2.Intermediate/ArrayUniqueBug.spec) will identify the buggy
+   methods in [ArrayUniqueBug.sol](2.Intermediate/ArrayUniqueBug.sol). However,
+   it will still fail on correct methods in `ArraySolution` (e.g. `swap(uint256,uint256)`).
+   Fix the `uniqueArray` invariant, by using `requireInvariant`. Verify that
+   `ArraySolution` passes without violation, while `ArrayUniqueBug` still fails.
+   <details>
+   <summary>Hint.</summary>
+
+   You must ensure that `frequency` does not get too high.
+
+   </details>
+
+
 - Make sure your rules detect the error on ArrayWrong.sol 
 - Prove that `frequency(address value)` returns maximum 1 for any non-zero value; Show that it
   fails on zero values.

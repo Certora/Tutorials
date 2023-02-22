@@ -26,12 +26,7 @@ contract ArrayUniqueBug {
 
     function set(uint index, address value) public {
         require(index < arrOfTokens.length, "index out of bound");
-        address currentValue = arrOfTokens[index];
-        if (value != currentValue)
-        {
-            require(frequency(value) == 0, "value already exists");
-            arrOfTokens[index] = value;
-        }
+        arrOfTokens[index] = value;
     }
 
     // Solidity can return the entire array.
@@ -44,7 +39,6 @@ contract ArrayUniqueBug {
     function push(address val) public {
         // Append to array
         // This will increase the array length by 1.
-        require(frequency(val) == 0,"value already exists");
         arrOfTokens.push(val);
     }
 
