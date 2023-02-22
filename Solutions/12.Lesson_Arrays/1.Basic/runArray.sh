@@ -1,4 +1,4 @@
-certoraRun Array.sol \
+certoraRun ArrayImproved.sol \
 --verify Array:Array.spec \
 --solc solc8.6 \
 --send_only \
