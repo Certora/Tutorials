@@ -16,8 +16,11 @@ specification in [Array.spec](1.Basic/Array.spec).
    but its failure is unrelated to the solidity code in
    [Array.sol](1.Basic/Array.sol). Indeed this invariant is useless, do you
    understand why?
-   <details><summary>Hint.</summary>
+   <details>
+   <summary>**Hint.**</summary>
+
    What is the value of `get@withrevert(i)` when the function does revert?
+
    </details>
 1. Fix the `uniqueArray` invariant so it correctly verifies that elements in
    the array are unique (except perhaps for `address(0)`). Check that the new
