@@ -56,7 +56,10 @@ certoraRun ERC20.sol --verify ERC20:ERC20.spec --solc solc8.0
 This command triggers a verification run on the contract `ERC20` in the solidity file `ERC20.sol`, checking all rules in the specification file. 
 
 The command proceeds in two steps:
-1. First, the solidity files are compiled with the specified solidity compiler, in this case 8.0, and the specification file is checked for syntax errors. This step happens on the local machine for fast feedback. The [`--solc` argument](https://docs.certora.com/en/latest/docs/prover/cli/options.html?highlight=--solc#options-that-control-the-solidity-compiler) is optional, Use this option to provide a path to the Solidity compiler executable file. Default is `solc` executable.  
+1. First, the solidity files are compiled with the specified solidity compiler, in this case 8.0, and the specification file is checked for syntax errors. This step happens on the local machine for fast feedback. The [`--solc` argument](https://docs.certora.com/en/latest/docs/prover/cli/options.html?highlight=--solc#options-that-control-the-solidity-compiler) is optional, Use this option to provide a path to the Solidity compiler executable file. Default is `solc` executable. You may also omit the `--solc` and use `solc-select`.e.g,
+```
+solc-select use 0.8.0
+```  
 
 2. Next, all necessary files are compressed and sent to Certora’s web server for verification. Verification tasks can be very heavy, so running them on the cloud can save time and resources.
 
