@@ -1,7 +1,9 @@
 # Reasoning over arrays
-In this chapter we will review the pitfalls and different methods of handling arrays.
+In this chapter we will review the pitfalls and different methods verifying
+invariants over array.
 
 ## 1. Basic
+Here we show that taking a naive approach will often fail.
 Consider the `Array` contract in [Array.sol](1.Basic/Array.sol), and its
 specification in [Array.spec](1.Basic/Array.spec).
 
@@ -50,7 +52,8 @@ specification in [Array.spec](1.Basic/Array.spec).
 ## 2. Intermediate
 Take a look in [ArrayUniqueBug.sol](2.Intermediate/ArrayUniqueBug.sol). Here
 the contract maintains a unique array of addresses by ensuring that the address
-to be pushed is not already in the array.
+to be pushed is not already in the array. We will see how to write invariants for
+this pattern.
 
 1. The contract `ArrayUniqueBug` (from
    [ArrayUniqueBug.sol](2.Intermediate/ArrayUniqueBug.sol)) has bugs. It allows the
@@ -70,8 +73,20 @@ to be pushed is not already in the array.
 
    </details>
 
+## 3. Advanced
+In (ArrayWithMap.sol)[3.Advance/ArrayWithMap.sol] we have the `ArrayWithMap` contract.
+There, the contract uses a mapping to indicate which addresses inhabit the array.
+We will learn here how to write invariants for this type of implementation using ghosts.
+Note that `ArrayWithMap` has additional interface functions such as `set` and `swap`.
 
-- Make sure your rules detect the error on ArrayWrong.sol 
-- Prove that `frequency(address value)` returns maximum 1 for any non-zero value; Show that it
-  fails on zero values.
+The file (ArrayWithMap.spec)[3.Advance/ArrayWithMap.spec] contains the skeleton of a
+specification file. Use ghosts and additional invariants and rules to fix the spec.
 
+
+<details>
+<summary>Hints.</summary>
+
+1. To prove `uniqueArray`, it suffices to require `flagConsistancy`.
+1. Create a ghost mapping that provides an inverse to `get(i)`.
+
+</details>

@@ -34,6 +34,7 @@ contract ArraySolution {
     function set(uint index, address value) public {
         require(index < arrOfTokens.length, "index out of bound");
         require(flag[value] == false);
+        flag[arrOfTokens[index]] = false;
         arrOfTokens[index] = value;
         flag[value] = true;
     }
