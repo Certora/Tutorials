@@ -5,7 +5,7 @@
 
 The Certora Prover is based on well-studied techniques from the formal verification community. 
 ***Specifications*** define a set of rules that call into the contract under analysis and make various assertions about its behavior. 
-Together with the contract under analysis, these rules are compiled to a logical formula called a ***verification condition***, which is then proved or disproved by an SMT solver. 
+Together with the contract under analysis, these rules are compiled into a logical formula called a ***verification condition***, which is then proved or disproved by an SMT solver.
 If the rule is disproved, the solver also provides a concrete test case demonstrating the violation.
 
 The rules of the specification play a crucial role in the analysis. Without adequate rules, only very basic properties can be checked (e.g., no assertions in the contract itself are violated). 
@@ -38,7 +38,7 @@ Some example aspects of the calling context are:
 > :warning: Notice that each function call must get an `env` variable as its first parameter by default:
 `transfer(e, recip, amount);`.
 
-> :bulb: It is possible to declare a function as `envfree`, meaning that it does not need get an `env` variable as a parameter since it is entirely independent of `env` context. We will see how to do it in a later lesson.
+> :bulb: It is possible to declare a function as `envfree`, meaning that it does not need to get an `env` variable as a parameter since it is entirely independent of `env` context. We will see how to do it in a later lesson.
 
 By default, the Certora prover will ignore all paths where any function call reverts, and they will not be considered violations of the rule.
 We will learn more about this topic in the next lesson.
@@ -97,7 +97,7 @@ ERROR: [rule] transferSpec
 
 Follow the "Verification results" link in the command line, or go to [prover.certora.com](https://prover.certora.com/) to see your list of jobs (the latest run will be shown on top).
 You'll see a table with the verification results, similar to this image: ![results](images/results.jpg) 
-For each rule, the table either displays a check mark when the rule was proved or a x-mark when a violation of the rule was discovered.
+For each rule, the table either displays a checkmark when the rule was proved or a x-mark when a violation of the rule was discovered.
 
 </br>
 
@@ -117,7 +117,7 @@ Notice the values of variables:
 
 So, what's the bug?  
 
-**The rule does not hold when a user transfer to himself**
+**The rule does not hold when a user transfers to himself**
 
 > :warning: Note that your run may present different values in the call trace because multiple sets of values may cause this violation. The prover's results are non-deterministic, i.e., the prover might choose different paths to disprove the rule each time it runs, based on various parameters.
 
@@ -153,7 +153,7 @@ Try adding the ***helper variables*** `userBalanceBefore` and `totalBefore`.
 As we discussed, the tool assumes all possible input values as a starting state. 
 The rule is violated when the initial state's `totalSupply` is less than the current balance of `account`.
 > :warning: ***Even though this contract's state is unreachable by any route of action by any user, the tool still considers this initial state as a valid state.***  </br>
-This is not a mistake but a designed behavior of the Certora Prover. It's designed to over-approximate states to avoid missing paths that lead to bugs (false positives). However, doing so leads to evaluating states that might not be reachable (false negatives), as shown in this example. In the upcoming lessons we will learn how to prove that such states are never feasible, 
+This is not a mistake but a designed behavior of the Certora Prover. It's designed to over-approximate states to avoid missing paths that lead to bugs (false positives). However, doing so leads to evaluating states that might not be reachable (false negatives), as shown in this example. In the upcoming lessons, we will learn how to prove that such states are never feasible.
 
 So how can we address this issue?
 
@@ -178,7 +178,7 @@ You will see the message in the run results mail and in the job's list in [prove
 
 ## Parametric Rules
 
-Many property can be generalized to hold to all functions.
+Many properties can be generalized to be used for all functions.
 
  #### _***P3: Verification of `approve` can change only by the holder
  
@@ -192,7 +192,7 @@ calldataarg arg; // any argument
 f(e, arg);
 ```
 
-Different functions in the contract might have a different number or types of parameters. Using a `calldataarg` variable solves this problem and ensures that each simulated function gets valid input parameters.
+Different functions in the contract might have different number or types of parameters. Using a `calldataarg` variable solves this problem and ensures that each simulated function gets valid input parameters.
 
 Run the parametric rule from [parametric.spec](Parametric.spec)
 
