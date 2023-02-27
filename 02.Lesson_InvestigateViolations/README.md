@@ -1,16 +1,16 @@
 # Understanding Violations and Following Counter Examples
 
-In this module we will get familiar with Certora Prover's counter examples for rules' violations.
+In this module we will get familiar with Certora Prover's counter-examples for violations.
 
-In current directory there are 3 sub directories - [Borda Election](Borda), [Meeting Scheduler](MeetingScheduler), and [OpenZeppelin's ERC20](ERC20).
-Each sub directory contains a system interface, a spec file with pre-written rules, and a few solidity files that implement the interface.
+In the current directory, there are 3 sub-directories - [Borda Election](Borda), [Meeting Scheduler](MeetingScheduler), and [OpenZeppelin's ERC20](ERC20).
+Each sub-directory contains a system interface, a spec file with pre-written rules, and a few solidity files that implement the interface.
 Each implementation is a corrupted version of a real system, that contains bugs aimed to raise violations in the pre-written rules in the spec file.
-In the sub directories you will also find a README file with hints and tips for each rule failure. If you get stuck try the hint for directions
+In the sub-directories you will also find a README file with hints and tips for each rule failure. If you get stuck try the hint for directions
 
 The goal of this exercise is to get familiar with the output of the Certora Prover, especially in case of violations, and to practice bug finding in the code.
-The bugs are relatively simple and can be probably found by eye quite easily. Try not to look for the bugs manually in the implementations before you run the verification and follow the counter example. As it should be, along with the tool's result you will follow the counter example through the implementation, and try to understand where it deviates from the intended way of operation. You will then try to mitigate the problem and check it.
+The bugs are relatively simple and can be probably found by eye quite easily. Try not to look for the bugs manually in the implementations before you run the verification and follow the counter-example. As it should be, along with the tool's result you will follow the counter-example through the implementation, and try to understand where it deviates from the intended way of operation. You will then try to mitigate the problem and check it.
 
-Throughout each README file within this directory and its sub directories, we shall add tips and hints in collapsables to supply assistant without forcing you to take it. You will have to click on the tip actively to see it.
+Throughout each README file within this directory and its sub-directories, we shall add tips and hints in a  collapsible manner to supply assistance without forcing you to take it. You will have to click on the tip actively to see it.
 
 > :bulb:
 > <details>
@@ -43,7 +43,7 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [ ] Run verifications of the contracts to find violations to the rules.
+- [ ] Run verifications of the contracts to find violations of the rules.
 
 > :bulb:
 > <details>
@@ -53,9 +53,9 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [ ] Follow the violations as explained in [BankLesson1](../01.Lesson_GettingStarted/BankLesson1) to find out the source of the bugs.
+- [ ] Follow the violations as explained in [ERC20Lesson1](../01.Lesson_GettingStarted/ERC20Lesson1) to find out the source of the bugs.
 
-- [ ] Fix the causes of the violations and check that the rules are really passing (green thumb up). **Be sure not to weaken the rules.**
+- [ ] Fix the causes of the violations and check that the rules are passing (green check mark). **Be sure not to weaken the rules.**
 
 - [ ] Save your solution to each bug in the same file that you found it in, next to the changed line(s). Mark your findings by adding a comment explaining the fix in 1-2 sentences in the following format: //@note the require checked `a > b`, when it should've checked `b > a`.
 
@@ -71,7 +71,7 @@ For each of the systems in this directory do as follows:
 > :bulb:
 > <details>
 >  <summary>General Tip 1</summary>
-> In the spec file - Try assigning variables instead of having direct function calls in expressions. By assigning variables the call trace becomes clearer and the variables' section volunteers more information.
+> Call traces contains information regarding the storage, arguments and return value.
 ></details>
 
 </br>
@@ -90,7 +90,7 @@ For each of the systems in this directory do as follows:
 
 </br>
 
-- [ ] Continue to next lesson: [SMT](../03.Lesson_SMT) to learn about the underlying mechanism of the Certora Prover.
+- [ ] Continue to the next lesson: [SMT](../03.Lesson_SMT) to learn about the underlying mechanism of the Certora Prover.
 
 </br>
 
