@@ -167,7 +167,7 @@ require totalBefore >= userBalanceBefore;
 The prover will now assume that in the initial state, before calling `mint()`, the total supply is at least the user's balance. Run the entire spec:
 
 ```sh
-certoraRun BankFixed.sol:Bank --verify Bank:TotalGreaterThanUser.spec --solc solc8.0 --msg "running with precondition"
+certoraRun ERC20.sol --verify ERC20:TotalGreaterThanUser.spec --solc solc8.0 --rule totalSupplyAfterMintWithPrecondition --msg "running with precondition" 
 ```
 
 > :bulb: The `--msg` flag adds a message description to your run. 
