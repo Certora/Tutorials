@@ -1,6 +1,5 @@
 # Reasoning over arrays
-In this chapter we will review the pitfalls and different methods verifying
-invariants over array.
+In this chapter, we will review the pitfalls and different methods of verifying invariants over arrays.
 
 ## 1. Basic
 Here we show that taking a naive approach will often fail.
