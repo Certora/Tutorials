@@ -4,6 +4,5 @@ certoraRun ArrayWithMap.sol \
 --send_only \
 --optimistic_loop \
 --loop_iter 4 \
---staging \
 --rule_sanity \
 --msg "ArrayWithMap.sol with sanity check"

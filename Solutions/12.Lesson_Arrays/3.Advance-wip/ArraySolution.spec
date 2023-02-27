@@ -58,7 +58,7 @@ invariant isInverseWithDefault(uint256 i)
 	}
 
 
-invariant flagConsistancy(uint256 i)
+invariant flagConsistency(uint256 i)
     (i < getLength()) => getFlag(getWithDefaultValue(i))
     {
         preserved{
@@ -73,7 +73,7 @@ invariant uniqueArray(uint256 i, uint256 j)
 	)
     {
         preserved{
-			requireInvariant flagConsistancy(i);
-			requireInvariant flagConsistancy(j);
+			requireInvariant flagConsistency(i);
+			requireInvariant flagConsistency(j);
         }
     }
