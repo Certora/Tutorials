@@ -124,7 +124,7 @@ So, what's the bug?
 Let's “fix” the issue in the spec and rerun the rule:
 
 ```sh 
-certoraRun ERC20.sol: --verify ERC20:ERC20Fixed.spec --solc solc8.0
+certoraRun ERC20.sol --verify ERC20:ERC20Fixed.spec --solc solc8.0
 ```
 
 No violations were found. Great!
