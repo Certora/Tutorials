@@ -2,7 +2,7 @@
 
 ## How Certora Prover Works
 
-- [ ] Watch a lecture by Dr. Chandrakana Nandi - [Link](https://www.youtube.com/watch?v=c5ViO3Dpfqs) On the mechanism of the Certora Verification Tool (CVT).
+- [ ] Watch a lecture by Dr. Chandrakana Nandi - [Link](https://www.youtube.com/watch?v=c5ViO3Dpfqs) On the mechanism of the Certora Verification Tool (Prover).
 
 ## Additional Useful flags
 
@@ -20,7 +20,7 @@ These scripts flags and features that we still haven't gone through. Try to see 
 - [ ] Have a brief look at the entry on [CLI Options](https://docs.certora.com/en/latest/docs/prover/cli/options.html#certora-prover-cli-options) in the documentation.
 
 This is where you'll go to learn about additional flags and options. Some of these can help you overcome problems, customize the output to your needs, and make your life much easier.
-We will introduce more specific flags in future lessons when using them help up solve problems.
+We will introduce more specific flags in future lessons when using them help us solve problems.
 
 </br>
 
