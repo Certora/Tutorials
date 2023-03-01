@@ -1,0 +1,8 @@
+# Certora
+.certora*
+.last_confs
+certora_*
+
+# mac
+.DS_Store
+.zip-output-url.txt

@@ -1,5 +1,5 @@
 # Guided Exercise - Liquidity Pool With Flash Loans
-
+- [ ] Read [Working with Multiple Contracts](https://docs.certora.com/en/latest/docs/user-guide/multicontract/index.html)
 - [ ] Look at the set of contracts in this directory created by the Certora team. Try to understand what the contracts do and how they operate in a high-level sense.
     
 </br>
@@ -12,7 +12,7 @@
 
 </br>
 
-- [ ] Have a look at the prepared `.spec` file [high Level](highLevel.spec) and try to read the properties. They might be too complex at this point, so don't worry if you do not understand everything.
+- [ ] Have a look at the prepared `.spec` file [high Level](highLevel.spec) and try to read the properties. 
 
 </br>
 

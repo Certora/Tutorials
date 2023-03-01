@@ -12,11 +12,13 @@
 
 [^1]: The content was created for the course *Software Construction* for [MIT University](https://web.mit.edu/).
 
-- [ ] Follow the article in [Invariants](Invariants) to learn about invariants, their implementation in CVL, and the difference between them and rules.
-
 - [ ] Watch a lecture by Dr. James Wilcox on inductive reasoning for securing smart contracts - [Link](https://youtu.be/30BspXZs7q8) ([slides](Induction.pdf)).
 
 - [ ] Follow the [InductionLesson](InductionLesson) instructions to practice inductive reasoning and writing invariants in CVL.
+
+- [ ] Read about [invariants](https://docs.certora.com/en/latest/docs/cvl/invariants.html?highlight=invariant)  in Certora Prover, to learn about invariants, their implementation in CVL, and the difference between them and rules.
+- [ ] Follow the exercise in [Invariants](Invariants) 
+
 
 </br>
 

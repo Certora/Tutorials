@@ -1,6 +1,6 @@
 ## Some More Thinking About Properties
 
-In the current directory there are three subdirectories - Borda Election, ERC20 and Spartan Protocol. Each subdirectory contains a system implemented in Solidity. For each of the systems in this directory, do as follows:
+Continue with EnglishAuction:
 
 - [ ] Try to understand the principles of the given system without going into details of implementation - what it is supposed to do and what mechanism it uses.
 To do that, you can read the comments and documentation of the file, look at its global variables, and go over the functions' signatures (or the interface if it exists).
@@ -26,7 +26,13 @@ Don't worry about writing the properties in CVL. For now, we only practice the i
 
 </br>
 
-- [ ] If possible, reach out to a fellow participant of the on-boarding and ask them to discuss your properties. Exchange thoughts and ideas.
+- [ ] Start with the exampleSpec.spec file and write more properties. Focus on multi-contract
+
+- [ ] Learn about [ghosts](https://docs.certora.com/en/latest/docs/cvl/ghosts.html?highlight=ghost)
+
+- [ ] Check your spec over mutations
+
+- [ ] Review the solution file to see a good coverage spec 
 
 </br>
 

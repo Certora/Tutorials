@@ -1,1 +1,1 @@
-certoraRun Manager.sol:Manager --verify Manager:ManagerFullSolution.spec --solc solc8.6 --send_only --msg "$1"
+certoraRun Manager.sol:Manager --verify Manager:ManagerFullSolution.spec --solc solc8.6 --send_only --msg "Manager lesson 8" --staging master --rule_sanity advanced

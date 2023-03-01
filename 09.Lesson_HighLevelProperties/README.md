@@ -6,15 +6,13 @@ In this Lesson, after you've already practiced coming up with meaningful propert
 
 > :warning: Note that transfer by approved 3rd party will change the account's balance legitimately.
 
-High-level properties are usually implemented as invariants or parametric rules, as oppose to rules that monitor the behavior of the system as a result of a specific function call. The latter will very rarely represent high-level rules, due to its diminished "attack vector" possibility.
+High-level properties are usually implemented as invariants or parametric rules, as opposed to rules that monitor the behavior of the system as a result of a specific function call. The latter will very rarely represent high-level rules, due to its diminished "attack vector" possibility.
 
-- [ ] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise some more on coming up with properties, categorizing them, and prioritizing them.
+- [ ]Go over [SymbolicPoolDemonstratione](SymbolicPoolDemonstration) to learn about multi-contract verification and exercise some more on coming up with properties, categorizing them, and prioritizing them.
 
-</br>
+- [ ] Follow the instructions on [Thinking Properties Exercise](ThinkingPropertiesExercise) to exercise writing a full spec.
 
-- [ ] Create a `.spec` file for [Borda Election](ThinkingPropertiesExercise/Borda) and [ERC20](ThinkingPropertiesExercise/ERC20), and try to prove 5 properties in each of them based on your properties.
 
-Upload your solutions to the directories to get review by the Certora team.
 
 </br>
 
