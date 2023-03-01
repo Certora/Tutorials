@@ -19,7 +19,7 @@ Let's recap the basic structure of the `certoraRun` command:
 At the end the run command should look something like that:
 
 ```CVL
-certoraRun ERC20Lesson1/ERC20.sol:Bank --verify ERC20:ERC20Lesson1/Parametric.spec
+certoraRun ERC20Lesson1/ERC20.sol:ERC20 --verify ERC20:ERC20Lesson1/Parametric.spec
 ```
 
 </br>
