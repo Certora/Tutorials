@@ -32,7 +32,7 @@
 
 </br>
 
-- [ ] Continue to the next lesson: [Getting Familiar With CVT](../05.Lesson_GettingFamiliarWithCVT) to learn about additional flags that you can use for your benefit.
+- [ ] Continue to the next lesson: [Getting Familiar With Prover](../05.Lesson_GettingFamiliarWithProver) to learn about additional flags that you can use for your benefit.
 
 </br>
 
