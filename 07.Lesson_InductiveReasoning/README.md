@@ -16,7 +16,7 @@
 
 - [ ] Follow the [InductionLesson](InductionLesson) instructions to practice inductive reasoning and writing invariants in CVL.
 
-- [ ] Read about [invariants](https://docs.certora.com/en/latest/docs/cvl/invariants.html?highlight=invariant)  in Certora Prover, to learn about invariants, their implementation in CVL, and the difference between them and rules.
+- [ ] Read about [invariants](https://docs.certora.com/en/latest/docs/cvl/invariants.html) in Certora Prover, to learn about invariants, their implementation in CVL, and the difference between them and rules.
 - [ ] Follow the exercise in [Invariants](Invariants) 
 
 

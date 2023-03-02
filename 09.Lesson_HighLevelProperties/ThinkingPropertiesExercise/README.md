@@ -28,7 +28,7 @@ Don't worry about writing the properties in CVL. For now, we only practice the i
 
 - [ ] Start with the exampleSpec.spec file and write more properties. Focus on multi-contract
 
-- [ ] Learn about [ghosts](https://docs.certora.com/en/latest/docs/cvl/ghosts.html?highlight=ghost)
+- [ ] Learn about [ghosts](https://docs.certora.com/en/latest/docs/cvl/ghosts.html)
 
 - [ ] Check your spec over mutations
 
@@ -36,6 +36,5 @@ Don't worry about writing the properties in CVL. For now, we only practice the i
 
 </br>
 
-> :memo: The Certora Team will review your solution and give you a personal review. In the next days you will exercise thinking about properties some more; please wait for your review before proceeding to the next exercise in this subject.
 
 > :bulb: Thinking about properties is a process of brainstorming. It is always recommended to have a partner(s) to discuss your ideas with.

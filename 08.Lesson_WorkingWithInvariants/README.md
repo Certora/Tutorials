@@ -17,6 +17,7 @@ Upload your solutions to the respective directories for a review by the Certora 
 ## Vacuous Rules
 
 </br>
+
 - [ ] look at the solutions folder to check your spec
 
 - [ ] Continue to next lesson: [High Level Properties](../09.Lesson_HighLevelProperties) to practice some more thinking about properties, notice which property is appropriate for defining as invariant
