@@ -4,7 +4,7 @@
 
 </br>
 
-As discussed in [Lesson 7](../../07.Lesson_InductiveReasoning) Certora Prover is over-approximating states to achieve full coverage and provide a proof that a property always holds. However, usually infeasible states (that can never occur at runtime) are also considered. There may be a violation on some of those infeasible states, thus a false negative. These violations can be eliminated by proving the set of reachable states.
+As discussed in [Lesson 7](../../07.Lesson_InductiveReasoning) Certora Prover is based on inductive theory and therefor assumes all permutations of the state to achieve full coverage and provide proof that a property always holds. However, usually infeasible states (that can never occur at runtime) are also considered. There may be a violation on some of those infeasible states, thus a false negative. These violations can be eliminated by proving the set of reachable states.
 
 In the `Manager` example, we've seen how challenging writing a rule with good coverage is. A rule with partial coverage can be successfully verified and overlook a real bug while giving a user confidence in the code, although it is flawed.
 
@@ -265,6 +265,9 @@ invariant example(bytes32 hashId, env e)
 ## Exercise
 
 </br>
+
+- [ ] Have a look at the system [Manager](Manager) and look at the step to step to write the unique manager property as invariant, check the bugs and insert new ones to understand the coverage.  
+
 
 - [ ] Have a look at the system [ReserveList](ReserveList) and understand how it operates.
 
