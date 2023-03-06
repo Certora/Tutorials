@@ -34,11 +34,12 @@ For each of the systems in this directory do as follows:
 </br>
 
 - [ ] Create a script (or multiple scripts) that will serve you for running the verifications of the system's buggy versions.
+- [ ] Alternatively, create a new empty job in the VSCode IDE or upload an existing file.
 
 > :bulb:
 > <details>
 >  <summary>Script Hint</summary>
->  Craft your script wisely - use the `--rule` to filter out information that isn't of your interest.
+>  Craft your script wisely - use the `--rule` to filter out information that isn't of your interest ('Rules' is under 'Certora Spec' in the IDE's settings form).
 ></details>
 
 </br>
