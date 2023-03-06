@@ -19,7 +19,7 @@ Follow the values in the assertion closely, particularly the explicit values of 
 <details>
 <summary>General Hint 3:</summary>
 Run the rule <code>monotonousIncreasingNumOfParticipants</code> on one of the implementations that you've already fixed. It still fails.
-Look at the failing method, how come before creating a meeting the number of participants was greater than 0? Go back to BankLesson1 and refresh yourself about the failure in <code>TotalGreaterThanUser.spec</code> and its mitigation (precondition).
+Look at the failing method, how come before creating a meeting the number of participants was greater than 0? Go back to Lesson1 and refresh yourself about the failure in <code>TotalGreaterThanUser.spec</code> and its mitigation (precondition).
 </details>
 
 </br>

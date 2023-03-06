@@ -4,7 +4,7 @@
 
 </br>
 
-- [ ] Follow the installation instructions for the Certora Prover described in the following link: [Installation of Certora Prover](https://certora.atlassian.net/wiki/spaces/CPD/pages/7274497/Installation+of+Certora+Prover).
+- [ ] Follow the installation instructions for the Certora Prover described in the following link: [Installation of Certora Prover](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html#).
 
 > :warning: Make sure to download solidity compiler versions 0.8.7, 0.8.0, 0.7.6, 0.7.5 and 0.7.0 for the first 2 lessons of the course. You will need additional solc versions in the future; so whenever a solc error will rise, make sure to have the compiler version that you need on your local machine, located in a directory added to PATH.
 
@@ -39,7 +39,7 @@ Clone your repository to your local machine so you'll have everything you need o
 
 </br>
 
-- [ ] Register to our [Discourse Forum](https://forum.certora.com/) and consider to introduce yourself in the [Introduction Thread](https://forum.certora.com/t/introduce-yourself/27/2).
+- [ ] Register to our [Discourse Forum](https://forum.certora.com/) and consider and introduce yourself in the [Introduction Thread](https://forum.certora.com/t/introduce-yourself/27/2).
 
 </br>
 
@@ -54,11 +54,11 @@ You may, however, choose to work with any other (textual) editor of your choice 
 
 </br>
 
-- [ ] Follow the [BankLesson1](BankLesson1) instructions to learn the basics of operating the Certora Prover.
+- [ ] Follow the [ERC20Lesson1](ERC20Lesson1) instructions to learn the basics of operating the Certora Prover.
 
 </br>
 
-- [ ] Watch a lecture presented to the Opyn team by Dr. James Wilcox - [Link](https://youtu.be/YObi6qoyo_E). The lecture goes over the same examples from BankLesson1, explaining core concepts with more details.
+- [ ] Watch a lecture presented at Stanford Aug 2022 team by Dr. Michael George - [Link](`https://www.youtube.com/watch?v=siEDkMNbl5o). The lecture goes over the same examples from ERC20, explaining core concepts in more detail.
 
 </br>
 
@@ -68,14 +68,14 @@ You may, however, choose to work with any other (textual) editor of your choice 
 
 </br>
 
-Writing the `certoraRun` command in terminal every time we want to execute a run can be tiresome and uneasy on the eyes. Moreover, since a typical run of a single rule in real-life systems takes minutes to finish, we often work on 2 rules in parallel.
+Writing the `certoraRun` command in a terminal every time we want to execute a run can be tiresome and uneasy on the eyes. Moreover, since a typical run of a single rule in real-life systems takes minutes to finish, we often work on 2 rules in parallel.
 
-For that reason we often write a shell scripts of the run command that includes all the settings and options we need for a run. There are 4 advantages for using a script:
+For that reason, we often write a shell script of the run command that includes all the settings and options we need for a run. There are 4 advantages for using a script:
 
 1. It is easier to read and sometimes can be more friendly to edit.
-2. It can save a large chunk of code that's stored in a known place, as oppose to a terminal command that can be pushed down the stack and disappear after intense use of the terminal.
-3. It can be uploaded to git or sent along with the specifications for others to use, instead of forcing them writing the command
-4. It allows a more advance execution of run commands, e.g. running the exact same rule on every contract in a given directory (we will talk about sanity rule in the future).
+2. It can save a large chunk of code that's stored in a known place, as opposed to a terminal command that can be pushed down the stack and disappear after intense use of the terminal.
+3. It can be uploaded to git or sent along with the specifications for others to use, instead of forcing them to write the command
+4. It allows a more advanced execution of run commands, e.g. running the exact same rule on every contract in a given directory (we will talk about sanity rule in the future).
 
 </br>
 
@@ -89,12 +89,21 @@ For that reason we often write a shell scripts of the run command that includes 
 
 </br>
 
-- [ ] Continue to next lesson: [Investigate Violations](../02.Lesson_InvestigateViolations) to exercise some more script writing and the art of understanding violations.
+- [ ] Continue to the next lesson: [Investigate Violations](../02.Lesson_InvestigateViolations) to exercise some more script writing and the art of understanding violations.
+
+</br>
+
+---
+## Solutions to the lessons
+
+</br>
+
+- [ ] Some of the lessons in the Tutorials require you to write a `.spec` file containing your own rules for a given contract. Sometimes this can be quite challenging and if you get in trouble, you can have a look at the [Solutions](https://github.com/Certora/Tutorials/tree/master/Solutions) folder in the repository.
 
 </br>
 
 ---
 
-### Hurray! You've completed you first step towards being a security engineer
+### Hurray! You've completed your first step toward being a security engineer
 
 ---

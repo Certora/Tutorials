@@ -2,13 +2,13 @@
 
 </br>
 
-Let's recap on the basic structure of the `certoraRun` command:
+Let's recap the basic structure of the `certoraRun` command:
 
-- It starts with the basic command `certoraRun`.
+- It starts with the command `certoraRun`.
 
 - Right after we specify the relative path to the solidity file that holds the contract we'd like to verify - `<relative/path/to/solidity/file>`.
 
-- Next we write the contract we desire to verify, separated from the solidity file path by full colon - `:<contract_name>`. We do it since a single solidity file can contain multiple contracts.
+- Next, we write the contract we desire to verify, separated from the solidity file path by full colon - `:<contract_name>`. We do it since a single solidity file can contain multiple contracts.
 
 - Right after we use the flag `--verify` to indicate that we'd like to verify the specified contract within the specified `.sol` file.
 
@@ -19,14 +19,14 @@ Let's recap on the basic structure of the `certoraRun` command:
 At the end the run command should look something like that:
 
 ```CVL
-certoraRun BankLesson1/Bank.sol:Bank --verify Bank:BankLesson1/IntegrityOfDeposit.spec
+certoraRun ERC20Lesson1/ERC20.sol:ERC20 --verify ERC20:ERC20Lesson1/Parametric.spec
 ```
 
 </br>
 
-- [ ] Open the shell script [verifyIntegrityOfDeposit](verifyIntegrityOfDeposit.sh) and read it. Make sure that you understand each line, and that you are familiar with every flag.
+- [ ] Open the shell script [verifyERC20](verifyERC20.sh) and read it. Make sure that you understand each line, and that you are familiar with every flag.
 
-  - [ ] Do you recognize this run command? This is basically the first run in BankLesson1.
+  - [ ] Do you recognize this run command? This is the last run in ERC20Lesson1.
 
 </br>
 
@@ -34,10 +34,10 @@ certoraRun BankLesson1/Bank.sol:Bank --verify Bank:BankLesson1/IntegrityOfDeposi
 
 </br>
 
-- [ ] In your VSCode terminal change directory to `Certora-OnBoarding/01.Lesson_GettingStarted`, and execute the script: 
+- [ ] In your VSCode terminal change directory to `01.Lesson_GettingStarted`, and execute the script: 
 
 ``` sh
-sh  RunScriptExample/verifyIntegrityOfDeposit.sh "This is a run executed through a shell script"
+sh  RunScriptExample/verifyERC20.sh "This is a run executed through a shell script"
 ```
 
 > :memo: You can check the verification report to see that it really is the same run.
@@ -54,11 +54,11 @@ sh  RunScriptExample/verifyIntegrityOfDeposit.sh "This is a run executed through
 
 </br>
 
-- [ ] Create a script that runs the entire `TotalGreaterThanUser.spec` specification file with solidity compiler 7.5 and a message string "My first Certora shell script". Save the script in `RunScriptExample` with the name "myOwnVerificationScript1" and execute the script.
+- [ ] Create a script that runs the entire `TotalGreaterThanUser.spec` specification file with solidity compiler 8.0 and a message string "My first Certora shell script". Save the script in `RunScriptExample` with the name "myOwnVerificationScript1" and execute the script.
 
 </br>
 
-- [ ] Create a script that runs the rule `validityOfTotalFundsWithVars` in `Parametric.spec` specification file with solidity compiler 7.0 and a message of your choice taken as an input. Save the script in `RunScriptExample` with the name "myOwnVerificationScript2" and execute the script.
+- [ ] Change the contract name from ERC20 to NewERC20 (without changing the file name) and create a script that runs `TotalGreaterThanUser.spec` specification file with solidity compiler 8.0 and a message of your choice taken as an input. Save the script in `RunScriptExample` with the name "myOwnVerificationScript2" and execute the script.
 
  </br>
 
