@@ -67,7 +67,7 @@ rule checkPendingToCancelledOrStarted(method f, uint256 meetingId) {
 	uint8 stateBefore = getStateById(e, meetingId);
 	f(e, args);
 	
-	uint8 stateAfter = getStateById(e.meetingId);
+	uint8 stateAfter = getStateById(e, meetingId);
 
 	assert (stateBefore == 1 => (stateAfter == 1 || stateAfter == 2 || stateAfter == 4)), "invalidation of the state machine";
 	assert ((stateBefore == 1 && stateAfter == 2) => f.selector == startMeeting(uint256).selector), "the status of the meeting changed from PENDING to STARTED through a function other then startMeeting()";
