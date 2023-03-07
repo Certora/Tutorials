@@ -53,8 +53,10 @@ rule checkStartedToStateTransition(method f, uint256 meetingId) {
 	calldataarg args;
 	uint8 stateBefore = getStateById(e, meetingId);
 	f(e, args);
-	assert (stateBefore == 2 => (getStateById(e, meetingId) == 2 || getStateById(e, meetingId) == 4)), "the status of the meeting changed from STARTED to an invalid state";
-	assert ((stateBefore == 2 && getStateById(e, meetingId) == 4) => f.selector == endMeeting(uint256).selector), "the status of the meeting changed from STARTED to ENDED through a function other then endMeeting()";
+	uint8 stateAfter = getStateById(e, meetingId);
+
+	assert (stateBefore == 2 => (stateAfter == 2 || stateAfter == 4)), "the status of the meeting changed from STARTED to an invalid state";
+	assert ((stateBefore == 2 && stateAfter == 4) => f.selector == endMeeting(uint256).selector), "the status of the meeting changed from STARTED to ENDED through a function other then endMeeting()";
 }
 
 
