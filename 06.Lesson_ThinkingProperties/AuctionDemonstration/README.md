@@ -34,7 +34,9 @@ You can read about the catch in the following [blog post](https://blog.makerdao.
 
 - [ ] Run the script [runBroken.sh](runBroken.sh) and get a violation. Investigate the reason for the fail and see that you understand it.
 
+- [ ] Alternatively, run the job [run_broken](run_broken.conf) and get a violation. Investigate the reason for the fail and see that you understand it.
+
 - [ ] Try to suggest a solution that will mitigate the wrongful behavior.
 
-- [ ] Compare the 2 contracts - [Auction Broken](AuctionBroken.sol) and [Auction Fixed](AuctionFixed.sol) to find the fix. Run the script [runFixed.sh](runFixed.sh) and see that it is indeed solving the problem.
+- [ ] Compare the 2 contracts - [Auction Broken](AuctionBroken.sol) and [Auction Fixed](AuctionFixed.sol) to find the fix. Run the script [runFixed.sh](runFixed.sh) or the job [run_fixed](run_fixed.conf) and see that it is indeed solving the problem.
 Were you thinking of the same solution or did you think of another one? There could be more than 1 correct answer.
