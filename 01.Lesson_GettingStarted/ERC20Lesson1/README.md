@@ -78,7 +78,7 @@ certoraRun --help
 
 ### ***Running in the IDE*** 
 
-Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***bank integrityofdeposit***.
+Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***ERC20***.
 </br>
 
 ### ***Results***
@@ -103,6 +103,15 @@ ERROR: [rule] transferSpec
 Follow the "Verification results" link in the command line, or go to [prover.certora.com](https://prover.certora.com/) to see your list of jobs (the latest run will be shown on top).
 You'll see a table with the verification results, similar to this image: ![results](images/results.jpg) 
 For each rule, the table either displays a checkmark when the rule was proved or a x-mark when a violation of the rule was discovered.
+
+</br>
+
+## Results in VSCode IDE ##
+
+The results will appear under the job title. After a job is sent to the cloud, the 'Go To Rule Report' icon to the left of
+the job will turn light blue. Clicking it will open the rule report in the web.
+
+To see the call trace, click a violated rule's details.
 
 </br>
 
