@@ -111,7 +111,12 @@ For each rule, the table either displays a checkmark when the rule was proved or
 The results will appear under the job title. After a job is sent to the cloud, the 'Go To Rule Report' icon to the left of
 the job will turn light blue. Clicking it will open the rule report in the web.
 
-To see the call trace, click a violated rule's details.
+![Screen Shot 2023-03-07 at 11 21 42](https://user-images.githubusercontent.com/101042618/223378848-63242073-2987-4efd-adc9-fbb155344837.png)
+
+To see the call trace, click a violated rule's details:
+
+![Screen Shot 2023-03-07 at 11 24 10](https://user-images.githubusercontent.com/101042618/223379486-a728d578-4f72-481f-ab8f-959dd4451db3.png)
+
 
 </br>
 
