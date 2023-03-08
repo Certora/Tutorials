@@ -101,7 +101,7 @@ contract AuctionImpl is TokenInterface {
 		require(auctions[id].bid_expiry != 0
 				&& (auctions[id].bid_expiry < now || 
 					auctions[id].end_time < now));
-		mint(auctions[id].winner, auctions[id].prize);n
+		mint(auctions[id].winner, auctions[id].prize);
 		delete auctions[id];
 	}
   
