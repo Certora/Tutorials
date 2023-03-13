@@ -63,7 +63,7 @@ contract AuctionImpl is TokenInterface {
 	address public owner ;
 	modifier authorized { require(msg.sender == owner); _; }
 	
-	struct AuctionStrcut {
+	struct AuctionStruct {
 		uint prize; // the prize decreasing by every bid
 		uint payment; // the payment to be paid by the last winner
 		address winner; //the current winner
@@ -71,7 +71,7 @@ contract AuctionImpl is TokenInterface {
 		uint end_time; 
 	}
 	
-	mapping (uint => AuctionStrcut) auctions;
+	mapping (uint => AuctionStruct) auctions;
 	
 	function getAuction(uint id) public view returns (uint,uint,address,uint,uint) {
 		return (auctions[id].prize, auctions[id].payment, auctions[id].winner,auctions[id].bid_expiry, auctions[id].end_time);
@@ -79,7 +79,7 @@ contract AuctionImpl is TokenInterface {
 		
 	function newAuction(uint id, uint payment) public authorized {
 		require(auctions[id].end_time == 0); //check id in not occupied
-		auctions[id] = AuctionStrcut(2**256-1,payment,owner, 0, now+1 days);
+		auctions[id] = AuctionStruct(2**256-1,payment,owner, 0, now+1 days);
                          // arguments: prize, payment, winner, bid_expiry, end_time
 	}
     
