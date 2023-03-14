@@ -10,9 +10,38 @@ methods {
     frequency(address)          returns (uint)      envfree
 }
 
+ ghost mapping(uint => address) arrOfTokensMirror {
+    init_state axiom forall uint i. arrOfTokensMirror[i]==0;
+ }
+ ghost length() returns uint256{
+    init_state axiom length()==0;
+ }
 
-invariant uniqueArray(uint256 i, uint256 j) 
-    i != j => (xxx
-        (getWithDefaultValue(i) != getWithDefaultValue(j)) ||
-		((getWithDefaultValue(i) == 0) && (getWithDefaultValue(j) == 0))
-	)
+
+
+
+hook Sstore arrOfTokens[INDEX uint256 index] address newValue (address oldValue) STORAGE 
+{
+	// Here you can update your ghosts whenever arrOfTokens is updated
+    arrOfTokensMirror[index] =  newValue;
+    havoc length assuming length@new() > index;
+}
+// Use this hook to update ghosts whenever arrOfTokens is read
+hook Sload address value arrOfTokens[INDEX uint256 index] STORAGE 
+{
+    require arrOfTokensMirror[index] ==  value;
+    require length() > index;
+}
+
+invariant uniqueArray() 
+    forall uint256 i. forall uint256 j. 
+         (i < length() && j < length() && i!= j ) => (
+        (arrOfTokensMirror[i] != arrOfTokensMirror[j]) ||
+		((arrOfTokensMirror[i] == 0) && (arrOfTokensMirror[j] == 0)))
+
+
+rule simpleAsThat() {
+    address x;
+    requireInvariant uniqueArray();
+    assert x!=0 => frequency(x) <= 1; 
+}
