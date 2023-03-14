@@ -1,5 +1,5 @@
 certoraRun ArrayUniqueBug.sol \
---verify ArrayUniqueBug:ArrayUniqueBug.spec \
+--verify ArrayUniqueBug:ArrayUnique.spec \
 --solc solc8.6 \
 --send_only \
 --staging master \
