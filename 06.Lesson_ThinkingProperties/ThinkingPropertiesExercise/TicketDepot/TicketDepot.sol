@@ -23,10 +23,10 @@ contract TicketDepot {
 	mapping(bytes32 => Offering) offerings;
 
     // creates a "seller"
-	function ticketDepot(uint64 _transactionFee) public {  
+	constructor(uint64 _transactionFee) {  
 		transactionFee = _transactionFee;  
 		owner = tx.origin;
-        numEvents = 0;
+        	numEvents = 0;
 	} 
 
     // creates an event with the specified number of tickets and price for sale
