@@ -25,7 +25,7 @@ In general, creating an arbitrary `env` variable and passing it to the function 
 
 Another reason to declare functions, even if they aren't `envfree`, is to make the specification more self-contained and readable. 
 
-- [ ] Read the documentation on [method declarations](https://docs.certora.com/en/latest/docs/confluence/advanced/methods.html), especially subsections [Entries in the methods block](https://docs.certora.com/en/latest/docs/cvl/methods.html?highlight=methods#entries-in-the-methods-block) and [Which function calls are summarized](https://docs.certora.com/en/latest/docs/cvl/methods.html?highlight=methods#which-function-calls-are-summarized). Do not continue reading the "Summary Types" subsection. Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
+- [ ] Read the documentation on [method declarations](https://docs.certora.com/en/latest/docs/cvl/methods.html), especially subsections [Entries in the methods block](https://docs.certora.com/en/latest/docs/cvl/methods.html#entries-in-the-methods-block) and [Which function calls are summarized](https://docs.certora.com/en/latest/docs/cvl/methods.html?highlight=methods#which-function-calls-are-summarized). Do not continue reading the "Summary Types" subsection. Notice that the documentation refers to things that we haven't learned yet. Don't worry; we will get to it in the future.
 
 This directory contains the three systems from the Lesson 1 Exercise. The interface implementations are the fixed versions (all the rules pass on them out of the box).
 
