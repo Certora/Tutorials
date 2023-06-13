@@ -100,8 +100,8 @@ There are other reasons to prefer configuration files over directly using CLI:
 
 </br>
 
-- [ ] Follow the instructions on [RunScriptExample](RunScriptExample) to learn how to
-  write run scripts, and how to execute the prover using scripts.
+- [ ] Follow the instructions on [RunConfExample](RunConfExample) to learn how to
+  execute the prover using configuration files.
 
 </br>
 
