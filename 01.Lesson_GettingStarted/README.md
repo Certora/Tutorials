@@ -16,7 +16,10 @@
 
 - [ ] In the VSCode extensions/marketplace search for [Certora Verification Language LSP](https://marketplace.visualstudio.com/items?itemName=Certora.evmspec-lsp) and install it. This is an extension developed for supporting the spec language - the language in which we will be writing specifications. The extension supports syntax highlighting, autocompletion and more.
 
-- [ ] It is also recommended to install the [Ethereum Security Bundle](https://marketplace.visualstudio.com/items?itemName=tintinweb.ethereum-security-bundle) by tintinweb on the VSCode extensions/marketplace, to get support for the Solidity contracts.
+- [x] It is recommanded to install [Certora IDE](https://marketplace.visualstudio.com/items?itemName=Certora.vscode-certora-prover) in the VSCode extensions/marketplace as well, to get an easy-to-use interface for running jobs. 
+
+- [x] It is also recommended to install the [Ethereum Security Bundle](https://marketplace.visualstudio.com/items?itemName=tintinweb.ethereum-security-bundle) by tintinweb on the VSCode extensions/marketplace, to get support for the Solidity contracts.
+
 
 </br>
 

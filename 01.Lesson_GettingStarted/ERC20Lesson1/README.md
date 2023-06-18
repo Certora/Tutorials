@@ -76,6 +76,11 @@ certoraRun --help
 
 </br>
 
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***ERC20***.
+</br>
+
 ### ***Results***
 
 The prover will print various information to the console. 
@@ -98,6 +103,20 @@ ERROR: [rule] transferSpec
 Follow the "Verification results" link in the command line, or go to [prover.certora.com](https://prover.certora.com/) to see your list of jobs (the latest run will be shown on top).
 You'll see a table with the verification results, similar to this image: ![results](images/results.jpg) 
 For each rule, the table either displays a checkmark when the rule was proved or a x-mark when a violation of the rule was discovered.
+
+</br>
+
+## Results in VSCode IDE ##
+
+The results will appear under the job title. After a job is sent to the cloud, the 'Go To Rule Report' icon to the left of
+the job will turn light blue. Clicking it will open the rule report in the web.
+
+![Screen Shot 2023-03-07 at 11 21 42](https://user-images.githubusercontent.com/101042618/223378848-63242073-2987-4efd-adc9-fbb155344837.png)
+
+To see the call trace, click a violated rule's details:
+
+![Screen Shot 2023-03-07 at 11 24 10](https://user-images.githubusercontent.com/101042618/223379486-a728d578-4f72-481f-ab8f-959dd4451db3.png)
+
 
 </br>
 
@@ -129,6 +148,11 @@ certoraRun ERC20.sol --verify ERC20:ERC20Fixed.spec --solc solc8.0
 
 No violations were found. Great!
 
+</br>
+
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the job ***bankfixed integrityofdeposit***.
 </br>
 
 ## Preconditions and Helper Variables
@@ -176,6 +200,11 @@ You will see the message in the run results mail and in the job's list in [prove
 
 </br>
 
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the jobs ***bankfixed totalfundsafterdepos*** and ***bankfixed running with precondition***.
+</br>
+
 ## Parametric Rules
 
 Many properties can be generalized to be used for all functions.
@@ -209,3 +238,9 @@ Notice that this rule uncovers a bug in `decreaseAllowance`.
 Parametric rules enable expressing reusable and concise correctness conditions. 
 Note that they are not dependent on the implementation. 
 You can integrate them easily into the CI to verify changes to the code, including signature changes, new functions, and implementation changes. 
+
+</br>
+### ***Running in the IDE*** 
+
+Alternatively, use the ***Certora VSCode extension IDE*** to run the jobs ***parametric rule on bank*** and ***parametric rule on bankfixed***.
+</br>
