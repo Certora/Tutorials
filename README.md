@@ -1,4 +1,10 @@
-# Certora Tutorials 
+# Certora Tutorials for CVL1
+
+This repo can be used with certora-cli version 3.6. To install use
+
+`pip install certora-cli==3.6.8.post3` 
+
+For CVL2 please refer to  [what's New](https://docs.certora.com/en/latest/docs/cvl/index.html#cvl-version-2) and [Examples](https://github.com/Certora/Examples/tree/CVL2)  
 
 ## Hello and welcome to Certora's beginner's course!
 
