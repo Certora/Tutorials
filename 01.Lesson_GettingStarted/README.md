@@ -46,7 +46,7 @@ Clone your repository to your local machine so you'll have everything you need o
 
 </br>
 
-> :information_source: The Certora team's recommends using VSCode as your main editor for writing specifications and browsing through contracts during the course. As part of the everyday work, you'll need convenient access to terminal, .spec editor - preferably with SLP extension, and a solidity editor - preferably with extension that has adequate support for reading and writing solidity code.
+> :information_source: The Certora team recommends using VSCode as your main editor for writing specifications and browsing through contracts during the course. As part of the everyday work, you'll need convenient access to terminal, .spec editor - preferably with SLP extension, and a solidity editor - preferably with extension that has adequate support for reading and writing solidity code.
 You may, however, choose to work with any other (textual) editor of your choice or split the work between several editors, just know that the SLP is currently only supported through VSCode.
 
 </br>
@@ -61,22 +61,47 @@ You may, however, choose to work with any other (textual) editor of your choice 
 
 ---
 
-## Running Scripts
+## Running the Prover Using Configuration Files
 
 </br>
 
-Writing the `certoraRun` command in a terminal every time we want to execute a run can be tiresome and uneasy on the eyes. Moreover, since a typical run of a single rule in real-life systems takes minutes to finish, we often work on 2 rules in parallel.
+For larger projects, the command line for running the Certora Prover can become large
+and cumbersome. It is therefore recommended to use _configuration files_ instead.
+These are [JSON5](https://json5.org/) files (with ".conf" extension) that hold the
+parameters and options for the Certora Prover. Here is an example conf file:
 
-For that reason, we often write a shell script of the run command that includes all the settings and options we need for a run. There are 4 advantages for using a script:
+```json5
+{
+    "files": [
+        "src/contracts/Strategy.sol",
+        "src/contracts/Data.sol",
+    ],
+    "verify": "Strategy:certora/specs/StrategyVrification.spec",
+    "send_only": false,
+    "optimistic_loop": true,
+    "loop_iter": "2",
+    "rule_sanity": "basic",
+    // Note: json5 supports comments!
+    "solc": "solc8.8",
+    "msg": "Strategy verification"
+}
+```
 
-1. It is easier to read and sometimes can be more friendly to edit.
-2. It can save a large chunk of code that's stored in a known place, as opposed to a terminal command that can be pushed down the stack and disappear after intense use of the terminal.
-3. It can be uploaded to git or sent along with the specifications for others to use, instead of forcing them to write the command
-4. It allows a more advanced execution of run commands, e.g. running the exact same rule on every contract in a given directory (we will talk about sanity rule in the future).
+Now running the Certora Prover is simply entering 
+```bash
+certoraRun config_file.conf
+```
+
+There are other reasons to prefer configuration files over directly using CLI:
+1. They are easier to read and sometimes can be more friendly to edit.
+2. Since the configuration files are [JSON5](https://json5.org/), they support comments.
+3. We can include them in our git repository for version control.
+
 
 </br>
 
-- [ ] Follow the instructions on [RunScriptExample](RunScriptExample) to learn how to write run scripts, and how to execute the prover using scripts.
+- [ ] Follow the instructions on [RunConfExample](RunConfExample) to learn how to
+  execute the prover using configuration files.
 
 </br>
 
