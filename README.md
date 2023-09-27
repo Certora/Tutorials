@@ -1,4 +1,5 @@
 # Certora Tutorials for CVL1
+## For CVL2 tutorials please refer to https://docs.certora.com/projects/tutorials
 
 This repo can be used with certora-cli version 3.6. To install use
 
